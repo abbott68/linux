@@ -1,0 +1,24 @@
+		<header class="top-hd">
+			<div class="hd-lt">
+				<a class="icon-reorder"></a>
+			</div>
+			<div class="hd-rt">
+				<ul>
+					<li>
+						<a href="#" target="_blank"><i class="icon-home"></i>前台访问</a>
+					</li>
+					<li>
+						<a><i class="icon-random"></i>清除缓存</a>
+					</li>
+					<li>
+						<a><i class="icon-user"></i>管理员:<em>DeathGhost</em></a>
+					</li>
+					<li>
+						<a><i class="icon-bell-alt"></i>系统消息</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)" id="JsSignOut"><i class="icon-signout"></i>安全退出</a>
+					</li>
+				</ul>
+			</div>
+		</header>

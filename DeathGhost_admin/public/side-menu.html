@@ -1,0 +1,196 @@
+<div class="side-nav">
+	<div class="side-logo">
+		<div class="logo">
+			<span class="logo-ico">
+				<i class="i-l-1"></i>
+				<i class="i-l-2"></i>
+				<i class="i-l-3"></i>
+			</span>
+			<strong>模块化后台管理模板</strong>
+		</div>
+	</div>
+	
+	<nav class="side-menu content mCustomScrollbar" data-mcs-theme="minimal-dark">
+		<h2>
+			<a href="/adminTemplate/index.php" class="InitialPage"><i class="icon-dashboard"></i>数据概况</a>
+		</h2>
+		<ul>
+			<li>
+				<dl>
+					<dt>
+						<i class="icon-columns"></i>页面基础布局<i class="icon-angle-right"></i>
+					</dt>
+					<dd>
+						<a href="/adminTemplate/demo-pages/flex-layout.php">弹性盒子布局</a>
+					</dd>
+					<dd>
+						<a href="/adminTemplate/demo-pages/flow-layout.php">瀑布流布局</a>
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>
+						<i class="icon-inbox"></i>按钮UI<i class="icon-angle-right"></i>
+					</dt>
+					<dd>
+						<a href="/adminTemplate/demo-pages/button.php">基础按钮</a>
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>
+						<i class="icon-table"></i>表格UI<i class="icon-angle-right"></i>
+					</dt>
+					<dd>
+						<a href="/adminTemplate/demo-pages/table.php">基础表格</a>
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>
+						<i class="icon-list-alt"></i>表单UI<i class="icon-angle-right"></i>
+					</dt>
+					<dd>
+						<a href="/adminTemplate/demo-pages/form.php">表单结构样式</a>
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>
+						<i class="icon-external-link"></i>弹出窗口<i class="icon-angle-right"></i>
+					</dt>
+					<dd>
+						<a href="/adminTemplate/demo-pages/popups.php">基础弹出层</a>
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>
+						<i class="icon-bar-chart"></i>百度统计echarts图表<i class="icon-angle-right"></i>
+					</dt>
+					<dd>
+						<a href="/adminTemplate/demo-pages/echarts.php">echarts统计图表</a>
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>
+						<i class="icon-font"></i>文本编辑器<i class="icon-angle-right"></i>
+					</dt>
+					<dd>
+						<a href="/adminTemplate/demo-pages/ueditor.php">百度UEDITOR编辑器</a>
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>
+						<i class="icon-road"></i>进度条<i class="icon-angle-right"></i>
+					</dt>
+					<dd>
+						<a href="/adminTemplate/demo-pages/progress.php">progress进度条兼容</a>
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>
+						<i class="icon-tags"></i>Tab选项卡<i class="icon-angle-right"></i>
+					</dt>
+					<dd>
+						<a href="/adminTemplate/demo-pages/tab.php">Tab选项卡</a>
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>
+						<i class="icon-filter"></i>下拉菜单<i class="icon-angle-right"></i>
+					</dt>
+					<dd>
+						<a href="/adminTemplate/demo-pages/button-dropdown.php">按钮式下拉菜单</a>
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>
+						<i class="icon-sitemap"></i>页面分组标题<i class="icon-angle-right"></i>
+					</dt>
+					<dd>
+						<a href="/adminTemplate/demo-pages/title.php">页面标题</a>
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>
+						<i class="icon-columns"></i>分页<i class="icon-angle-right"></i>
+					</dt>
+					<dd>
+						<a href="/adminTemplate/demo-pages/paging.php">jquery分页效果</a>
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>
+						<i class="icon-spinner"></i>旋转动画<i class="icon-angle-right"></i>
+					</dt>
+					<dd>
+						<a href="/adminTemplate/demo-pages/animation.php">刷新加载动画</a>
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>
+						<i class="icon-fighter-jet"></i>面包屑导航<i class="icon-angle-right"></i>
+					</dt>
+					<dd>
+						<a href="/adminTemplate/demo-pages/breadcrumb.php">面包屑</a>
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>
+						<i class="icon-laptop"></i>文本面板<i class="icon-angle-right"></i>
+					</dt>
+					<dd>
+						<a href="/adminTemplate/demo-pages/text-panel.php">文本面板</a>
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>
+						<i class="icon-leaf"></i>块引用<i class="icon-angle-right"></i>
+					</dt>
+					<dd>
+						<a href="/adminTemplate/demo-pages/blockquote.php">块引用</a>
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>
+						<i class="icon-star"></i>第三方弹窗组件<i class="icon-angle-right"></i>
+					</dt>
+					<dd>
+						<a href="/adminTemplate/demo-pages/layer.php">web弹层组件</a>
+					</dd>
+				</dl>
+			</li>
+		</ul>
+	</nav>
+	
+	<footer class="side-footer">© DeathGhost 版权所有</footer>
+	
+</div>

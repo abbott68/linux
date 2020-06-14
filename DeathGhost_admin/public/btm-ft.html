@@ -1,0 +1,15 @@
+		<footer class="btm-ft">
+			<p class="clear">
+				<span class="fl">©Copyright 2016 <a href="#" title="DeathGhost" target="_blank">DeathGhost.cn</a></span>
+				<span class="fr text-info">
+					<em class="uppercase">
+						<i class="icon-user"></i>
+						author:deathghost
+					</em> | 
+					<em class="uppercase"><i class="icon-envelope-alt"></i>
+						更多模板： <a href="http://www.mycodes.net/" target="_blank">源码之家</a>
+					</em>
+					<a onclick="reciprocate()" class="text-primary"><i class="icon-qrcode"></i>捐赠</a>
+				</span>
+			</p>
+		</footer>

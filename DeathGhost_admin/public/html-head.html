@@ -1,0 +1,19 @@
+<head>
+<meta charset="utf-8"/>
+<title>后台管理系统-HTML5后台管理系统</title>
+<meta name="keywords"  content="设置关键词..." />
+<meta name="description" content="设置描述..." />
+<meta name="author" content="DeathGhost" />
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<link rel="icon" href="/adminTemplate/images/icon/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="/adminTemplate/css/style.css" />
+<script src="/adminTemplate/javascript/jquery.js"></script>
+<script src="/adminTemplate/javascript/plug-ins/customScrollbar.min.js"></script>
+<script src="/adminTemplate/javascript/plug-ins/echarts.min.js"></script>
+<script src="/adminTemplate/javascript/plug-ins/layerUi/layer.js"></script>
+<script src="/adminTemplate/editor/ueditor.config.js"></script>
+<script src="/adminTemplate/editor/ueditor.all.js"></script>
+<script src="/adminTemplate/javascript/plug-ins/pagination.js"></script>
+<script src="/adminTemplate/javascript/public.js"></script>
+</head>
