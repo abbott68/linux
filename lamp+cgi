@@ -1,0 +1,158 @@
+准备环境： 	centos7       	3台
+软件包：		apache  php   mariadb
+获取软件包：	官方站点
+规划ip地址：
+	192.168.18.10 		        apache.service
+	192.168.18.15			php.service
+	192.168.18.50			mariadb.service
+
+一、部署web站点
+	(1)安装依赖
+		yum -y install wget make gcc gcc-c++ pcre openssl openssl-devel zlib unzip  
+		yum -y install cmake ncurses-devel libjpeg libjpeg-devel libpng libpng-devel libxml2 
+		yum -y install libxml2-devel curl-devel libtool libtool-ltdl libtool-ltdl-devel libevent libevent-devel 
+		yum -y install zlib-static zlib-devel autoconf pcre-devel gd perl  expat-devel 
+	(2)获取软件包
+		wget -O /usr/local/apache1/apr/apr-1.7.0.tar.gz https://mirror.bit.edu.cn/apache//apr/apr-1.7.0.tar.gz
+		wget -O /usr/local/apache1/apr/apr-util-1.6.1.tar.gz https://mirror.bit.edu.cn/apache//apr/apr-util-1.6.1.tar.gz
+			   wget -O /usr/local/apache1/apache/httpd-2.4.41.tar.gz https://mirror.bit.edu.cn/apache//httpd/httpd-2.4.41.tar.gz
+	   (3)安装apache
+		🕐安装apr
+			cd /usr/local/apache1/apr
+			tar xf apr-1.7.0.tar.gz && cd apr-1.7.0
+			./configure --prefix=/usr/local/apache1/apr
+				make  &> /dev/null
+				make install &> /dev/null
+   	       🕐安装apr-util
+				cd /usr/local/apache1/apr/
+				tar xf apr-util-* && cd apr-util-*
+				./configure --prefix=/usr/local/apache1/apr/apr-util  --with-apr=/usr/local/apache1/apr && make  && make install
+		🕐安装apache
+			cd /usr/local/apache1/apache
+					tar xf httpd-* && cd httpd-*
+					./configure --prefix=/usr/local/apache1/apache \
+					--sysconfdir=/etc/httpd/ \
+					--with-include-apr \
+					--disable-userdir \
+					--enable-headers \
+					--with-mpm=worker \
+					--enable-modules=most \
+					--enable-so \
+					--enable-deflate \
+					--enable-defate=shared \
+					--enable-expires-shared \
+					--enable-rewrite=shared \
+					--enable-static-support \
+					--with-apr=/usr/local/apache1/apr/ \
+					--with-apr-util=/usr/local/apache1/apr/apr-util \
+					--with-ssl \
+					--with-z  &> /dev/null
+			make &> /dev/null
+			make install 
+		🕐启动服务进程
+			/usr/local/apache1/apache/bin/apachectl start
+	（4）防火墙
+			   firewall-cmd --permanent --add-port=80/tcp --zone=public 
+		   firewalld-cmd --add-port=80/tcp --zone=public
+	（5）测试
+
+二、 搭建php服务器
+	  地址规划：192.168.18.15			php.service
+	  (1)安装依赖
+		yum -y install libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libxml2 libxml2-devel
+		yum -y install ncurses ncurses-devel curl curl-devel e2fsprogs e2fsprogs-devel
+		yum -y install krb5 krb5-devel libidn libidn-devel openssl openssl-devel
+		yum -y install zlib zlib-devel glibc glibc-devel glib2 glib2-devel bzip2 bzip openldap-devel2-devel
+		yum -y install gcc automake autoconf libtool make
+		yum -y install gcc gcc-c++ glibc sqlite-devel libxslt-devel wget
+	 (2)获取软件包
+	   wget https://downloads.php.net/~derick/php-7.4.0.tar.gz
+	(3)部署php
+	【1】创建目录
+	mkdir /usr/local/php74
+	【2】移动软件到目录
+	mv php-7.4.0.tar.gz /usr/local/php74
+	【3】解压软件
+	tar xf php-7.4.0.tar.gz
+	【4】配置模块
+	cd php-7.4.0
+	./configure --prefix=/usr/local/php74--with-config-file-path=/usr/local/php74/etc --with-curl --with-freetype-dir --with-gd 
+	--with-iconv-dir --with-kerberos --with-libdir=lib64 --with-libxml-dir --with-mysqli --with-openssl --with-pcre-regex 
+	--with-pdo-sqlite --with-pear --with-png-dir --with-jpeg-dir --with-xmlrpc --with-xsl --with-zlib --with-bz2 --enable-fpm 
+	--enable-bcmath --enable-libxml --enable-inline-optimization --enable-gd-native-ttf --enable-mbregex  --with-pdo-mysql --enable-gd  
+	--enable-opcache --enable-pcntl --enable-shmop --enable-soap --enable-sockets --enable-sysvsem --enable-sysvshm --enable-zip --with-ldap 
+	【5】编译
+		make 
+	【6】编译安装
+		make install 
+	【7】拷贝php启动所需要的文件
+		   cp php-7.4.0/php.ini-development /usr/local/php74/etc/php.ini   
+		   cp php-fpm.d/www.conf.default php-fpm.d/www.conf
+		   cp php-fpm.conf.default php-fpm.conf
+	 【8】启动服务
+		  /usr/local/php74/sbin/php-fpm    
+		 【9】查看端口是否开启 默认端口9000
+		 ss -lnutp 
+	【10】设置防火墙
+		firewall-cmd --permanent --add-port=9000/tcp --zone=public       注意：这个需要重新启动才能有效
+		firewall-cmd --add-port=9000/tcp --zone=public    注意：临时设置防火墙规则
+		
+三、 搭建数据服务
+	规划地址：	192.168.18.50			mariadb.service
+  （1）安装数据库
+		yum -y install mariadb*
+  （2）启动数据
+		systemctl start mariadb
+  （3）初始化数据库
+		mysql_secure_installation    注意：这一步需要设置密码
+  （4）登陆数据库
+		mysql -uroot -p
+
+四、上面已经搭建好每台服务器所需要搭建承担的任务
+	1、配置apache服务器
+		【1】修改httpd.conf 开启
+			开启代理模块+虚拟主机
+			LoadModule proxy_module modules/mod_proxy.so
+			LoadModule proxy_fcgi_module modules/mod_proxy_fcgi.so
+			LoadModule vhost_alias_module modules/mod_vhost_alias.so
+			主机地址
+			ServerName 192.168.18.10:80
+			添加索引
+			<IfModule dir_module>
+				DirectoryIndex  index.php index.html
+			</IfModule>
+			支持php模块 定位到   AddType这个位置
+				AddType application/x-httpd-php  .php
+				AddType application/x-httpd-php-source  .phps
+			开启虚拟主机
+				# Virtual hosts
+				Include /etc/httpd//extra/httpd-vhosts.conf
+		【2】建立虚拟主机
+			 vim /etc/httpd/extra/httpd-vhosts.conf
+			<VirtualHost 192.168.18.10:80>
+				ServerAdmin root@localhost.com
+				DocumentRoot "/www/zblog"   
+				ServerName web3.server
+				ServerAlias www.web3.com
+				ProxyRequests off
+				ProxyPassMatch ^/(.*\.php)$ fcgi://192.168.18.15:9000/www/zblog$1
+				<Directory "/www/zblog">
+				Options none
+				AllowOverride none
+				Require all granted
+				</Directory>
+				ErrorLog "logs/www.web3.com-error_log"
+				CustomLog "logs/www.web3.com-access_log" common
+			</VirtualHost>
+	2、配置php服务器
+	（1）修改监听ip地址
+		 vim /usr/local/php74/etc/php-fpm.d/www.conf
+		;listen = 127.0.0.1:9000 改 		listen = 192.168.18.15:9000
+	（2）重新启动服务
+		/usr/local/php74/sbin/php-fpm
+	3、设置数据库
+		（1）创建数据库
+			 create database zblog
+		  （2）授权用户
+		MariaDB [(none)]> grant all  privileges on zblog* to zblog@192.168.18.15 identified by '123456';
+	
