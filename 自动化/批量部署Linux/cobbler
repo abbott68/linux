@@ -1,0 +1,55 @@
+下载epel源
+	https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+或者
+	yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -y
+安装cobller及插件
+	yum install cobbler cobbler-web dhcp debmirror pykickstart fence-agents -y
+	yum install cobbler cobbler-web dhcp tftp-server pykickstart httpd rsync xinetd -y
+
+设置开机自启
+	systemctl start cobblerd httpd rsyncd tftp; systemctl enable cobblerd httpd rsyncd tftp
+尝试访问一下cobbler的网址，登录的账号密码都是cobbler
+	https://IP/cobbler_web
+设置安装系统的root密码
+	openssl passwd -1 -salt 'root' 'bzhantest'
+设置cobbler配置文件
+	 --将密码字符串换成上面生成的随机密码字符串
+	vim /etc/cobbler/settings
+	default_password_crypted: “ 随机生成密码“
+	server: IP地址
+	next_server: IP地址
+	manage_dhcp: 1
+
+修改配置文件tftp
+	vim /etc/xinetd.d/tftp
+	disabled = yes 改 no
+开启xinet.d rsync服务
+	systemctl start xinetd.service
+	systemctl start rsyncd.service
+下载引导文件
+	cobbler get-loaders
+编辑dhcp配置文件
+	vim /etc/cobbler/dhcp.template
+	subnet 192.168.18.0 netmask 255.255.255.0 {
+	option routers 192.168.18.1; #修改网关
+	option domain-name-servers 192.168.96.2; #修改DNS
+	option subnet-mask 255.255.255.0;
+	range dynamic-bootp 192.168.18.100 192.168.18.200; #修改地址池
+同步dhcp文件
+	cobbler sync
+重启dhcp服务
+ 	systemctl restart dhcpd
+加载镜像文件
+	mount /dev/sr0 /mnt
+倒入ISO文件
+	cobbler import --path=/mnt/ --name=CentOS-7-x86_64 --arch=x86_64 
+默认倒入存放位置
+	/var/www/cobbler/ks_mirror/CentOS-7-x86_64
+查看倒入情况
+	cobbler list
+查看发行版
+	cobbler distort list
+	安装tree软件包
+	yum -y install tree
+Web管理用户密码
+	htdigest -c /etc/cobbler/users.digest Cobbler abbott
