@@ -11,7 +11,7 @@
 尝试访问一下cobbler的网址，登录的账号密码都是cobbler
 	https://IP/cobbler_web
 设置安装系统的root密码
-	openssl passwd -1 -salt 'root' 'bzhantest'
+	openssl passwd -1 -salt 'root' '123456'
 设置cobbler配置文件
 	 --将密码字符串换成上面生成的随机密码字符串
 	vim /etc/cobbler/settings
