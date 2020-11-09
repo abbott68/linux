@@ -1,0 +1,3735 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 15">
+<meta name=Originator content="Microsoft Word 15">
+<link rel=File-List href="Ansible%20自动化运维.fld/filelist.xml">
+<link rel=Edit-Time-Data href="Ansible%20自动化运维.fld/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:OfficeDocumentSettings>
+  <o:AllowPNG/>
+ </o:OfficeDocumentSettings>
+</xml><![endif]-->
+<link rel=themeData href="Ansible%20自动化运维.fld/themedata.thmx">
+<link rel=colorSchemeMapping href="Ansible%20自动化运维.fld/colorschememapping.xml">
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-US</w:LidThemeOther>
+  <w:LidThemeAsian>ZH-CN</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:SplitPgBreakAndParaMark/>
+   <w:EnableOpenTypeKerning/>
+   <w:DontFlipMirrorIndents/>
+   <w:OverrideTableStyleHps/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="&#45;-"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="false"
+  DefSemiHidden="false" DefQFormat="false" DefPriority="99"
+  LatentStyleCount="376">
+  <w:LsdException Locked="false" Priority="0" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 9"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 1"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 2"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 3"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 4"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 5"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 6"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 7"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 8"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 9"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footnote text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="header"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footer"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index heading"/>
+  <w:LsdException Locked="false" Priority="35" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="table of figures"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="envelope address"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="envelope return"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footnote reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="line number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="page number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="endnote reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="endnote text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="table of authorities"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="macro"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="toa heading"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 5"/>
+  <w:LsdException Locked="false" Priority="10" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Closing"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Signature"/>
+  <w:LsdException Locked="false" Priority="1" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Message Header"/>
+  <w:LsdException Locked="false" Priority="11" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Salutation"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Date"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text First Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text First Indent 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Note Heading"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Block Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Hyperlink"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="FollowedHyperlink"/>
+  <w:LsdException Locked="false" Priority="22" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" Priority="20" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Document Map"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Plain Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="E-mail Signature"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Top of Form"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Bottom of Form"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal (Web)"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Acronym"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Address"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Cite"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Code"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Definition"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Keyboard"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Preformatted"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Sample"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Typewriter"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Variable"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal Table"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation subject"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="No List"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Contemporary"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Elegant"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Professional"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Subtle 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Subtle 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Balloon Text"/>
+  <w:LsdException Locked="false" Priority="39" Name="Table Grid"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Theme"/>
+  <w:LsdException Locked="false" SemiHidden="true" Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" QFormat="true"
+   Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" QFormat="true"
+   Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" QFormat="true"
+   Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" QFormat="true"
+   Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" QFormat="true"
+   Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" QFormat="true"
+   Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="TOC Heading"/>
+  <w:LsdException Locked="false" Priority="41" Name="Plain Table 1"/>
+  <w:LsdException Locked="false" Priority="42" Name="Plain Table 2"/>
+  <w:LsdException Locked="false" Priority="43" Name="Plain Table 3"/>
+  <w:LsdException Locked="false" Priority="44" Name="Plain Table 4"/>
+  <w:LsdException Locked="false" Priority="45" Name="Plain Table 5"/>
+  <w:LsdException Locked="false" Priority="40" Name="Grid Table Light"/>
+  <w:LsdException Locked="false" Priority="46" Name="Grid Table 1 Light"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark"/>
+  <w:LsdException Locked="false" Priority="51" Name="Grid Table 6 Colorful"/>
+  <w:LsdException Locked="false" Priority="52" Name="Grid Table 7 Colorful"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 1"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 1"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 1"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 2"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 2"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 2"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 3"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 3"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 3"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 4"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 4"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 5"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 5"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 5"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 6"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 6"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 6"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="46" Name="List Table 1 Light"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark"/>
+  <w:LsdException Locked="false" Priority="51" Name="List Table 6 Colorful"/>
+  <w:LsdException Locked="false" Priority="52" Name="List Table 7 Colorful"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 1"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 1"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 1"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 2"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 2"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 2"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 3"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 3"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 3"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 4"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 4"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 5"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 5"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 5"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 6"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 6"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 6"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Mention"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Smart Hyperlink"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Hashtag"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Unresolved Mention"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Smart Link"/>
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:0;
+	mso-generic-font-family:decorative;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 -2147483647 0;}
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 680460288 22 0 262145 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:-536870145 1107305727 0 0 415 0;}
+@font-face
+	{font-family:DengXian;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:等线;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-1610612033 953122042 22 0 262159 0;}
+@font-face
+	{font-family:"Songti SC";
+	panose-1:2 1 6 0 4 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:647 135200768 16 0 262303 0;}
+@font-face
+	{font-family:AnonymousPro;
+	panose-1:2 11 6 4 2 2 2 2 2 4;
+	mso-font-alt:Cambria;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:auto;
+	mso-font-signature:0 0 0 0 0 0;}
+@font-face
+	{font-family:"\@Songti SC";
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:647 135200768 16 0 262303 0;}
+@font-face
+	{font-family:"\@等线";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:"\@DengXian";
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-1610612033 953122042 22 0 262159 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 680460288 22 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:DengXian;
+	mso-ascii-font-family:DengXian;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:DengXian;
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:DengXian;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;
+	mso-font-kerning:1.0pt;}
+h1
+	{mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"标题 1 字符";
+	mso-style-next:正文;
+	margin-top:17.0pt;
+	margin-right:0cm;
+	margin-bottom:16.5pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:240%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:22.0pt;
+	font-family:DengXian;
+	mso-ascii-font-family:DengXian;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:DengXian;
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:DengXian;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;
+	mso-font-kerning:22.0pt;
+	font-weight:bold;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-priority:99;
+	mso-style-link:"页眉 字符";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:center;
+	mso-pagination:none;
+	tab-stops:center 207.65pt right 415.3pt;
+	layout-grid-mode:char;
+	border:none;
+	mso-border-bottom-alt:solid windowtext .75pt;
+	padding:0cm;
+	mso-padding-alt:0cm 0cm 1.0pt 0cm;
+	font-size:9.0pt;
+	font-family:DengXian;
+	mso-ascii-font-family:DengXian;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:DengXian;
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:DengXian;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;
+	mso-font-kerning:1.0pt;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-priority:99;
+	mso-style-link:"页脚 字符";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	tab-stops:center 207.65pt right 415.3pt;
+	layout-grid-mode:char;
+	font-size:9.0pt;
+	font-family:DengXian;
+	mso-ascii-font-family:DengXian;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:DengXian;
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:DengXian;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;
+	mso-font-kerning:1.0pt;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	mso-themecolor:hyperlink;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	color:#954F72;
+	mso-themecolor:followedhyperlink;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:宋体;
+	mso-bidi-font-family:宋体;}
+pre
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-link:"HTML 预设格式 字符";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+	font-size:12.0pt;
+	font-family:宋体;
+	mso-bidi-font-family:宋体;}
+p.MsoNoSpacing, li.MsoNoSpacing, div.MsoNoSpacing
+	{mso-style-priority:1;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:DengXian;
+	mso-ascii-font-family:DengXian;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:DengXian;
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:DengXian;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;
+	mso-font-kerning:1.0pt;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:21.0pt;
+	mso-char-indent-count:2.0;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:DengXian;
+	mso-ascii-font-family:DengXian;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:DengXian;
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:DengXian;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;
+	mso-font-kerning:1.0pt;}
+span.1
+	{mso-style-name:"标题 1 字符";
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"标题 1";
+	mso-ansi-font-size:22.0pt;
+	mso-bidi-font-size:22.0pt;
+	mso-font-kerning:22.0pt;
+	font-weight:bold;}
+span.a
+	{mso-style-name:"页眉 字符";
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:页眉;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:9.0pt;}
+span.a0
+	{mso-style-name:"页脚 字符";
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:页脚;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:9.0pt;}
+span.HTML
+	{mso-style-name:"HTML 预设格式 字符";
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"HTML 预设格式";
+	mso-ansi-font-size:12.0pt;
+	font-family:宋体;
+	mso-ascii-font-family:宋体;
+	mso-fareast-font-family:宋体;
+	mso-hansi-font-family:宋体;
+	mso-bidi-font-family:宋体;
+	mso-font-kerning:0pt;}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-family:DengXian;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;
+	mso-footnote-separator:url("Ansible%20自动化运维.fld/header.html") fs;
+	mso-footnote-continuation-separator:url("Ansible%20自动化运维.fld/header.html") fcs;
+	mso-endnote-separator:url("Ansible%20自动化运维.fld/header.html") es;
+	mso-endnote-continuation-separator:url("Ansible%20自动化运维.fld/header.html") ecs;}
+@page WordSection1
+	{size:595.0pt 842.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:30571098;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1445653314 1296734904 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-text:%1、;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-36.0pt;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%2\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:42.0pt;
+	text-indent:-21.0pt;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:63.0pt;
+	text-indent:-21.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:84.0pt;
+	text-indent:-21.0pt;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%5\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:105.0pt;
+	text-indent:-21.0pt;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:126.0pt;
+	text-indent:-21.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:147.0pt;
+	text-indent:-21.0pt;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%8\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:168.0pt;
+	text-indent:-21.0pt;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:189.0pt;
+	text-indent:-21.0pt;}
+@list l1
+	{mso-list-id:106656952;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-360575560 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:21.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:42.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l1:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:63.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l1:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:84.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l1:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:105.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l1:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:126.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l1:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:147.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l1:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:168.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l1:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:189.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l2
+	{mso-list-id:110051173;
+	mso-list-type:hybrid;
+	mso-list-template-ids:53511014 1018837714 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l2:level1
+	{mso-level-text:（%1）;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-36.0pt;}
+@list l2:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%2\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:42.0pt;
+	text-indent:-21.0pt;}
+@list l2:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:63.0pt;
+	text-indent:-21.0pt;}
+@list l2:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:84.0pt;
+	text-indent:-21.0pt;}
+@list l2:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%5\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:105.0pt;
+	text-indent:-21.0pt;}
+@list l2:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:126.0pt;
+	text-indent:-21.0pt;}
+@list l2:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:147.0pt;
+	text-indent:-21.0pt;}
+@list l2:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%8\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:168.0pt;
+	text-indent:-21.0pt;}
+@list l2:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:189.0pt;
+	text-indent:-21.0pt;}
+@list l3
+	{mso-list-id:267156688;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-2130147262 -1918079354 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l3:level1
+	{mso-level-text:（%1）;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:54.0pt;
+	text-indent:-36.0pt;}
+@list l3:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%2\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:60.0pt;
+	text-indent:-21.0pt;}
+@list l3:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:81.0pt;
+	text-indent:-21.0pt;}
+@list l3:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:102.0pt;
+	text-indent:-21.0pt;}
+@list l3:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%5\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:123.0pt;
+	text-indent:-21.0pt;}
+@list l3:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:144.0pt;
+	text-indent:-21.0pt;}
+@list l3:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:165.0pt;
+	text-indent:-21.0pt;}
+@list l3:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%8\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:186.0pt;
+	text-indent:-21.0pt;}
+@list l3:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:207.0pt;
+	text-indent:-21.0pt;}
+@list l4
+	{mso-list-id:584798967;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1124133902 67698689 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:42.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l4:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%2\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:63.0pt;
+	text-indent:-21.0pt;}
+@list l4:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:84.0pt;
+	text-indent:-21.0pt;}
+@list l4:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:105.0pt;
+	text-indent:-21.0pt;}
+@list l4:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%5\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:126.0pt;
+	text-indent:-21.0pt;}
+@list l4:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:147.0pt;
+	text-indent:-21.0pt;}
+@list l4:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:168.0pt;
+	text-indent:-21.0pt;}
+@list l4:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%8\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:189.0pt;
+	text-indent:-21.0pt;}
+@list l4:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:210.0pt;
+	text-indent:-21.0pt;}
+@list l5
+	{mso-list-id:718895111;
+	mso-list-type:hybrid;
+	mso-list-template-ids:2141228514 67698689 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l5:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:42.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l5:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%2\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:63.0pt;
+	text-indent:-21.0pt;}
+@list l5:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:84.0pt;
+	text-indent:-21.0pt;}
+@list l5:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:105.0pt;
+	text-indent:-21.0pt;}
+@list l5:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%5\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:126.0pt;
+	text-indent:-21.0pt;}
+@list l5:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:147.0pt;
+	text-indent:-21.0pt;}
+@list l5:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:168.0pt;
+	text-indent:-21.0pt;}
+@list l5:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%8\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:189.0pt;
+	text-indent:-21.0pt;}
+@list l5:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:210.0pt;
+	text-indent:-21.0pt;}
+@list l6
+	{mso-list-id:965770698;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1359329216 -1482229206 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l6:level1
+	{mso-level-text:%1、;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l6:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%2\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:60.0pt;
+	text-indent:-21.0pt;}
+@list l6:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:81.0pt;
+	text-indent:-21.0pt;}
+@list l6:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:102.0pt;
+	text-indent:-21.0pt;}
+@list l6:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%5\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:123.0pt;
+	text-indent:-21.0pt;}
+@list l6:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:144.0pt;
+	text-indent:-21.0pt;}
+@list l6:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:165.0pt;
+	text-indent:-21.0pt;}
+@list l6:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%8\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:186.0pt;
+	text-indent:-21.0pt;}
+@list l6:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:207.0pt;
+	text-indent:-21.0pt;}
+@list l7
+	{mso-list-id:1376127502;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-136940440 67698689 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l7:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:42.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l7:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%2\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:63.0pt;
+	text-indent:-21.0pt;}
+@list l7:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:84.0pt;
+	text-indent:-21.0pt;}
+@list l7:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:105.0pt;
+	text-indent:-21.0pt;}
+@list l7:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%5\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:126.0pt;
+	text-indent:-21.0pt;}
+@list l7:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:147.0pt;
+	text-indent:-21.0pt;}
+@list l7:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:168.0pt;
+	text-indent:-21.0pt;}
+@list l7:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%8\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:189.0pt;
+	text-indent:-21.0pt;}
+@list l7:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:210.0pt;
+	text-indent:-21.0pt;}
+@list l8
+	{mso-list-id:1502433705;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1386168338 -1764820726 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l8:level1
+	{mso-level-text:"\(%1\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:18.0pt;
+	text-indent:-18.0pt;}
+@list l8:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%2\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:42.0pt;
+	text-indent:-21.0pt;}
+@list l8:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:63.0pt;
+	text-indent:-21.0pt;}
+@list l8:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:84.0pt;
+	text-indent:-21.0pt;}
+@list l8:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%5\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:105.0pt;
+	text-indent:-21.0pt;}
+@list l8:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:126.0pt;
+	text-indent:-21.0pt;}
+@list l8:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:147.0pt;
+	text-indent:-21.0pt;}
+@list l8:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%8\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:168.0pt;
+	text-indent:-21.0pt;}
+@list l8:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:189.0pt;
+	text-indent:-21.0pt;}
+@list l9
+	{mso-list-id:1569345049;
+	mso-list-type:hybrid;
+	mso-list-template-ids:751712690 1296734904 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l9:level1
+	{mso-level-text:%1、;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-36.0pt;}
+@list l9:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%2\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:42.0pt;
+	text-indent:-21.0pt;}
+@list l9:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:63.0pt;
+	text-indent:-21.0pt;}
+@list l9:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:84.0pt;
+	text-indent:-21.0pt;}
+@list l9:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%5\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:105.0pt;
+	text-indent:-21.0pt;}
+@list l9:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:126.0pt;
+	text-indent:-21.0pt;}
+@list l9:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:147.0pt;
+	text-indent:-21.0pt;}
+@list l9:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%8\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:168.0pt;
+	text-indent:-21.0pt;}
+@list l9:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:189.0pt;
+	text-indent:-21.0pt;}
+@list l10
+	{mso-list-id:1732147535;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1987756722 -1442050346 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l10:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:18.0pt;
+	text-indent:-18.0pt;}
+@list l10:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%2\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:42.0pt;
+	text-indent:-21.0pt;}
+@list l10:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:63.0pt;
+	text-indent:-21.0pt;}
+@list l10:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:84.0pt;
+	text-indent:-21.0pt;}
+@list l10:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%5\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:105.0pt;
+	text-indent:-21.0pt;}
+@list l10:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:126.0pt;
+	text-indent:-21.0pt;}
+@list l10:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:147.0pt;
+	text-indent:-21.0pt;}
+@list l10:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%8\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:168.0pt;
+	text-indent:-21.0pt;}
+@list l10:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:189.0pt;
+	text-indent:-21.0pt;}
+@list l11
+	{mso-list-id:1765227799;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1137168378 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l11:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:42.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l11:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:63.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l11:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:84.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l11:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:105.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l11:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:126.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l11:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:147.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l11:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:168.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l11:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:189.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l11:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:210.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l12
+	{mso-list-id:1782453557;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1923943440 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l12:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:52.5pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l12:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:73.5pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l12:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:94.5pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l12:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:115.5pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l12:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:136.5pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l12:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:157.5pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l12:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:178.5pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l12:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:199.5pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l12:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:220.5pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l13
+	{mso-list-id:1789395052;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1237546576 1018837714 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l13:level1
+	{mso-level-text:（%1）;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-36.0pt;}
+@list l13:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%2\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:42.0pt;
+	text-indent:-21.0pt;}
+@list l13:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:63.0pt;
+	text-indent:-21.0pt;}
+@list l13:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:84.0pt;
+	text-indent:-21.0pt;}
+@list l13:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%5\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:105.0pt;
+	text-indent:-21.0pt;}
+@list l13:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:126.0pt;
+	text-indent:-21.0pt;}
+@list l13:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:147.0pt;
+	text-indent:-21.0pt;}
+@list l13:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%8\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:168.0pt;
+	text-indent:-21.0pt;}
+@list l13:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:189.0pt;
+	text-indent:-21.0pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:DengXian;
+	mso-ascii-font-family:DengXian;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:DengXian;
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:DengXian;
+	mso-hansi-theme-font:minor-latin;
+	mso-font-kerning:1.0pt;}
+table.MsoTableGrid
+	{mso-style-name:网格型;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-priority:39;
+	mso-style-unhide:no;
+	border:solid windowtext 1.0pt;
+	mso-border-alt:solid windowtext .5pt;
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-border-insideh:.5pt solid windowtext;
+	mso-border-insidev:.5pt solid windowtext;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:DengXian;
+	mso-ascii-font-family:DengXian;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:DengXian;
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:DengXian;
+	mso-hansi-theme-font:minor-latin;
+	mso-font-kerning:1.0pt;}
+</style>
+<![endif]-->
+</head>
+
+<body lang=ZH-CN link="#0563C1" vlink="#954F72" style='tab-interval:21.0pt;
+text-justify-trim:punctuation'>
+
+<div class=WordSection1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal style='text-indent:144.0pt;mso-char-indent-count:9.0'><span
+lang=EN-US style='font-size:16.0pt;font-family:"Songti SC"'>Ansible </span><span
+style='font-size:16.0pt;font-family:"Songti SC"'>自动化运维<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-left:147.0pt;text-indent:21.0pt'><span
+lang=EN-US style='font-size:12.0pt;font-family:"Songti SC"'>Ansible </span><span
+style='font-size:12.0pt;font-family:"Songti SC"'>简介<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNoSpacing style='text-indent:21.0pt'><span lang=EN-US>Ansible </span>安装使用非常简单，而且基于上千个插件和模块，实现各种软件、平台、版本的管理，支持虚拟容器多层级的部署。</p>
+
+<p class=MsoNormal style='margin-left:126.0pt;text-indent:21.0pt'><span
+lang=EN-US style='font-size:12.0pt;font-family:"Songti SC"'>Ansible</span><span
+style='font-size:12.0pt;font-family:"Songti SC"'>自动化工具原理<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNoSpacing style='text-indent:21.0pt'><span lang=EN-US>Ansible </span>是一款极为灵活的开源工具套件，能够大大简化<span
+lang=EN-US>UNIX</span>管理元的自动化配置管理与流程控制方式，他利用推送方式对客户系统加以配置，这样所有工作都可在服务器端完成。命令行机制同样非常强大，允许大家利用商业许可<span
+lang=EN-US>WEB UI </span>实现授权管理与配置，通过<span lang=EN-US>ansible</span>进行管理的服务。</p>
+
+<p class=MsoNoSpacing style='text-indent:21.0pt'><span lang=EN-US>Ansible</span>与<span
+lang=EN-US>2015</span>年被<span lang=EN-US>Red Hat</span>公司以<span lang=EN-US>1.5</span>亿美元收购；</p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:"Songti SC"'>Ansible
+</span><span style='font-size:12.0pt;font-family:"Songti SC"'>自动运维管理工具优点：<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNoSpacing style='margin-left:42.0pt;text-indent:-21.0pt;mso-list:
+l11 level1 lfo7'><![if !supportLists]><span lang=EN-US style='font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings'><span
+style='mso-list:Ignore'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span></span><![endif]>轻量级，更新时只需要在操作机上进行一次更新即可；</p>
+
+<p class=MsoNoSpacing style='margin-left:42.0pt;text-indent:-21.0pt;mso-list:
+l11 level1 lfo7'><![if !supportLists]><span lang=EN-US style='font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings'><span
+style='mso-list:Ignore'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span></span><![endif]>采用<span
+lang=EN-US>SSH</span>协议；</p>
+
+<p class=MsoNoSpacing style='margin-left:42.0pt;text-indent:-21.0pt;mso-list:
+l11 level1 lfo7'><![if !supportLists]><span lang=EN-US style='font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings'><span
+style='mso-list:Ignore'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span></span><![endif]>不需要客户端安装<span
+lang=EN-US>agent</span>；</p>
+
+<p class=MsoNoSpacing style='margin-left:42.0pt;text-indent:-21.0pt;mso-list:
+l11 level1 lfo7'><![if !supportLists]><span lang=EN-US style='font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings'><span
+style='mso-list:Ignore'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span></span><![endif]>批量任务执行可以写成脚本，而且不用分发到远程客户端；</p>
+
+<p class=MsoNoSpacing style='margin-left:42.0pt;text-indent:-21.0pt;mso-list:
+l11 level1 lfo7'><![if !supportLists]><span lang=EN-US style='font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings'><span
+style='mso-list:Ignore'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span></span><![endif]>使用<span
+lang=EN-US>python</span>编写，维护更简单；</p>
+
+<p class=MsoNoSpacing style='margin-left:42.0pt;text-indent:-21.0pt;mso-list:
+l11 level1 lfo7'><![if !supportLists]><span lang=EN-US style='font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings'><span
+style='mso-list:Ignore'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span></span><![endif]>支持<span
+class=SpellE><span lang=EN-US>sudo</span></span>普通用户命令；</p>
+
+<p class=MsoNoSpacing style='margin-left:42.0pt;text-indent:-21.0pt;mso-list:
+l11 level1 lfo7'><![if !supportLists]><span lang=EN-US style='font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings'><span
+style='mso-list:Ignore'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span></span><![endif]>去中心化管理。</p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:"Songti SC"'>Ansible
+</span><span style='font-size:12.0pt;font-family:"Songti SC"'>自动化管理工具原理拓补图：<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Songti SC";mso-no-proof:
+yes'><!--[if gte vml 1]><v:shapetype id="_x0000_t75" coordsize="21600,21600"
+ o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe" filled="f"
+ stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="图片_x0020_1" o:spid="_x0000_i1035" type="#_x0000_t75"
+ style='width:439pt;height:270pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="Ansible%20自动化运维.fld/image001.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=439 height=270
+src="Ansible%20自动化运维.fld/image001.png" v:shapes="图片_x0020_1"><![endif]></span><span
+lang=EN-US style='font-family:"Songti SC"'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:"Songti SC"'>Ansible</span><span
+style='font-size:12.0pt;font-family:"Songti SC"'>管理工具安装配置<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNoSpacing style='margin-left:10.5pt;mso-para-margin-left:1.0gd;
+text-indent:21.0pt'><span lang=EN-US>Ansible</span>可以工作在<span lang=EN-US>Linux</span>、
+<span lang=EN-US>BSD</span>、 <span lang=EN-US>Mac OS </span>、<span lang=EN-US>Windows</span>等平台，对<span
+lang=EN-US>python</span>环境要求在<span lang=EN-US>python2.6</span>以上；</p>
+
+<p class=MsoNoSpacing style='margin-left:10.5pt;mso-para-margin-left:1.0gd'><span
+lang=EN-US>Red Hat</span>、<span lang=EN-US>CentOS </span>操作系统可以直接机遇<span
+lang=EN-US>YUM</span>工具自动安装<span lang=EN-US>ansible</span>。再安装前需要先安装<span
+class=SpellE><span lang=EN-US>epel</span></span>扩展源；</p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;font-family:"Songti SC"'>一、安装方法：<span
+lang=EN-US>(</span>一<span lang=EN-US>) </span>注意：需要连接网络<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoListParagraph style='margin-left:36.0pt;text-indent:-36.0pt;
+mso-char-indent-count:0;mso-list:l13 level1 lfo2'><![if !supportLists]><span
+lang=EN-US style='mso-bidi-font-size:10.5pt;font-family:"Songti SC";mso-bidi-font-family:
+"Songti SC"'><span style='mso-list:Ignore'>（1）<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='mso-bidi-font-size:10.5pt;
+font-family:"Songti SC"'>安装<span class=SpellE><span lang=EN-US>epel</span></span>源<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNoSpacing style='margin-left:42.0pt;text-indent:-21.0pt;mso-list:
+l5 level1 lfo9'><![if !supportLists]><span lang=EN-US style='font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings'><span
+style='mso-list:Ignore'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span></span><![endif]><span
+class=SpellE><span lang=EN-US>wget</span></span><span lang=EN-US> -O /<span
+class=SpellE>etc</span>/<span class=SpellE>yum.repos.d</span>/<span
+class=SpellE>epel.repo</span> http://mirrors.aliyun.com/repo/epel-7.repo</span></p>
+
+<p class=MsoNoSpacing style='margin-left:42.0pt;text-indent:-21.0pt;mso-list:
+l5 level1 lfo9'><![if !supportLists]><span lang=EN-US style='font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings'><span
+style='mso-list:Ignore'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span></span><![endif]><span
+lang=EN-US>yum install -y <a
+href="https://mirrors.aliyun.com/epel/epel-release-latest-8.noarch.rpm"><span
+style='color:windowtext;text-decoration:none;text-underline:none'>https://mirrors.aliyun.com/epel/epel-release-latest-8.noarch.rpm</span></a></span></p>
+
+<p class=MsoNoSpacing style='margin-left:42.0pt;text-indent:-21.0pt;mso-list:
+l5 level1 lfo9'><![if !supportLists]><span lang=EN-US style='mso-bidi-font-size:
+10.5pt;font-family:Wingdings;mso-fareast-font-family:Wingdings;mso-bidi-font-family:
+Wingdings'><span style='mso-list:Ignore'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span></span><![endif]>将<span lang=EN-US>repo</span>配置中的地址替换为阿里云镜像站地址<span
+lang=EN-US style='mso-bidi-font-size:10.5pt;font-family:"Songti SC"'><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='margin-left:63.0pt;text-indent:-21.0pt;mso-list:
+l5 level2 lfo9'><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:
+DengXian;mso-fareast-theme-font:minor-latin;mso-bidi-font-family:DengXian;
+mso-bidi-theme-font:minor-latin'><span style='mso-list:Ignore'>a)<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=EN-US>sed<span style='mso-tab-count:1'>  </span>-<span class=SpellE>i</span>
+'s|^#baseurl=https://download.fedoraproject.org/pub|baseurl=https://mirrors.aliyun.com|'
+<span class=GramE>/<span class=SpellE>etc</span>/<span class=SpellE>yum.repos.d</span></span>/<span
+class=SpellE>epel</span>*</span></p>
+
+<p class=MsoNoSpacing style='margin-left:63.0pt;text-indent:-21.0pt;mso-list:
+l5 level2 lfo9'><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:
+DengXian;mso-fareast-theme-font:minor-latin;mso-bidi-font-family:DengXian;
+mso-bidi-theme-font:minor-latin'><span style='mso-list:Ignore'>b)<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=EN-US>sed -<span class=SpellE>i</span> 's|^<span class=SpellE>metalink</span>|#<span
+class=SpellE>metalink</span>|' /<span class=SpellE>etc</span>/<span
+class=SpellE>yum.repos.d</span>/<span class=SpellE>epel</span>*</span></p>
+
+<p class=MsoNoSpacing style='text-indent:21.0pt'><span style='font-size:14.0pt'>安装<span
+lang=EN-US>ansible<o:p></o:p></span></span></p>
+
+<p class=MsoNoSpacing style='margin-left:21.0pt;text-indent:21.0pt'><span
+lang=EN-US>yum -y install ansible<span style='mso-spacerun:yes'>  </span></span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+style='font-size:12.0pt;font-family:"Songti SC"'>安装方法：（二）基于没有本地安装（需提前准备安装包）<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><a name="OLE_LINK4"></a><a name="OLE_LINK3"><span
+style='mso-bookmark:OLE_LINK4'><span style='font-size:14.0pt;font-family:"Songti SC"'>二、<span
+lang=EN-US>Debian</span></span></span></a><span lang=EN-US style='font-size:
+14.0pt;font-family:"Songti SC"'>/Ubuntu<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;font-family:"Songti SC"'>在<span
+lang=EN-US>Debian</span>或<span lang=EN-US>Ubuntu</span>系统上安装<span lang=EN-US>ansible</span>的最简单方法是使用官网的<span
+lang=EN-US>apt</span>软件包<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='margin-left:10.5pt;mso-para-margin-left:
+1.0gd;text-align:left;mso-pagination:widow-orphan;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US style='font-size:12.0pt;font-family:"Songti SC"'><span
+style='mso-tab-count:1'>            </span></span><span lang=EN-US
+style='font-size:10.0pt;font-family:"AnonymousPro",serif;mso-fareast-font-family:
+宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt'>$ <span class=SpellE>sudo</span>
+apt-add-repository -y <span class=SpellE>ppa:ansible</span>/ansible<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:10.5pt;mso-para-margin-left:
+1.0gd;text-align:left;mso-pagination:widow-orphan;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US style='font-size:10.0pt;font-family:"AnonymousPro",serif;mso-fareast-font-family:
+宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt'><span style='mso-tab-count:
+1'>                  </span>$ <span class=SpellE>sudo</span> apt-get update<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:10.5pt;mso-para-margin-left:
+1.0gd;text-align:left;mso-pagination:widow-orphan;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-US style='font-size:10.0pt;font-family:"AnonymousPro",serif;mso-fareast-font-family:
+宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt'><span style='mso-tab-count:
+1'>                  </span>$ <span class=SpellE>sudo</span> apt-get install -y
+ansible<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:"Songti SC"'>ansible</span><span
+style='font-size:12.0pt;font-family:"Songti SC"'>配置文件：<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNoSpacing style='margin-left:42.0pt;text-indent:-21.0pt;mso-list:
+l7 level1 lfo10'><![if !supportLists]><span lang=EN-US style='font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings'><span
+style='mso-list:Ignore'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span></span><![endif]><span
+lang=EN-US>/<span class=SpellE>etc</span>/ansible/<span class=SpellE>ansible.cfg</span>.<span
+style='mso-spacerun:yes'>   </span>//</span>主配置文件</p>
+
+<p class=MsoNoSpacing style='margin-left:42.0pt;text-indent:-21.0pt;mso-list:
+l7 level1 lfo10'><![if !supportLists]><span lang=EN-US style='font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings'><span
+style='mso-list:Ignore'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span></span><![endif]><span
+lang=EN-US>/<span class=SpellE>etc</span>/ansible/hosts<span style='mso-tab-count:
+1'> </span><span style='mso-tab-count:1'>       </span>//hosts </span>文件为被管理机<span
+lang=EN-US>IP</span>或者主机列表</p>
+
+<p class=MsoNoSpacing style='margin-left:42.0pt;text-indent:-21.0pt;mso-list:
+l7 level1 lfo10'><![if !supportLists]><span lang=EN-US style='font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings'><span
+style='mso-list:Ignore'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span></span><![endif]><span
+lang=EN-US>/<span class=SpellE>etc</span>/ansible/roles</span>。 <span
+lang=EN-US><span style='mso-spacerun:yes'>  </span>//</span>为角色或者插件路径 默认该目录为空目录</p>
+
+<p class=MsoNoSpacing><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNoSpacing style='text-indent:21.0pt'><span lang=EN-US
+style='font-size:11.0pt;mso-bidi-font-size:14.0pt'>Ansible </span><span
+style='font-size:11.0pt;mso-bidi-font-size:14.0pt'>远程批量管理执行命令时通过<span
+lang=EN-US>Ad-Hoc</span>来完成，也即点对点执行命令，能狗快速执行，而且不需要保存执行的命令，默认<span lang=EN-US>hosts</span>文件配置主机列表，也可以配置分组。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-bidi-font-size:10.5pt;
+font-family:"Songti SC";mso-no-proof:yes'><!--[if gte vml 1]><v:shape id="图片_x0020_2"
+ o:spid="_x0000_i1034" type="#_x0000_t75" style='width:413pt;height:157pt;
+ visibility:visible' o:gfxdata="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
+AAYAfAEAALOnAAAAAA==
+">
+ <v:imagedata src="Ansible%20自动化运维.fld/image002.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=413 height=157
+src="Ansible%20自动化运维.fld/image002.png" v:shapes="图片_x0020_2"><![endif]></span><span
+lang=EN-US style='mso-bidi-font-size:10.5pt;font-family:"Songti SC"'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-bidi-font-size:10.5pt;
+font-family:"Songti SC"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:"Songti SC"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:"Songti SC"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:168.0pt'><span lang=EN-US
+style='font-size:12.0pt;font-family:"Songti SC"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:168.0pt'><span style='font-size:20.0pt;
+font-family:"Songti SC"'>环境部署表<span lang=EN-US><o:p></o:p></span></span></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=557
+ style='width:417.95pt;border-collapse:collapse;border:none;mso-border-alt:
+ solid windowtext .5pt;mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=71 valign=top style='width:53.0pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:12.0pt;font-family:"Songti SC"'>角色<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=127 valign=top style='width:95.6pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:12.0pt;font-family:"Songti SC"'>主机名<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=181 valign=top style='width:135.8pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:"Songti SC"'>IP<o:p></o:p></span></p>
+  </td>
+  <td width=86 valign=top style='width:64.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:12.0pt;font-family:"Songti SC"'>组名<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=92 valign=top style='width:69.05pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:"Songti SC"'>OS
+  version<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1'>
+  <td width=71 valign=top style='width:53.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:"Songti SC"'>master<o:p></o:p></span></p>
+  </td>
+  <td width=127 valign=top style='width:95.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:16.0pt'>automation</span><span
+  lang=EN-US style='font-size:12.0pt'><o:p></o:p></span></p>
+  </td>
+  <td width=181 valign=top style='width:135.8pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:"Songti SC"'>192.168.18.95<o:p></o:p></span></p>
+  </td>
+  <td width=86 valign=top style='width:64.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:"Songti SC"'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width=92 valign=top style='width:69.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:12.0pt;
+  font-family:"Songti SC"'>Redhat</span></span><span lang=EN-US
+  style='font-size:12.0pt;font-family:"Songti SC"'> 8<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2;mso-yfti-lastrow:yes'>
+  <td width=71 valign=top style='width:53.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:"Songti SC"'>node<o:p></o:p></span></p>
+  </td>
+  <td width=127 valign=top style='width:95.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:16.0pt'>Node</span></p>
+  </td>
+  <td width=181 valign=top style='width:135.8pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:"Songti SC"'>192.168.18.155<o:p></o:p></span></p>
+  </td>
+  <td width=86 valign=top style='width:64.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:"Songti SC"'>web<o:p></o:p></span></p>
+  </td>
+  <td width=92 valign=top style='width:69.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:"Songti SC"'>Centos
+  7<o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='font-size:12.0pt;font-family:"Songti SC";
+color:white;mso-color-alt:windowtext'>安装</span><span class=SpellE><span
+lang=EN-US style='font-size:12.0pt;font-family:"Songti SC"'>epel</span></span><span
+style='font-size:12.0pt;font-family:"Songti SC"'>源<span lang=EN-US>:<o:p></o:p></span></span></p>
+
+<p class=MsoNoSpacing style='margin-left:10.5pt;mso-para-margin-left:1.0gd'><span
+lang=EN-US>automation~]#sed<span style='mso-tab-count:1'>   </span>-<span
+class=SpellE>i</span> 's|^#baseurl=https://download.fedoraproject.org/pub|baseurl=https://mirrors.aliyun.com|'
+/<span class=SpellE>etc</span>/<span class=SpellE>yum.repos.d</span>/<span
+class=SpellE>epel.repo</span> </span></p>
+
+<p class=MsoNoSpacing style='margin-left:10.5pt;mso-para-margin-left:1.0gd'><span
+lang=EN-US>automation ~]# sed -<span class=SpellE>i</span> 's|^<span
+class=SpellE>metalink</span>|#<span class=SpellE>metalink</span>|' /<span
+class=SpellE>etc</span>/<span class=SpellE>yum.repos.d</span>/<span
+class=SpellE>epel</span>*</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;font-family:"Songti SC"'>安装<span
+lang=EN-US>ansible:<o:p></o:p></span></span></p>
+
+<p class=MsoNoSpacing style='margin-left:10.5pt;mso-para-margin-left:1.0gd'><span
+lang=EN-US>master </span>主机上安装<span lang=EN-US>ansible</span></p>
+
+<p class=MsoNoSpacing style='margin-left:10.5pt;mso-para-margin-left:1.0gd'><span
+lang=EN-US>[<span class=SpellE>root@automation</span> ~]# <span class=SpellE>dnf</span>
+-y install ansible</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:12.0pt;font-family:"Songti SC"'>Ansible </span><span
+style='font-size:12.0pt;font-family:"Songti SC"'>配置及测试：<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNoSpacing style='margin-left:21.0pt;mso-para-margin-left:2.0gd'>配置主机的清单</p>
+
+<p class=MsoNoSpacing style='margin-left:21.0pt;mso-para-margin-left:2.0gd'><span
+lang=EN-US>[<span class=SpellE>root@automation</span> ~]# vim /<span
+class=SpellE>etc</span>/ansible/hosts</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="图片_x0020_3" o:spid="_x0000_i1033" type="#_x0000_t75" style='width:415pt;
+ height:102pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="Ansible%20自动化运维.fld/image003.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=415 height=102
+src="Ansible%20自动化运维.fld/image003.png" v:shapes="图片_x0020_3"><![endif]></span><span
+lang=EN-US style='font-size:12.0pt;font-family:"Songti SC"'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-size:12.0pt;
+font-family:"Songti SC"'>通过<span lang=EN-US>ping</span>模块测试主机的连通性，分别对单主机及组进行<span
+lang=EN-US>ping</span>操作<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:"Songti SC";
+mso-no-proof:yes'><!--[if gte vml 1]><v:shape id="图片_x0020_4" o:spid="_x0000_i1032"
+ type="#_x0000_t75" style='width:415pt;height:46pt;visibility:visible;
+ mso-wrap-style:square'>
+ <v:imagedata src="Ansible%20自动化运维.fld/image004.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=415 height=46
+src="Ansible%20自动化运维.fld/image004.png" v:shapes="图片_x0020_4"><![endif]></span><span
+lang=EN-US style='font-size:12.0pt;font-family:"Songti SC"'><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing>出现红色时报错：原因是因为由于主控端与被控端主机未配置<span lang=EN-US>SSH</span>证书信任，需要免密码连接；</p>
+
+<p class=MsoNoSpacing><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-size:14.0pt;
+font-family:"Songti SC"'>配置<span lang=EN-US>Linux</span>主机<span lang=EN-US>SSH</span>无密码访问<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNoSpacing><span lang=EN-US><span style='mso-tab-count:1'>       </span></span>为了避免<span
+class=SpellE><span lang=EN-US>ansble</span></span>发送指令时输入目标主机密码，通过证书签名达到<span
+lang=EN-US>SSH</span></p>
+
+<p class=MsoNoSpacing>无密码是一个好的方案，推荐使用<span class=SpellE><span lang=EN-US>ssh</span></span><span
+lang=EN-US>-keygen</span>与<span class=SpellE><span lang=EN-US>ssh</span></span><span
+lang=EN-US>-copy-id</span>来实现快速证书的生成及公钥下发。</p>
+
+<p class=MsoNoSpacing><span lang=EN-US><span style='mso-tab-count:1'>       </span></span>（<span
+lang=EN-US>1</span>）<span style='font-size:12.0pt;mso-bidi-font-size:16.0pt'>在主控端用<span
+class=SpellE><span lang=EN-US>ssh</span></span><span lang=EN-US>-keygen</span>命令申请私钥和公钥</span></p>
+
+<p class=MsoNoSpacing><span lang=EN-US style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="图片_x0020_5" o:spid="_x0000_i1031" type="#_x0000_t75" style='width:415pt;
+ height:286pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="Ansible%20自动化运维.fld/image005.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=415 height=286
+src="Ansible%20自动化运维.fld/image005.png" v:shapes="图片_x0020_5"><![endif]></span></p>
+
+<p class=MsoNoSpacing style='margin-left:36.0pt;text-indent:-36.0pt;mso-list:
+l13 level1 lfo2'><![if !supportLists]><span lang=EN-US style='mso-bidi-font-family:
+DengXian;mso-bidi-theme-font:minor-fareast'><span style='mso-list:Ignore'>（2）<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>同步公钥文件<span
+lang=EN-US>id_rsa.pub</span>到目标主机，使用<span class=SpellE><span lang=EN-US>ssh</span></span><span
+lang=EN-US>-copy-id</span>公钥拷贝工具</p>
+
+<p class=MsoNoSpacing><span lang=EN-US style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="图片_x0020_6" o:spid="_x0000_i1030" type="#_x0000_t75" style='width:415pt;
+ height:45pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="Ansible%20自动化运维.fld/image006.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=415 height=45
+src="Ansible%20自动化运维.fld/image006.png" v:shapes="图片_x0020_6"><![endif]></span></p>
+
+<p class=MsoNoSpacing style='margin-left:36.0pt;text-indent:-36.0pt;mso-list:
+l13 level1 lfo2'><![if !supportLists]><span lang=EN-US style='mso-bidi-font-family:
+DengXian;mso-bidi-theme-font:minor-fareast'><span style='mso-list:Ignore'>（3）<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>再次测试出现<span
+lang=EN-US>ping pong </span>说明<span lang=EN-US>ping</span>通了</p>
+
+<p class=MsoNoSpacing><span lang=EN-US style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="图片_x0020_7" o:spid="_x0000_i1029" type="#_x0000_t75" style='width:415pt;
+ height:130pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="Ansible%20自动化运维.fld/image007.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=415 height=130
+src="Ansible%20自动化运维.fld/image007.png" v:shapes="图片_x0020_7"><![endif]></span></p>
+
+<p class=MsoNoSpacing><span style='font-size:12.0pt;mso-bidi-font-size:16.0pt'>定义主机与组规则<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>       </span>Ansible</span>通过定义好的主机与组规则（<span
+lang=EN-US>inventory</span>）对匹配的目标主机进行远程操作，配置文件默认是<span lang=EN-US>/<span
+class=SpellE>etc</span>/ansible/hosts</span>；两种方式定义主机和组规则的方式；</p>
+
+<p class=MsoListParagraph align=left style='margin-left:36.0pt;text-align:left;
+text-indent:-36.0pt;mso-char-indent-count:0;mso-list:l2 level1 lfo12'><![if !supportLists]><span
+lang=EN-US style='mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-fareast'><span
+style='mso-list:Ignore'>（1）<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US>vim<span
+style='mso-spacerun:yes'>  </span>/<span class=SpellE>etc</span>/ansible/hosts<span
+style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape id="图片_x0020_8" o:spid="_x0000_i1028"
+ type="#_x0000_t75" style='width:415pt;height:194pt;visibility:visible;
+ mso-wrap-style:square'>
+ <v:imagedata src="Ansible%20自动化运维.fld/image008.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=415 height=194
+src="Ansible%20自动化运维.fld/image008.png" v:shapes="图片_x0020_8"><![endif]></span></span></p>
+
+<p class=MsoListParagraph align=left style='margin-left:36.0pt;text-align:left;
+text-indent:-36.0pt;mso-char-indent-count:0;mso-list:l2 level1 lfo12'><![if !supportLists]><span
+lang=EN-US style='mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-fareast'><span
+style='mso-list:Ignore'>（2）<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>自定义<span lang=EN-US>inventory</span>文件</p>
+
+<p class=MsoListParagraph align=left style='margin-left:36.0pt;text-align:left;
+text-indent:0cm;mso-char-indent-count:0'><span lang=EN-US style='mso-no-proof:
+yes'><!--[if gte vml 1]><v:shape id="图片_x0020_9" o:spid="_x0000_i1027" type="#_x0000_t75"
+ style='width:415pt;height:59pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="Ansible%20自动化运维.fld/image009.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=415 height=59
+src="Ansible%20自动化运维.fld/image009.png" v:shapes="图片_x0020_9"><![endif]></span></p>
+
+<p class=MsoListParagraph align=left style='margin-left:36.0pt;text-align:left;
+text-indent:0cm;mso-char-indent-count:0'><span lang=EN-US>Inventory </span>行为参数</p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=538
+ style='width:403.2pt;margin-left:36.0pt;border-collapse:collapse;border:none;
+ mso-border-alt:solid windowtext .5pt;mso-yfti-tbllook:1184;mso-padding-alt:
+ 0cm 5.4pt 0cm 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=186 valign=top style='width:139.35pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'>名称</p>
+  </td>
+  <td width=110 valign=top style='width:82.35pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'>默认值</p>
+  </td>
+  <td width=242 valign=top style='width:181.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'>描述</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1'>
+  <td width=186 valign=top style='width:139.35pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span class=SpellE><span lang=EN-US>ansible_host</span></span></p>
+  </td>
+  <td width=110 valign=top style='width:82.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'>主机名</p>
+  </td>
+  <td width=242 valign=top style='width:181.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span lang=EN-US>SSH</span>目标主机名或<span lang=EN-US>IP</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td width=186 valign=top style='width:139.35pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span class=SpellE><span lang=EN-US>Ansible_port</span></span></p>
+  </td>
+  <td width=110 valign=top style='width:82.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span lang=EN-US>22</span></p>
+  </td>
+  <td width=242 valign=top style='width:181.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span lang=EN-US>SSH</span>目标端口</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3'>
+  <td width=186 valign=top style='width:139.35pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span class=SpellE><span lang=EN-US>Ansible_user</span></span></p>
+  </td>
+  <td width=110 valign=top style='width:82.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span lang=EN-US>Root</span></p>
+  </td>
+  <td width=242 valign=top style='width:181.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span lang=EN-US>SSH</span>登录使用的用户名</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4'>
+  <td width=186 valign=top style='width:139.35pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span class=SpellE><span lang=EN-US>Ansible_passwd</span></span></p>
+  </td>
+  <td width=110 valign=top style='width:82.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span lang=EN-US>(None)</span></p>
+  </td>
+  <td width=242 valign=top style='width:181.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span lang=EN-US>SSH</span>认证所使用的密码</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5'>
+  <td width=186 valign=top style='width:139.35pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span class=SpellE><span lang=EN-US>Ansible_connecition</span></span></p>
+  </td>
+  <td width=110 valign=top style='width:82.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span lang=EN-US>Smart</span></p>
+  </td>
+  <td width=242 valign=top style='width:181.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span class=SpellE><span lang=EN-US>Anible</span></span>使用何种连接模式连接都主机</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6'>
+  <td width=186 valign=top style='width:139.35pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span class=SpellE><span lang=EN-US>Ansible_private_key_file</span></span></p>
+  </td>
+  <td width=110 valign=top style='width:82.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span lang=EN-US>None</span></p>
+  </td>
+  <td width=242 valign=top style='width:181.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span lang=EN-US>SSH</span>使用的私钥</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:7'>
+  <td width=186 valign=top style='width:139.35pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span class=SpellE><span lang=EN-US>Ansible_shell_type</span></span></p>
+  </td>
+  <td width=110 valign=top style='width:82.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span class=SpellE><span lang=EN-US>Sh</span></span></p>
+  </td>
+  <td width=242 valign=top style='width:181.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'>命令使用的<span lang=EN-US>shell</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:8'>
+  <td width=186 valign=top style='width:139.35pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span class=SpellE><span lang=EN-US>Ansible_python_interpreter</span></span></p>
+  </td>
+  <td width=110 valign=top style='width:82.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span lang=EN-US>/<span class=SpellE>usr</span>/bin/python</span></p>
+  </td>
+  <td width=242 valign=top style='width:181.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'>主机上的<span lang=EN-US>python</span>解释器</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:9;mso-yfti-lastrow:yes'>
+  <td width=186 valign=top style='width:139.35pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span lang=EN-US>Ansible_*_interpreter</span></p>
+  </td>
+  <td width=110 valign=top style='width:82.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'><span lang=EN-US>None</span></p>
+  </td>
+  <td width=242 valign=top style='width:181.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoListParagraph align=left style='text-align:left;text-indent:0cm;
+  mso-char-indent-count:0'>类似<span lang=EN-US>python</span>配置</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoListParagraph align=left style='margin-left:36.0pt;text-align:left;
+text-indent:0cm;mso-char-indent-count:0'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoListParagraph align=left style='margin-left:36.0pt;text-align:left;
+text-indent:-36.0pt;mso-char-indent-count:0;mso-list:l2 level1 lfo12'><![if !supportLists]><span
+lang=EN-US style='mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-fareast'><span
+style='mso-list:Ignore'>（3）<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>示例：</p>
+
+<p class=MsoListParagraph align=left style='margin-left:36.0pt;text-align:left;
+text-indent:0cm;mso-char-indent-count:0'><span lang=EN-US style='mso-no-proof:
+yes'><!--[if gte vml 1]><v:shape id="图片_x0020_13" o:spid="_x0000_i1026" type="#_x0000_t75"
+ style='width:415pt;height:164pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="Ansible%20自动化运维.fld/image010.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=415 height=164
+src="Ansible%20自动化运维.fld/image010.png" v:shapes="图片_x0020_13"><![endif]></span></p>
+
+<p class=MsoNormal align=left style='margin-left:36.75pt;mso-para-margin-left:
+1.5gd;text-align:left;text-indent:-21.0pt;mso-char-indent-count:-2.0'><span
+lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:152.0pt;
+mso-char-indent-count:9.5'><span style='font-size:16.0pt;mso-bidi-font-size:
+20.0pt'>模块的介绍<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:22.0pt;
+mso-char-indent-count:2.0'><span lang=EN-US style='font-size:11.0pt;mso-bidi-font-size:
+14.0pt'>Ansible</span><span style='font-size:11.0pt;mso-bidi-font-size:14.0pt'>提供了非常丰富的功能模块，包括<span
+lang=EN-US>Cloud</span>（云计算）、<span lang=EN-US>commands</span>（命令行）<span
+lang=EN-US>database</span>（数据库）、<span lang=EN-US>files</span>（文件管理）<span
+lang=EN-US>internal</span>（内置功能）<span lang=EN-US>inventory(</span>资产管理<span
+lang=EN-US>)</span>、<span lang=EN-US>Messaging</span>（消息队列）<span lang=EN-US>Monitoring(</span>监控管理<span
+lang=EN-US>)</span>、<span lang=EN-US>Net infrastructure(</span>网络基础服务<span
+lang=EN-US>) Network</span>（网络管理）<span lang=EN-US>Packaging</span>（包管理） <span
+lang=EN-US>web infrastructure(web</span>基础服务<span lang=EN-US>)</span>等<span
+lang=EN-US>.<o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US><span
+style='mso-tab-count:1'>       </span></span></p>
+
+<p class=MsoListParagraph align=left style='margin-left:18.0pt;text-align:left;
+text-indent:-18.0pt;mso-char-indent-count:0;mso-list:l10 level1 lfo13'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>远程命令模块</p>
+
+<p class=MsoListParagraph align=left style='margin-left:42.0pt;text-align:left;
+text-indent:-21.0pt;mso-char-indent-count:0;mso-list:l10 level2 lfo13'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>a)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>功能</p>
+
+<p class=MsoNormal align=left style='margin-left:54.0pt;text-align:left'>模块包括<span
+lang=EN-US>command script shell ,</span>都可以实现远程<span lang=EN-US>shell</span>命令运行。<span
+lang=EN-US>command</span>作为<span lang=EN-US>ansible</span>的默认模块，可以运行远程权限范围所有的<span
+lang=EN-US>shell</span>命令；<span lang=EN-US>script</span>功能在远程主机执行主控端存储的<span
+lang=EN-US>shell</span>脚本文件，相当于<span class=SpellE><span lang=EN-US>scp+shell</span></span>组合；<span
+lang=EN-US>shell</span>功能是执行远程主机的<span lang=EN-US>shell</span>脚本文件。</p>
+
+<p class=MsoListParagraph align=left style='margin-left:42.0pt;text-align:left;
+text-indent:-21.0pt;mso-char-indent-count:0;mso-list:l10 level2 lfo13'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>b)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>示例：</p>
+
+<p class=MsoNoSpacing style='margin-left:31.5pt;mso-para-margin-left:3.0gd'><span
+lang=EN-US>[<span class=SpellE>root@master</span> ~]# ansible all -<span
+class=SpellE>i</span> /opt/inventory<span style='mso-spacerun:yes'>  </span>-m
+command -a &quot;free -m&quot;</span></p>
+
+<p class=MsoNoSpacing style='margin-left:31.5pt;mso-para-margin-left:3.0gd'><span
+lang=EN-US style='font-size:7.5pt;color:#F2CA43'>node | CHANGED | <span
+class=SpellE>rc</span>=0 &gt;&gt;</span><span lang=EN-US style='font-size:7.5pt'><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='margin-left:31.5pt;mso-para-margin-left:3.0gd'><span
+lang=EN-US style='font-size:7.5pt;color:#F2CA43'><span
+style='mso-spacerun:yes'>              </span>total<span
+style='mso-spacerun:yes'>        </span>used<span
+style='mso-spacerun:yes'>        </span>free<span
+style='mso-spacerun:yes'>      </span>shared<span style='mso-spacerun:yes'> 
+</span>buff/cache<span style='mso-spacerun:yes'>   </span>available</span><span
+lang=EN-US style='font-size:7.5pt'><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='margin-left:31.5pt;mso-para-margin-left:3.0gd'><span
+lang=EN-US style='font-size:7.5pt;color:#F2CA43'>Mem:<span
+style='mso-spacerun:yes'>            </span>468<span
+style='mso-spacerun:yes'>         </span>176<span
+style='mso-spacerun:yes'>         </span>111<span
+style='mso-spacerun:yes'>           </span>5<span
+style='mso-spacerun:yes'>         </span>180<span
+style='mso-spacerun:yes'>         </span>273</span><span lang=EN-US
+style='font-size:7.5pt'><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='margin-left:31.5pt;mso-para-margin-left:3.0gd'><span
+lang=EN-US style='font-size:7.5pt;color:#F2CA43'>Swap:<span
+style='mso-spacerun:yes'>          </span>1023<span
+style='mso-spacerun:yes'>    </span><span
+style='mso-spacerun:yes'>       </span>0<span style='mso-spacerun:yes'>       
+</span>1023</span><span lang=EN-US style='font-size:7.5pt'><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='margin-left:31.5pt;mso-para-margin-left:3.0gd'><span
+lang=EN-US>[<span class=SpellE>root@master</span> ~]# ansible all -<span
+class=SpellE>i</span> /opt/inventory -a &quot;free -m&quot;</span></p>
+
+<p class=MsoNoSpacing style='margin-left:31.5pt;mso-para-margin-left:3.0gd'><span
+lang=EN-US style='font-size:7.5pt;color:#F2CA43'>node | CHANGED | <span
+class=SpellE>rc</span>=0 &gt;&gt;</span><span lang=EN-US style='font-size:7.5pt'><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='margin-left:31.5pt;mso-para-margin-left:3.0gd'><span
+lang=EN-US style='font-size:7.5pt;color:#F2CA43'><span
+style='mso-spacerun:yes'>              </span>total<span
+style='mso-spacerun:yes'>        </span>used<span
+style='mso-spacerun:yes'>        </span>free<span
+style='mso-spacerun:yes'>      </span>shared<span style='mso-spacerun:yes'> 
+</span>buff/cache<span style='mso-spacerun:yes'>   </span>available</span><span
+lang=EN-US style='font-size:7.5pt'><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='margin-left:31.5pt;mso-para-margin-left:3.0gd'><span
+lang=EN-US style='font-size:7.5pt;color:#F2CA43'>Mem:<span
+style='mso-spacerun:yes'>            </span>468<span
+style='mso-spacerun:yes'>         </span>176<span
+style='mso-spacerun:yes'>         </span>111<span
+style='mso-spacerun:yes'>           </span>5<span
+style='mso-spacerun:yes'>         </span>180<span style='mso-spacerun:yes'>  
+</span><span style='mso-spacerun:yes'>      </span>273</span><span lang=EN-US
+style='font-size:7.5pt'><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='margin-left:31.5pt;mso-para-margin-left:3.0gd'><span
+lang=EN-US style='font-size:7.5pt;color:#F2CA43'>Swap:<span
+style='mso-spacerun:yes'>          </span>1023<span
+style='mso-spacerun:yes'>           </span>0<span
+style='mso-spacerun:yes'>        </span>1023</span><span lang=EN-US
+style='font-size:7.5pt'><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='margin-left:31.5pt;mso-para-margin-left:3.0gd'><span
+lang=EN-US>[<span class=SpellE>root@master</span> ~]# ansible all -<span
+class=SpellE>i</span> /opt/inventory<span style='mso-spacerun:yes'>  </span>-a
+&quot;echo.sh&quot; </span></p>
+
+<p class=MsoNoSpacing style='margin-left:31.5pt;mso-para-margin-left:3.0gd'><span
+lang=EN-US style='font-size:9.0pt;color:#FC3F3C'>node | FAILED | <span
+class=SpellE>rc</span>=2 &gt;&gt;</span><span lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='margin-left:31.5pt;mso-para-margin-left:3.0gd'><span
+lang=EN-US style='font-size:9.0pt;color:#FC3F3C'>[<span class=SpellE>Errno</span>
+2] </span><span style='font-size:9.0pt;color:#FC3F3C'>没有那个文件或目录</span><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNoSpacing style='text-indent:21.0pt'><span lang=EN-US>[<span
+class=SpellE>root@master</span> ~]# ansible all -<span class=SpellE>i</span>
+/opt/inventory<span style='mso-spacerun:yes'>  </span>-m script -a
+&quot;echo.sh&quot; </span></p>
+
+<p class=MsoListParagraph align=left style='margin-left:18.0pt;text-align:left;
+text-indent:-18.0pt;mso-char-indent-count:0;mso-list:l10 level1 lfo13'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US>copy</span>模块</p>
+
+<p class=MsoListParagraph align=left style='margin-left:42.0pt;text-align:left;
+text-indent:-21.0pt;mso-char-indent-count:0;mso-list:l10 level2 lfo13'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>a)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>功能</p>
+
+<p class=MsoListParagraph align=left style='margin-left:63.0pt;text-align:left;
+text-indent:-63.0pt;mso-text-indent-alt:-21.0pt;mso-char-indent-count:0;
+mso-list:l10 level3 lfo13'><![if !supportLists]><span lang=EN-US
+style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'><span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>i.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>实现主控端向目标主机拷贝文件，类似于<span class=SpellE><span
+lang=EN-US>scp</span></span>的功能。</p>
+
+<p class=MsoListParagraph align=left style='margin-left:42.0pt;text-align:left;
+text-indent:-21.0pt;mso-char-indent-count:0;mso-list:l10 level2 lfo13'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>b)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>例子</p>
+
+<p class=MsoListParagraph align=left style='margin-left:63.0pt;text-align:left;
+text-indent:-63.0pt;mso-text-indent-alt:-21.0pt;mso-char-indent-count:0;
+mso-list:l10 level3 lfo13'><![if !supportLists]><span lang=EN-US
+style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'><span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>i.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US>ansible all -<span
+class=SpellE>i</span> /opt/inventory<span style='mso-spacerun:yes'>  </span>-m
+copy -a &quot;<span class=SpellE>src</span>=echo.sh<span
+style='mso-spacerun:yes'>  </span><span class=SpellE>dest</span>=/opt/&quot;</span></p>
+
+<p class=MsoListParagraph align=left style='margin-left:18.0pt;text-align:left;
+text-indent:-18.0pt;mso-char-indent-count:0;mso-list:l10 level1 lfo13'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US>stat</span>模块</p>
+
+<p class=MsoListParagraph align=left style='margin-left:42.0pt;text-align:left;
+text-indent:-21.0pt;mso-char-indent-count:0;mso-list:l10 level2 lfo13'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>a)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>功能</p>
+
+<p class=MsoListParagraph align=left style='margin-left:63.0pt;text-align:left;
+text-indent:-63.0pt;mso-text-indent-alt:-21.0pt;mso-char-indent-count:0;
+mso-list:l10 level3 lfo13'><![if !supportLists]><span lang=EN-US
+style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'><span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>i.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>获取远程文件状态信息，包括<span lang=EN-US> <span
+class=SpellE>atime</span> <span class=SpellE>ctime</span> md5 <span
+class=SpellE>uid</span> <span class=SpellE>gid</span></span>等信息</p>
+
+<p class=MsoListParagraph align=left style='margin-left:42.0pt;text-align:left;
+text-indent:-21.0pt;mso-char-indent-count:0;mso-list:l10 level2 lfo13'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>b)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>示例</p>
+
+<p class=MsoListParagraph align=left style='margin-left:63.0pt;text-align:left;
+text-indent:-63.0pt;mso-text-indent-alt:-21.0pt;mso-char-indent-count:0;
+mso-list:l10 level3 lfo13'><![if !supportLists]><span lang=EN-US
+style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'><span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>i.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="图片_x0020_14" o:spid="_x0000_i1025" type="#_x0000_t75" style='width:5in;
+ height:66pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="Ansible%20自动化运维.fld/image011.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=360 height=66
+src="Ansible%20自动化运维.fld/image011.png" v:shapes="图片_x0020_14"><![endif]></span></p>
+
+<p class=MsoListParagraph align=left style='margin-left:18.0pt;text-align:left;
+text-indent:-18.0pt;mso-char-indent-count:0;mso-list:l10 level1 lfo13'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><span lang=EN-US>get_url</span></span>模块</p>
+
+<p class=MsoListParagraph align=left style='margin-left:42.0pt;text-align:left;
+text-indent:-21.0pt;mso-char-indent-count:0;mso-list:l10 level2 lfo13'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>a)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>功能</p>
+
+<p class=MsoListParagraph align=left style='margin-left:63.0pt;text-align:left;
+text-indent:-63.0pt;mso-text-indent-alt:-21.0pt;mso-char-indent-count:0;
+mso-list:l10 level3 lfo13'><![if !supportLists]><span lang=EN-US
+style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'><span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>i.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>实现在远程主机下载指定<span lang=EN-US>URL</span>到本地支持<span
+lang=EN-US>sha256sum</span>文件校验</p>
+
+<p class=MsoListParagraph align=left style='margin-left:42.0pt;text-align:left;
+text-indent:-21.0pt;mso-char-indent-count:0;mso-list:l10 level2 lfo13'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>b)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>示例</p>
+
+<p class=MsoListParagraph align=left style='margin-left:18.0pt;text-align:left;
+text-indent:-18.0pt;mso-char-indent-count:0;mso-list:l10 level1 lfo13'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US>yum</span>模块</p>
+
+<p class=MsoListParagraph align=left style='margin-left:18.0pt;text-align:left;
+text-indent:-18.0pt;mso-char-indent-count:0;mso-list:l10 level1 lfo13'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>6.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><span lang=EN-US>cron</span></span>模块</p>
+
+<p class=MsoListParagraph align=left style='margin-left:18.0pt;text-align:left;
+text-indent:-18.0pt;mso-char-indent-count:0;mso-list:l10 level1 lfo13'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>7.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US>mount </span>模块</p>
+
+<p class=MsoListParagraph align=left style='margin-left:18.0pt;text-align:left;
+text-indent:-18.0pt;mso-char-indent-count:0;mso-list:l10 level1 lfo13'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>8.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US>service</span>模块</p>
+
+<p class=MsoListParagraph align=left style='margin-left:18.0pt;text-align:left;
+text-indent:-18.0pt;mso-char-indent-count:0;mso-list:l10 level1 lfo13'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>9.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><span lang=EN-US>sysctl</span></span><span
+lang=EN-US> </span>模块</p>
+
+<p class=MsoListParagraph align=left style='margin-left:18.0pt;text-align:left;
+text-indent:-18.0pt;mso-char-indent-count:0;mso-list:l10 level1 lfo13'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>10.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span class=SpellE><span lang=EN-US>usre</span></span>模块</p>
+
+<p class=MsoListParagraph align=left style='margin-left:18.0pt;text-align:left;
+text-indent:-18.0pt;mso-char-indent-count:0;mso-list:l10 level1 lfo13'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:DengXian;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:DengXian;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>11.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoListParagraph align=left style='margin-left:18.0pt;text-align:left;
+text-indent:0cm;mso-char-indent-count:0'>（<span lang=EN-US>1</span>）</p>
+
+</div>
+
+</body>
+
+</html>
