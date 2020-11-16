@@ -53,7 +53,8 @@
 			/usr/local/apache1/apache/bin/apachectl start
 	（4）防火墙
 			   firewall-cmd --permanent --add-port=80/tcp --zone=public 
-		   firewalld-cmd --add-port=80/tcp --zone=public
+		  	   firewalld-cmd --add-port=80/tcp --zone=public
+			   firewalld-cmd --reload
 	（5）测试
 
 二、 搭建php服务器
@@ -96,7 +97,7 @@
 	【10】设置防火墙
 		firewall-cmd --permanent --add-port=9000/tcp --zone=public       注意：这个需要重新启动才能有效
 		firewall-cmd --add-port=9000/tcp --zone=public    注意：临时设置防火墙规则
-		
+		firewall-cmd --reload
 三、 搭建数据服务
 	规划地址：	192.168.18.50			mariadb.service
   （1）安装数据库
@@ -155,4 +156,8 @@
 			 create database zblog
 		  （2）授权用户
 		MariaDB [(none)]> grant all  privileges on zblog* to zblog@192.168.18.15 identified by '123456';
+	4、设置防火墙
 	
+		firewall-cmd --permanent --add-port=3306/tcp --zone=public       注意：这个需要重新启动才能有效
+		firewall-cmd --add-port=3306/tcp --zone=public   		 注意：临时设置防火墙规则
+		firewall-cmd --reload
