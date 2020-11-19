@@ -1,0 +1,52 @@
+基于lamp环境搭建discuz博客
+一、准备环境
+   yum -y install httpd php php-mysql mariadb mariadb-server mysql-devel
+   yum install -y php-gd libjpeg* php-imap php-ldap php-odbc php-pear php-xml php-xmlrpc php-mbstring php-mcrypt php-bcmath php-mhash libmcrypt
+二、获取软件包
+	wget http://download.comsenz.com/DiscuzX/2.5/Discuz_X2.5_PHP7.0_SC_UTF8.zip
+三、启动服务
+	systemctl restart httpd
+四、修改配置文件
+   vim /etc/httpd/conf/httpd.conf
+   163 <IfModule dir_module>
+   164     DirectoryIndex index.php index.html 添加 index.php
+   165 </IfModule>
+五、编写测试文件
+   vim /var/www/html/index.php
+   <?php
+   	 phpinfo();
+   ?>
+六、重启httpd服务
+   systemctl restart httpd
+七、测试
+	访问 http://server-ip地址
+
+八、解压博客软件DiscuzX
+   unzip
+九、拷贝文件至web目录下
+	mkdir /var/www/html/dizu
+	cp -r upload/* dizu/
+十、测试访问
+   访问 http://server-ip/dizu
+数据库操作：
+一、启动数据库
+	systemctl start mariadb
+二、初始化数据库
+   mysql_secure_installation   注意：需要增加数据库的管理密码 见Y回车即可
+三、进入数据库
+	mysql -uroot -p 
+四、创建库
+	create database dizu;
+	grant all on dizu.*  to 'dizu'@'localhost' identified by 'password';
+	grant all on dizu.*  to 'dizu'@'%' identified by 'password';
+	flush privileges;
+五、添加防火墙规则
+  firewall-cmd --permanent --add-port=80/tcp
+  firewall-cmd --permanent --add-port=3306/tcp
+  firewall-cmd --permanent --add-port=9000/tcp
+  firewall-cmd --reload
+六、客户端测试：
+   http://server-ip/dizu
+
+
+
