@@ -79,7 +79,7 @@
 	cd php-7.4.0
 	./configure --prefix=/usr/local/php74--with-config-file-path=/usr/local/php74/etc --with-curl --with-freetype-dir --with-gd 
 	--with-iconv-dir --with-kerberos --with-libdir=lib64 --with-libxml-dir --with-mysqli --with-openssl --with-pcre-regex 
-	--with-pdo-sqlite --with-pear --with-png-dir --with-jpeg-dir --with-xmlrpc --with-xsl --with-zlib --with-bz2 --enable-fpm 
+	--with-pdo-sqlite --with-pear --with-png-dir --with-jpeg --with-xmlrpc --with-xsl --with-zlib --with-bz2 --enable-fpm 
 	--enable-bcmath --enable-libxml --enable-inline-optimization --enable-gd-native-ttf --enable-mbregex  --with-pdo-mysql --enable-gd  
 	--enable-opcache --enable-pcntl --enable-shmop --enable-soap --enable-sockets --enable-sysvsem --enable-sysvshm --enable-zip --with-ldap 
 	【5】编译
