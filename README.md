@@ -62,12 +62,13 @@ zabbix监控系统包括很多监控概念，掌握zabbix监控概念有助于�
 | Zabbix-version |     5.0     |       |
 | Zbbix-server   |          |    192.168.0.106   |
 | Zabbix-agent   |          |    192.168.0.105   |
-###获取安装包  [获取zabbix安装](https://www.zabbix.com/download?zabbix=5.0&os_distribution=centos&os_version=7&db=mysql&ws=apache)
-###获取帮助 [查看zabbix帮助文档](https://www.zabbix.com/documentation/5.0/manual)
+
+### 获取安装包  [获取zabbix安装](https://www.zabbix.com/download?zabbix=5.0&os_distribution=centos&os_version=7&db=mysql&ws=apache)
+### 获取帮助 [查看zabbix帮助文档](https://www.zabbix.com/documentation/5.0/manual)
 根据的操作系统选择你所需要的版本
 作者是以apache和mysql作为底层环境支持
 ![zabbix](media/16078364182375/zabbix.gif)
-###zabbix-server服务器端安装
+### zabbix-server服务器端安装
 本例采用RPM包安装方式。源码也可以安装后续再录入;
 准备好CentOS 7系统，配置IP地址，确保与互联网正常连接，
 - 下面命令是测试网络是否正常
