@@ -10,7 +10,7 @@
 ### 七、Linux内核
 ### 八、监控
  [zabbix](https://abbott68.github.io/linux/监控/zabbix/) 
- [prometheus](https://github.com/abbott68/linux/tree/master/监控/prometheus)
+ [prometheus](https://abbott68.com/linux/监控/prometheus)
 ### 九、自动化运维
 ### 十、虚拟化
 ### 十一、云计算
