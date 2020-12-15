@@ -9,7 +9,7 @@
 ### 六、集群架构
 ### 七、Linux内核
 ### 八、监控
- [zabbix](https://abbott68.github.io/linux/监控/搭建zabbix分布式监控系统.html) 
+ [zabbix](https://abbott68.github.io/linux/监控/zabbix/) 
  
  [prometheus]()
 ### 九、自动化运维
