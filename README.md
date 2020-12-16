@@ -7,7 +7,7 @@
 ### 二、Linux 基础命令
 ### 三、系统管理
 ### 四、常见服务搭建
-> - [nginx](https://abbott68.github.io/linux/WebServer/nginx)
+> - [nginx](https://abbott68.github.io/linux/WebServer/nginx/nginx服务器搭建.html)
 > - [apache]()
 
 ### 五、系统安全
