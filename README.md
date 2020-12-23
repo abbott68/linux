@@ -7,25 +7,28 @@
 ### Linux 基础命令
 ### 系统管理
 ### 常见服务搭建
-* web-nginx服务<br/>
-  [nginx 服务搭建](https://abbott68.github.io/linux/WebServer/nginx/nginx服务器搭建.html)
-* web-apache服务<br/>
-    [apache 服务搭建](https://abbott68.gitbhub/linux/WebServer/apache/Apache.html)
+#### web-nginx服务<br/>
+* [nginx 服务搭建](https://abbott68.github.io/linux/WebServer/nginx/nginx服务器搭建.html)
+
+#### web-apache服务<br/>
+* [apache 服务搭建](https://abbott68.github.io/linux/WebServer/apache/Apache.html)
 
 ### 系统安全
 ### 集群架构
 ### Linux内核
 ### 监控
-* zbbix分布式监控 <br/>
-[zabbix 基础](https://abbott68.github.io/linux/监控/zabbix/)
-* prometheus<br /> 
-[prometheus 基础](https://abbott68.github.io/linux/监控/prometheus)
-*  grafana 监控 <br />
-[Grafana 基础](https://abbott68.github.io/linux/监控/grafana/Grafana.html)
+#### zbbix分布式监控 <br/>
+* [zabbix 基础](https://abbott68.github.io/linux/监控/zabbix/)
+
+#### prometheus<br /> 
+* [prometheus 基础](https://abbott68.github.io/linux/监控/prometheus)
+
+#### grafana 监控 <br />
+* [Grafana 基础](https://abbott68.github.io/linux/监控/grafana/Grafana.html)
 
 ### 自动化运维
-*  版本控制系统<br/>
-[Git分布式版本控制](https://abbott68.github.io/linux/git/git.html)
+#### 版本控制系统<br/>
+* [Git分布式版本控制](https://abbott68.github.io/linux/git/git.html)
 
 ### 虚拟化
 ### 云计算
