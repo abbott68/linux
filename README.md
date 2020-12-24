@@ -17,6 +17,7 @@
 ### 集群架构
 ### Linux内核
 ### 监控
+----
 #### zbbix分布式监控 
 * [zabbix 基础](https://abbott68.github.io/linux/监控/zabbix/)
 
@@ -27,8 +28,13 @@
 * [Grafana 基础](https://abbott68.github.io/linux/监控/grafana/Grafana.html)
 
 ### 自动化运维
+----
+#### PSSH批量管理服务器
+* [PSSH批量管理服务器]()
+
 #### 版本控制系统
 * [Git分布式版本控制](https://abbott68.github.io/linux/git/git.html)
 
 ### 虚拟化
+----
 ### 云计算
