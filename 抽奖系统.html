@@ -1,0 +1,2804 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>抽奖系统</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --gold: #ffd93d;
+  --gold-dark: #f9a825;
+  --coral: #ff6b6b;
+  --amber: #ff9f43;
+  --purple: #a29bfe;
+  --green: #6bcb77;
+  --white: #ffffff;
+  --bg-deep: #1a0a0a;
+  --bg-mid: #2d1508;
+  --bg-accent: #1a0a2e;
+  --surface: rgba(255,255,255,0.06);
+  --surface-hover: rgba(255,255,255,0.12);
+  --border: rgba(255,255,255,0.1);
+  --font-display: 'Oswald', sans-serif;
+  --font-body: 'Noto Sans SC', sans-serif;
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background: linear-gradient(145deg, var(--bg-deep) 0%, var(--bg-mid) 40%, #2d0a20 70%, var(--bg-accent) 100%);
+  background-size: 200% 200%;
+  animation: bgShift 25s ease-in-out infinite alternate;
+  overflow: hidden;
+  user-select: none;
+  position: relative;
+}
+
+@keyframes bgShift {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Warm glow orbs */
+body::after {
+  content: '';
+  position: fixed;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,159,67,0.06) 0%, transparent 70%);
+  bottom: -250px;
+  left: -200px;
+  animation: glowDrift 30s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes glowDrift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(200px, -150px) scale(1.4); }
+  100% { transform: translate(100px, 100px) scale(0.8); }
+}
+
+/* ===== Layout ===== */
+.app {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(0.6rem, 1.5vh, 1.5rem);
+}
+
+/* ===== Header ===== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(0.5rem, 1.2vh, 1rem) clamp(0.8rem, 2vw, 1.5rem);
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(12px);
+  flex-shrink: 0;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.header-icon {
+  font-size: clamp(1.3rem, 2.5vw, 2rem);
+  line-height: 1;
+}
+
+.header h1 {
+  font-family: var(--font-body);
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--gold), var(--amber), var(--coral));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.08em;
+}
+
+.header-stats {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.5rem, 2vw, 1.5rem);
+  color: rgba(255,255,255,0.6);
+  font-size: clamp(0.75rem, 1.1vw, 0.95rem);
+  font-weight: 500;
+}
+
+.header-stats span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.header-stats .num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--gold);
+  font-size: 1.2em;
+}
+
+/* ===== Main lottery area ===== */
+.main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.5rem, 2vh, 2rem) 0;
+  min-height: 0;
+  gap: clamp(0.8rem, 2vh, 2rem);
+}
+
+.lottery-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 0;
+}
+
+.name-display {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 0;
+}
+
+.name-display .display-text {
+  font-family: var(--font-body);
+  font-size: var(--name-size, 4rem);
+  font-weight: 900;
+  color: rgba(255,255,255,0.12);
+  text-align: center;
+  line-height: 1.2;
+  transition: color 0.3s, transform 0.3s;
+  padding: 0 1rem;
+  word-break: break-all;
+}
+
+.name-display .display-text.has-name {
+  color: var(--white);
+  text-shadow: 0 0 50px rgba(255,255,255,0.1);
+}
+
+.name-display .display-text.rolling {
+  animation: nameBlur 0.08s ease-in-out;
+}
+
+@keyframes nameBlur {
+  0% { filter: blur(4px); opacity: 0.6; transform: scale(0.97); }
+  100% { filter: blur(0); opacity: 1; transform: scale(1); }
+}
+
+.name-display .display-text.winner {
+  color: var(--gold);
+  text-shadow:
+    0 0 40px rgba(255,217,61,0.3),
+    0 0 80px rgba(255,217,61,0.15);
+  animation: winnerReveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes winnerReveal {
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ===== Draw button ===== */
+.draw-btn-wrap {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.draw-btn {
+  position: relative;
+  padding: clamp(0.8rem, 2vh, 1.4rem) clamp(2rem, 5vw, 4rem);
+  border: none;
+  border-radius: 60px;
+  font-family: var(--font-body);
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 700;
+  color: #1a0a0a;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--gold), var(--amber));
+  box-shadow: 0 8px 40px rgba(255,217,61,0.25), 0 4px 15px rgba(0,0,0,0.2);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s, opacity 0.3s;
+  overflow: hidden;
+}
+
+.draw-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%);
+  pointer-events: none;
+  border-radius: 60px;
+}
+
+.draw-btn::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 62px;
+  background: linear-gradient(135deg, var(--gold), var(--coral), var(--gold));
+  background-size: 200% 200%;
+  z-index: -1;
+  animation: btnGlow 3s ease infinite;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+@keyframes btnGlow {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+.draw-btn:hover::after { opacity: 1; }
+.draw-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 50px rgba(255,217,61,0.35), 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.draw-btn:active {
+  transform: scale(0.97);
+}
+
+.draw-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.draw-btn .btn-icon { margin-right: 0.4em; }
+
+.remain-label {
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  color: rgba(255,255,255,0.35);
+  font-weight: 500;
+}
+
+/* ===== Bottom panels ===== */
+.bottom-panels {
+  flex-shrink: 0;
+  display: flex;
+  gap: clamp(0.4rem, 1vw, 0.8rem);
+  margin-top: auto;
+}
+
+.panel {
+  flex: 1;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  min-width: 0;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(0.4rem, 0.8vh, 0.7rem) clamp(0.6rem, 1.5vw, 1.2rem);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.panel-header:hover { background: var(--surface); }
+
+.panel-header .label {
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.panel-header .badge {
+  font-family: var(--font-display);
+  font-size: 0.75em;
+  background: var(--surface);
+  padding: 0.1em 0.5em;
+  border-radius: 20px;
+  color: var(--gold);
+}
+
+.panel-header .toggle-icon {
+  color: rgba(255,255,255,0.3);
+  font-size: 0.8rem;
+  transition: transform 0.3s;
+}
+
+.panel-header .toggle-icon.collapsed {
+  transform: rotate(-90deg);
+}
+
+.panel-body {
+  padding: clamp(0.4rem, 0.8vh, 0.8rem) clamp(0.6rem, 1.5vw, 1.2rem);
+  max-height: 200px;
+  overflow-y: auto;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.panel-body.collapsed {
+  max-height: 0 !important;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+.panel-body::-webkit-scrollbar { width: 4px; }
+.panel-body::-webkit-scrollbar-track { background: transparent; }
+.panel-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }
+
+/* ===== Name management ===== */
+.input-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.input-row input {
+  flex: 1;
+  padding: 0.55rem 0.9rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.2s;
+  min-width: 0;
+}
+
+.input-row input:focus {
+  border-color: var(--gold);
+}
+
+.input-row input::placeholder {
+  color: rgba(255,255,255,0.25);
+}
+
+.input-row input.dup-error {
+  border-color: var(--coral);
+  animation: shakeInput 0.4s ease;
+}
+
+@keyframes shakeInput {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+.input-row .add-btn {
+  padding: 0.55rem 1.2rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--gold), var(--amber));
+  color: #1a0a0a;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.input-row .add-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(255,217,61,0.3);
+}
+
+.input-row .add-btn:active {
+  transform: scale(0.97);
+}
+
+.batch-row {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.batch-row .batch-btn {
+  padding: 0.4rem 1rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: rgba(255,255,255,0.7);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.batch-row .batch-btn:hover {
+  background: var(--surface-hover);
+  border-color: var(--gold);
+  color: var(--white);
+}
+
+.batch-row .clear-btn {
+  composes: batch-btn;
+  color: rgba(255,107,107,0.6);
+  border-color: rgba(255,107,107,0.2);
+}
+
+.batch-row .clear-btn:hover {
+  background: rgba(255,107,107,0.1);
+  border-color: var(--coral);
+  color: var(--coral);
+}
+
+/* ===== Name tags ===== */
+.name-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.name-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.6rem 0.25rem 0.8rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.8);
+  animation: tagIn 0.25s ease;
+}
+
+@keyframes tagIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.name-tag .tag-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.4);
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 0;
+  line-height: 1;
+}
+
+.name-tag .tag-remove:hover {
+  background: var(--coral);
+  color: white;
+  transform: scale(1.15);
+}
+
+.empty-msg {
+  color: rgba(255,255,255,0.2);
+  font-size: 0.8rem;
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* ===== Winner history ===== */
+.winner-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.winner-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.7rem;
+  background: linear-gradient(135deg, rgba(255,217,61,0.12), rgba(255,159,67,0.08));
+  border: 1px solid rgba(255,217,61,0.2);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--gold);
+  animation: tagIn 0.3s ease;
+}
+
+.winner-item .prize {
+  font-size: 0.7rem;
+}
+
+.history-actions {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+
+.history-actions button {
+  padding: 0.35rem 1rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: rgba(255,255,255,0.5);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.history-actions button:hover {
+  background: var(--surface-hover);
+  border-color: rgba(255,255,255,0.2);
+  color: var(--white);
+}
+
+.history-actions .reset-winners-btn {
+  border-color: rgba(255,107,107,0.2);
+  color: rgba(255,107,107,0.6);
+}
+
+.history-actions .reset-winners-btn:hover {
+  background: rgba(255,107,107,0.1);
+  border-color: var(--coral);
+  color: var(--coral);
+}
+
+/* ===== Batch Import Modal ===== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(10px);
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal-overlay.show { display: flex; }
+
+.modal {
+  background: linear-gradient(160deg, #2d1508, #1a0a2e);
+  border-radius: 24px;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  width: 90%;
+  max-width: 480px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  border: 1px solid var(--border);
+  animation: modalIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalIn {
+  from { transform: scale(0.85) translateY(20px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.modal h2 {
+  color: var(--white);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.modal textarea {
+  width: 100%;
+  height: 200px;
+  padding: 0.8rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: rgba(0,0,0,0.3);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.modal textarea:focus {
+  border-color: var(--gold);
+}
+
+.modal textarea::placeholder {
+  color: rgba(255,255,255,0.2);
+}
+
+.modal .modal-hint {
+  color: rgba(255,255,255,0.3);
+  font-size: 0.75rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.modal .modal-preview {
+  color: var(--gold);
+  font-size: 0.85rem;
+  margin-bottom: 0.8rem;
+  min-height: 1.3em;
+}
+
+.modal .modal-actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.modal .modal-actions button {
+  flex: 1;
+  padding: 0.7rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.modal .modal-actions button:hover { transform: translateY(-2px); }
+
+.modal .btn-confirm {
+  background: linear-gradient(135deg, var(--gold), var(--amber));
+  color: #1a0a0a;
+}
+
+.modal .btn-cancel {
+  background: var(--surface);
+  color: rgba(255,255,255,0.6);
+  border: 1px solid var(--border);
+}
+
+/* ===== Celebration overlay ===== */
+.celebration-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px);
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.celebration-overlay.show { display: flex; }
+
+.celebration-content {
+  text-align: center;
+  padding: 2rem;
+  animation: celebPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+}
+
+@keyframes celebPop {
+  0% { transform: scale(0.3); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.celebration-content .trophy {
+  font-size: clamp(4rem, 12vw, 8rem);
+  display: block;
+  margin-bottom: 0.5rem;
+  animation: trophyBounce 1s ease 0.5s both;
+}
+
+@keyframes trophyBounce {
+  0% { transform: translateY(0); }
+  20% { transform: translateY(-30px); }
+  40% { transform: translateY(0); }
+  60% { transform: translateY(-15px); }
+  80% { transform: translateY(0); }
+  100% { transform: translateY(0); }
+}
+
+.celebration-content .congrats {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: rgba(255,255,255,0.6);
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.celebration-content .winner-name {
+  font-family: var(--font-body);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  color: var(--gold);
+  text-shadow: 0 0 60px rgba(255,217,61,0.3);
+  line-height: 1.2;
+  word-break: break-all;
+}
+
+.celebration-content .winner-sub {
+  color: rgba(255,255,255,0.4);
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  margin-top: 0.8rem;
+}
+
+.celebration-content .dismiss-btn {
+  margin-top: 2rem;
+  padding: 0.8rem 2.5rem;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--gold), var(--amber));
+  color: #1a0a0a;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(255,217,61,0.2);
+  transition: transform 0.2s;
+}
+
+.celebration-content .dismiss-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ===== Confetti ===== */
+.confetti-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 199;
+  overflow: hidden;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: -10px;
+  animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg) scale(0.3);
+    opacity: 0;
+  }
+}
+
+/* ===== FAB for name input on very short screens ===== */
+.fab {
+  display: none;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, var(--gold), var(--amber));
+  color: #1a0a0a;
+  font-size: 1.6rem;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(255,217,61,0.3), 0 4px 15px rgba(0,0,0,0.2);
+  z-index: 50;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
+  line-height: 1;
+}
+
+.fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 40px rgba(255,217,61,0.4);
+}
+
+.fab:active {
+  transform: scale(0.95);
+}
+
+/* ===== Responsive: width ===== */
+@media (min-width: 1400px) {
+  .app { max-width: min(92vw, 1600px); }
+}
+
+@media (max-width: 700px) {
+  .bottom-panels { flex-direction: column; }
+}
+
+@media (max-width: 480px) {
+  .header { flex-wrap: wrap; gap: 0.3rem; }
+  .header-stats { gap: 0.4rem; flex-wrap: wrap; }
+  .header h1 { font-size: 1rem; }
+  .input-row { flex-wrap: wrap; }
+  .input-row input { width: 100%; flex: 1 1 auto; }
+  .input-row .add-btn { width: 100%; }
+  .batch-row { flex-wrap: wrap; }
+  .batch-row button { flex: 1; }
+}
+
+/* ===== Responsive: height ===== */
+/* Very short: hide bottom panels, show FAB, compact header & controls */
+@media (max-height: 550px) {
+  .header { padding: 0.15rem 0.5rem; border-radius: 8px; }
+  .header-icon { font-size: 1rem !important; margin-bottom: 0 !important; }
+  .header h1 { font-size: 0.8rem !important; }
+  .header-stats { font-size: 0.6rem !important; gap: 0.3rem; }
+  .header-stats .num { font-size: 0.75rem !important; }
+  .bottom-panels { display: none; }
+  .fab { display: flex; align-items: center; justify-content: center; }
+  .draw-btn { padding: 0.35rem 1rem; font-size: 0.8rem !important; border-radius: 30px; }
+  .draw-btn .btn-icon { font-size: 0.85rem; }
+  .remain-label { font-size: 0.6rem !important; }
+  .main-area { gap: 0.2rem; padding: 0.1rem 0; }
+  .name-display .display-text { padding: 0 0.5rem; }
+}
+
+/* Short: compact panels */
+@media (max-height: 700px) and (min-height: 551px) {
+  .header { padding: 0.25rem 0.6rem; }
+  .header-icon { font-size: 1.2rem !important; margin-bottom: 0 !important; }
+  .header h1 { font-size: 0.9rem !important; }
+  .header-stats { font-size: 0.7rem !important; }
+  .bottom-panels .panel-body { max-height: 80px; padding: 0.3rem 0.6rem; }
+  .bottom-panels .panel-header { padding: 0.25rem 0.6rem; }
+  .bottom-panels .panel-header .label { font-size: 0.7rem !important; }
+  .draw-btn { padding: 0.5rem 1.5rem; font-size: 1rem !important; }
+  .draw-btn .btn-icon { font-size: 1rem; }
+  .main-area { gap: 0.3rem; padding: 0.2rem 0; }
+  .name-tag { font-size: 0.7rem; padding: 0.15rem 0.4rem 0.15rem 0.6rem; }
+  .input-row input { font-size: 0.75rem; padding: 0.35rem 0.6rem; }
+  .input-row .add-btn { font-size: 0.75rem; padding: 0.35rem 0.8rem; }
+  .winner-item { font-size: 0.7rem; padding: 0.15rem 0.5rem; }
+  .history-actions button { font-size: 0.65rem; padding: 0.25rem 0.7rem; }
+  .batch-row .batch-btn { font-size: 0.7rem; padding: 0.3rem 0.7rem; }
+}
+
+/* Medium: standard */
+@media (max-height: 900px) and (min-height: 701px) {
+  .bottom-panels .panel-body { max-height: 140px; }
+}
+
+/* Tall: use more space */
+@media (min-height: 1001px) {
+  .bottom-panels .panel-body { max-height: 350px; }
+}
+
+/* ===== Quiz Mode Toggle & Category Filter ===== */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.header-cat-select {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: rgba(0,0,0,0.3);
+  color: rgba(255,255,255,0.7);
+  font-family: var(--font-body);
+  font-size: clamp(0.65rem, 1vw, 0.78rem);
+  outline: none;
+  cursor: pointer;
+  max-width: 110px;
+  transition: border-color 0.2s;
+}
+
+.header-cat-select:focus {
+  border-color: var(--gold);
+}
+
+.header-cat-select option {
+  background: #2d1508;
+  color: var(--white);
+}
+
+.mode-toggle {
+  display: flex;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.mode-btn {
+  padding: 0.3rem 0.8rem;
+  border: none;
+  background: transparent;
+  color: rgba(255,255,255,0.4);
+  font-family: var(--font-body);
+  font-size: clamp(0.65rem, 1vw, 0.8rem);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+
+.mode-btn:first-child { border-radius: 30px 0 0 30px; }
+.mode-btn:last-child { border-radius: 0 30px 30px 0; }
+
+.mode-btn.active {
+  background: linear-gradient(135deg, var(--gold), var(--amber));
+  color: #1a0a0a;
+  font-weight: 700;
+}
+
+/* ===== Question Bank Panel ===== */
+.qb-actions-row {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.qb-actions-row select {
+  flex: 1;
+  min-width: 0;
+  padding: 0.4rem 0.6rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  outline: none;
+  cursor: pointer;
+}
+
+.qb-actions-row .qb-add-btn {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--gold), var(--amber));
+  color: #1a0a0a;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.2s;
+}
+
+.qb-actions-row .qb-add-btn:hover { transform: translateY(-1px); }
+.qb-actions-row .qb-add-btn:active { transform: scale(0.97); }
+
+.qb-category-group {
+  margin-bottom: 0.6rem;
+}
+
+.qb-cat-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.qb-cat-label .qb-cat-del {
+  font-size: 0.65rem;
+  color: rgba(255,107,107,0.4);
+  cursor: pointer;
+  transition: color 0.2s;
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  padding: 0;
+}
+
+.qb-cat-label .qb-cat-del:hover { color: var(--coral); }
+
+.qb-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.3rem;
+  padding: 0.35rem 0.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.25rem;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.8);
+}
+
+.qb-item .qb-q-text {
+  flex: 1;
+  min-width: 0;
+  line-height: 1.4;
+  word-break: break-all;
+}
+
+.qb-item .qb-q-actions {
+  display: flex;
+  gap: 0.15rem;
+  flex-shrink: 0;
+}
+
+.qb-item .qb-q-actions button {
+  border: none;
+  background: transparent;
+  color: rgba(255,255,255,0.25);
+  cursor: pointer;
+  padding: 0.1rem 0.25rem;
+  font-size: 0.65rem;
+  transition: color 0.2s;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+.qb-item .qb-q-actions .qb-edit-btn:hover { color: var(--gold); }
+.qb-item .qb-q-actions .qb-del-btn:hover { color: var(--coral); }
+
+.qb-empty {
+  color: rgba(255,255,255,0.2);
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.qb-add-cat-row {
+  display: flex;
+  gap: 0.3rem;
+  margin-top: 0.4rem;
+}
+
+.qb-add-cat-row input {
+  flex: 1;
+  padding: 0.35rem 0.6rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: rgba(0,0,0,0.2);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  outline: none;
+  transition: border-color 0.2s;
+  min-width: 0;
+}
+
+.qb-add-cat-row input:focus { border-color: var(--gold); }
+.qb-add-cat-row input::placeholder { color: rgba(255,255,255,0.2); }
+
+.qb-add-cat-row .qb-add-cat-btn {
+  padding: 0.35rem 0.7rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: rgba(255,255,255,0.6);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.qb-add-cat-row .qb-add-cat-btn:hover {
+  border-color: var(--gold);
+  color: var(--white);
+}
+
+/* ===== Quiz Overlay (challenge mode) ===== */
+.quiz-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.82);
+  backdrop-filter: blur(10px);
+  justify-content: center;
+  align-items: center;
+  z-index: 210;
+  animation: fadeIn 0.3s ease;
+}
+
+.quiz-overlay.show { display: flex; }
+
+.quiz-card {
+  width: min(92vw, 580px);
+  max-height: 85vh;
+  overflow-y: auto;
+  background: linear-gradient(160deg, #2d1508, #1a0a2e);
+  border-radius: 24px;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  border: 1px solid var(--border);
+  animation: modalIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-align: center;
+}
+
+.quiz-card .quiz-category-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  color: var(--amber);
+  background: rgba(255,159,67,0.12);
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  margin-bottom: 0.6rem;
+  font-weight: 500;
+}
+
+.quiz-card .quiz-player-name {
+  font-family: var(--font-body);
+  font-size: clamp(1.3rem, 4vw, 2.2rem);
+  font-weight: 900;
+  color: var(--gold);
+  text-shadow: 0 0 30px rgba(255,217,61,0.2);
+  margin-bottom: 0.1rem;
+}
+
+.quiz-card .quiz-label {
+  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 1.2rem;
+}
+
+.quiz-card .quiz-question {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--white);
+  font-weight: 500;
+  margin-bottom: 1.2rem;
+  text-align: left;
+  line-height: 1.6;
+  padding: 0.8rem;
+  background: rgba(0,0,0,0.25);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--gold);
+}
+
+.quiz-card .quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.quiz-card .quiz-option {
+  display: block;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+  line-height: 1.4;
+}
+
+.quiz-card .quiz-option:hover:not(:disabled) {
+  border-color: var(--gold);
+  background: rgba(255,217,61,0.08);
+  transform: translateX(4px);
+}
+
+.quiz-card .quiz-option.correct {
+  border-color: var(--green);
+  background: rgba(107,203,119,0.15);
+  color: var(--green);
+}
+
+.quiz-card .quiz-option.wrong {
+  border-color: var(--coral);
+  background: rgba(255,107,107,0.15);
+  color: var(--coral);
+}
+
+.quiz-card .quiz-option:disabled {
+  cursor: default;
+  transform: none !important;
+}
+
+.quiz-card .quiz-feedback {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  animation: feedbackPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes feedbackPop {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.quiz-card .quiz-feedback.correct {
+  background: rgba(107,203,119,0.15);
+  color: var(--green);
+  border: 1px solid rgba(107,203,119,0.3);
+}
+
+.quiz-card .quiz-feedback.wrong {
+  background: rgba(255,107,107,0.15);
+  color: var(--coral);
+  border: 1px solid rgba(255,107,107,0.3);
+}
+
+.quiz-card .quiz-feedback .fb-detail {
+  font-weight: 400;
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+  opacity: 0.8;
+}
+
+/* ===== Question Editor Modal ===== */
+.qe-row {
+  margin-bottom: 0.8rem;
+  text-align: left;
+}
+
+.qe-row label {
+  display: block;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.qe-row input,
+.qe-row select,
+.qe-row textarea {
+  width: 100%;
+  padding: 0.5rem 0.7rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: rgba(0,0,0,0.3);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.qe-row input:focus,
+.qe-row select:focus,
+.qe-row textarea:focus {
+  border-color: var(--gold);
+}
+
+.qe-row textarea {
+  height: 60px;
+  resize: vertical;
+  line-height: 1.4;
+}
+
+.qe-options-group .qe-option-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+}
+
+.qe-options-group .qe-option-row .qe-opt-letter {
+  font-weight: 700;
+  color: var(--gold);
+  width: 1.2rem;
+  text-align: center;
+  flex-shrink: 0;
+  font-size: 0.85rem;
+}
+
+.qe-options-group .qe-option-row input {
+  flex: 1;
+  min-width: 0;
+}
+
+.qe-options-group .qe-option-row .qe-correct-radio {
+  width: auto;
+  flex-shrink: 0;
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+
+/* ===== Quiz card inside celebration (casual mode) ===== */
+.celebration-quiz {
+  margin: 1rem auto 0;
+  max-width: 400px;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,217,61,0.15);
+  border-radius: var(--radius);
+  padding: 0.8rem 1rem;
+  text-align: left;
+}
+
+.celebration-quiz .cq-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.celebration-quiz .cq-header .cq-label {
+  font-size: 0.75rem;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.celebration-quiz .cq-header .cq-category {
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.3);
+}
+
+.celebration-quiz .cq-question {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.5;
+  margin-bottom: 0.6rem;
+}
+
+.celebration-quiz .cq-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.celebration-quiz .cq-opt {
+  display: block;
+  width: 100%;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: rgba(255,255,255,0.7);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.celebration-quiz .cq-opt:hover:not(:disabled) {
+  border-color: var(--gold);
+  color: var(--white);
+}
+
+.celebration-quiz .cq-opt.correct {
+  border-color: var(--green);
+  background: rgba(107,203,119,0.12);
+  color: var(--green);
+}
+
+.celebration-quiz .cq-opt.wrong {
+  border-color: var(--coral);
+  background: rgba(255,107,107,0.12);
+  color: var(--coral);
+}
+
+.celebration-quiz .cq-opt:disabled { cursor: default; }
+
+.celebration-quiz .cq-feedback {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.7rem;
+  border-radius: 8px;
+}
+
+.celebration-quiz .cq-feedback.correct {
+  background: rgba(107,203,119,0.1);
+  color: var(--green);
+}
+
+.celebration-quiz .cq-feedback.wrong {
+  background: rgba(255,107,107,0.1);
+  color: var(--coral);
+}
+
+/* Responsive: mode toggle */
+@media (max-width: 700px) {
+  .header { flex-wrap: wrap; }
+.header-controls { margin-left: auto; }
+.header-cat-select { max-width: 100px; font-size: 0.7rem; padding: 0.2rem 0.4rem; }
+
+@media (max-height: 550px) {
+  .header-controls .mode-btn { font-size: 0.6rem !important; padding: 0.15rem 0.4rem; }
+  .header-cat-select { font-size: 0.55rem !important; max-width: 80px; padding: 0.12rem 0.3rem; }
+}
+
+@media (max-width: 550px) {
+  .header-cat-select { max-width: 85px; font-size: 0.65rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <span class="header-icon">🎯</span>
+      <h1>抽 奖 系 统</h1>
+    </div>
+    <div class="header-controls">
+      <div class="mode-toggle" id="modeToggle">
+        <button class="mode-btn active" data-mode="casual">🎉 娱乐</button>
+        <button class="mode-btn" data-mode="challenge">🎯 挑战</button>
+      </div>
+      <select class="header-cat-select" id="headerCatSelect">
+        <option value="all">📚 全部题型</option>
+      </select>
+    </div>
+    <div class="header-stats">
+      <span>🎯 剩余 <span class="num" id="remainCount">0</span> 人</span>
+      <span>🏆 已中奖 <span class="num" id="winnerCount">0</span> 人</span>
+    </div>
+  </header>
+
+  <!-- Main Lottery Area -->
+  <div class="main-area">
+    <div class="lottery-section">
+      <div class="name-display">
+        <div class="display-text" id="displayText">🎯 准备就绪</div>
+      </div>
+
+      <div class="draw-btn-wrap">
+        <button class="draw-btn" id="drawBtn">
+          <span class="btn-icon">🎲</span> 抽奖
+        </button>
+        <div class="remain-label" id="remainLabel">请先添加参与者名单</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Panels -->
+  <div class="bottom-panels">
+    <!-- Manage Panel -->
+    <div class="panel" id="managePanel">
+      <div class="panel-header" data-panel="manage">
+        <span class="label">📋 名单管理 <span class="badge" id="totalBadge">0</span></span>
+        <span class="toggle-icon" id="manageToggle">▼</span>
+      </div>
+      <div class="panel-body" id="manageBody">
+        <div class="input-row">
+          <input type="text" id="nameInput" placeholder="输入姓名，回车添加" maxlength="20" autocomplete="off">
+          <button class="add-btn" id="addBtn">+ 添加</button>
+        </div>
+        <div class="batch-row">
+          <button class="batch-btn" id="batchBtn">📋 批量导入</button>
+          <button class="batch-btn clear-btn" id="clearAllBtn">🗑 清空名单</button>
+        </div>
+        <div class="name-tags" id="nameTags">
+          <span class="empty-msg">还没有参与者，输入姓名或批量导入</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- History Panel -->
+    <div class="panel" id="historyPanel">
+      <div class="panel-header" data-panel="history">
+        <span class="label">🏆 中奖记录 <span class="badge" id="historyBadge">0</span></span>
+        <span class="toggle-icon" id="historyToggle">▼</span>
+      </div>
+      <div class="panel-body" id="historyBody">
+        <div class="winner-list" id="winnerList">
+          <span class="empty-msg">暂无中奖记录</span>
+        </div>
+        <div class="history-actions">
+          <button class="reset-winners-btn" id="resetWinnersBtn">🔄 放回名单</button>
+          <button id="resetAllBtn">🗑 重置全部</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz Bank Panel -->
+    <div class="panel" id="quizPanel">
+      <div class="panel-header" data-panel="quiz">
+        <span class="label">📝 题库管理 <span class="badge" id="quizBadge">0</span></span>
+        <span class="toggle-icon" id="quizToggle">▼</span>
+      </div>
+      <div class="panel-body" id="quizBody">
+        <div class="qb-actions-row">
+          <select id="qbCategoryFilter">
+            <option value="all">全部类目</option>
+          </select>
+          <button class="qb-add-btn" id="qbAddBtn">+ 添加</button>
+        </div>
+        <div id="qbList">
+          <span class="qb-empty">暂无题目，点击「+ 添加」新增</span>
+        </div>
+        <div class="qb-add-cat-row">
+          <input type="text" id="qbNewCatInput" placeholder="新类目名称" maxlength="10">
+          <button class="qb-add-cat-btn" id="qbAddCatBtn">+ 类目</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAB for short screens -->
+<button class="fab" id="fabBtn" title="添加名单">+</button>
+
+<!-- Batch Import Modal -->
+<div class="modal-overlay" id="batchModal">
+  <div class="modal">
+    <h2>📋 批量导入名单</h2>
+    <textarea id="batchTextarea" placeholder="每行一个姓名&#10;&#10;例如：&#10;张三&#10;李四&#10;王五"></textarea>
+    <div class="modal-hint">每行一个姓名，空行自动忽略</div>
+    <div class="modal-preview" id="batchPreview"></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" id="batchCancel">取消</button>
+      <button class="btn-confirm" id="batchConfirm">确认导入</button>
+    </div>
+  </div>
+</div>
+
+<!-- Quiz Overlay (challenge mode: answer to win) -->
+<div class="quiz-overlay" id="quizOverlay">
+  <div class="quiz-card" id="quizCard">
+    <div class="quiz-category-badge" id="quizCategoryBadge">云计算</div>
+    <div class="quiz-player-name" id="quizPlayerName">张三</div>
+    <div class="quiz-label" id="quizChallengeLabel">🎯 答对以下题目才算中奖</div>
+    <div class="quiz-question" id="quizQuestionText">题目内容</div>
+    <div class="quiz-options" id="quizOptionsContainer"></div>
+    <div class="quiz-feedback" id="quizFeedback" style="display:none"></div>
+  </div>
+</div>
+
+<!-- Celebration Overlay -->
+<div class="celebration-overlay" id="celebrationOverlay">
+  <div class="celebration-content" id="celebrationContent">
+    <span class="trophy">🎉</span>
+    <div class="congrats">🎊 恭喜中奖 🎊</div>
+    <div class="winner-name" id="winnerNameDisplay"></div>
+    <div class="winner-sub" id="winnerSub">已从抽奖池中移除</div>
+    <!-- Quiz card for casual mode -->
+    <div class="celebration-quiz" id="celebrationQuiz" style="display:none"></div>
+    <button class="dismiss-btn" id="celebrationDismiss">🏆 继续抽奖</button>
+  </div>
+</div>
+
+<!-- Question Editor Modal -->
+<div class="modal-overlay" id="qeModal">
+  <div class="modal" style="max-width:520px">
+    <h2 id="qeTitle">✏️ 编辑题目</h2>
+    <div class="qe-row">
+      <label>类目</label>
+      <select id="qeCategory"></select>
+    </div>
+    <div class="qe-row">
+      <label>题目</label>
+      <textarea id="qeQuestion" placeholder="请输入题目内容" maxlength="200"></textarea>
+    </div>
+    <div class="qe-row qe-options-group">
+      <label>选项（选择正确答案）</label>
+      <div class="qe-option-row">
+        <span class="qe-opt-letter">A</span>
+        <input type="text" id="qeOpt0" placeholder="选项 A" maxlength="100">
+        <input type="radio" name="qe-correct" class="qe-correct-radio" data-idx="0">
+      </div>
+      <div class="qe-option-row">
+        <span class="qe-opt-letter">B</span>
+        <input type="text" id="qeOpt1" placeholder="选项 B" maxlength="100">
+        <input type="radio" name="qe-correct" class="qe-correct-radio" data-idx="1">
+      </div>
+      <div class="qe-option-row">
+        <span class="qe-opt-letter">C</span>
+        <input type="text" id="qeOpt2" placeholder="选项 C" maxlength="100">
+        <input type="radio" name="qe-correct" class="qe-correct-radio" data-idx="2">
+      </div>
+      <div class="qe-option-row">
+        <span class="qe-opt-letter">D</span>
+        <input type="text" id="qeOpt3" placeholder="选项 D" maxlength="100">
+        <input type="radio" name="qe-correct" class="qe-correct-radio" data-idx="3">
+      </div>
+    </div>
+    <div class="modal-actions" style="margin-top:1rem">
+      <button class="btn-cancel" id="qeCancel">取消</button>
+      <button class="btn-confirm" id="qeConfirm">保存</button>
+    </div>
+    <input type="hidden" id="qeEditId" value="">
+  </div>
+</div>
+
+<!-- Quiz Result Overlay (challenge mode - wrong answer) -->
+<div class="modal-overlay" id="quizResultOverlay">
+  <div class="modal" style="max-width:400px;text-align:center">
+    <h2 id="quizResultTitle" style="font-size:1.5rem">😅 答错了</h2>
+    <p id="quizResultMsg" style="color:rgba(255,255,255,0.6);margin:0.5rem 0 1rem">已放回抽奖池，继续试试手气吧！</p>
+    <div class="modal-actions" style="justify-content:center">
+      <button class="btn-confirm" id="quizResultOk" style="flex:0 0 auto;padding:0.7rem 2rem">继续抽奖</button>
+    </div>
+  </div>
+</div>
+
+<!-- Confetti Container -->
+<div class="confetti-container" id="confettiContainer"></div>
+
+<script>
+(function() {
+  'use strict';
+
+  // === Pre-built questions ===
+  const DEFAULT_QUESTIONS = [
+    // 云计算
+    { category:'云计算', question:'以下哪种是 IaaS（基础设施即服务）的典型服务？', options:['A. 提供虚拟机', 'B. 提供开发框架', 'C. 提供 SaaS 软件', 'D. 提供数据库中间件'], answer:0 },
+    { category:'云计算', question:'云计算的三层架构不包括以下哪个？', options:['A. SaaS', 'B. PaaS', 'C. IaaS', 'D. DaaS'], answer:3 },
+    { category:'云计算', question:'以下哪个是公有云的特点？', options:['A. 资源独享', 'B. 按需付费', 'C. 需要自建机房', 'D. 仅限内部使用'], answer:1 },
+    { category:'云计算', question:'哪个云服务模式让用户直接使用应用程序，无需管理底层？', options:['A. IaaS', 'B. PaaS', 'C. SaaS', 'D. FaaS'], answer:2 },
+    { category:'云计算', question:'弹性伸缩（Auto Scaling）的主要目的是？', options:['A. 提高安全性', 'B. 根据负载自动调整资源', 'C. 降低网络延迟', 'D. 增加存储容量'], answer:1 },
+    { category:'云计算', question:'以下哪种不是云部署模型？', options:['A. 公有云', 'B. 私有云', 'C. 混合云', 'D. 开放云'], answer:3 },
+    { category:'云计算', question:'虚拟化技术的主要作用是什么？', options:['A. 提高硬件性能', 'B. 将物理资源抽象为虚拟资源', 'C. 替代操作系统', 'D. 提供网络连接'], answer:1 },
+    { category:'云计算', question:'哪个云计算概念指的是"无服务器计算"？', options:['A. EC2', 'B. Lambda/Function', 'C. RDS', 'D. S3'], answer:1 },
+    // Linux运维
+    { category:'Linux运维', question:'Linux 中查看当前目录下所有文件的命令是？', options:['A. cd', 'B. pwd', 'C. ls', 'D. mkdir'], answer:2 },
+    { category:'Linux运维', question:'哪个命令用于查看系统进程信息？', options:['A. netstat', 'B. ps', 'C. ifconfig', 'D. ping'], answer:1 },
+    { category:'Linux运维', question:'Linux 文件权限 rwxr-xr-- 中，所有者权限是？', options:['A. 读+写+执行', 'B. 读+执行', 'C. 只读', 'D. 只执行'], answer:0 },
+    { category:'Linux运维', question:'哪个命令用于测试网络连通性？', options:['A. traceroute', 'B. nslookup', 'C. ping', 'D. netstat'], answer:2 },
+    { category:'Linux运维', question:'将文件访问权限设置为 755 时，文件所有者的权限是？', options:['A. 读+写', 'B. 读+写+执行', 'C. 读+执行', 'D. 写+执行'], answer:1 },
+    { category:'Linux运维', question:'以下哪个是 Linux 系统日志文件？', options:['A. /etc/passwd', 'B. /var/log/syslog', 'C. /etc/hosts', 'D. /dev/null'], answer:1 },
+    { category:'Linux运维', question:'cron 表达式中，"0 3 * * *" 表示什么？', options:['A. 每3分钟执行', 'B. 每天凌晨3点执行', 'C. 每小时的第3分钟执行', 'D. 每周三执行'], answer:1 },
+    { category:'Linux运维', question:'Linux 中如何创建一个软链接？', options:['A. cp', 'B. mv', 'C. ln -s', 'D. link'], answer:2 },
+    // 自动化运维
+    { category:'自动化运维', question:'以下哪个是常见的配置管理工具？', options:['A. Docker', 'B. Ansible', 'C. MySQL', 'D. Nginx'], answer:1 },
+    { category:'自动化运维', question:'CI/CD 中 "CI" 代表什么？', options:['A. 持续交付', 'B. 持续集成', 'C. 持续部署', 'D. 持续监控'], answer:1 },
+    { category:'自动化运维', question:'Ansible 的配置文件使用什么格式？', options:['A. JSON', 'B. XML', 'C. YAML', 'D. INI'], answer:2 },
+    { category:'自动化运维', question:'Dockerfile 中 CMD 和 ENTRYPOINT 的区别是？', options:['A. 没有区别', 'B. CMD 可被覆盖，ENTRYPOINT 不可', 'C. ENTRYPOINT 可被覆盖，CMD 不可', 'D. 两者都不能覆盖'], answer:1 },
+    { category:'自动化运维', question:'Jenkins 中 Pipeline 的定义文件通常叫什么？', options:['A. Dockerfile', 'B. Jenkinsfile', 'C. Makefile', 'D. Procfile'], answer:1 },
+    { category:'自动化运维', question:'基础设施即代码（IaC）的核心思想是？', options:['A. 手动配置服务器', 'B. 用代码定义和管理基础设施', 'C. 使用图形界面管理', 'D. 虚拟化所有硬件'], answer:1 },
+    { category:'自动化运维', question:'Prometheus 主要用于什么场景？', options:['A. 日志分析', 'B. 监控和告警', 'C. 配置管理', 'D. 容器编排'], answer:1 },
+    { category:'自动化运维', question:'Kubernetes 中 Pod 的最小调度单位是什么？', options:['A. 容器', 'B. Pod', 'C. Node', 'D. Service'], answer:1 },
+  ];
+
+  // === State ===
+  let names = [];       // all participant names
+  let winners = [];     // drawn winner names (in order)
+  let questions = [];   // { id, category, question, options, answer }
+  let categories = ['云计算', 'Linux运维', '自动化运维'];
+  let quizMode = 'casual'; // 'casual' | 'challenge'
+  let selectedQuizCategory = 'all'; // 'all' | specific category name
+  let isDrawing = false;
+  let isPaused = false;
+
+  // Challenge mode state
+  let challengeWinner = null;  // name of the drawn person in challenge mode
+  let currentQuestion = null; // question being shown
+  let challengeAnswered = false; // prevent double-processing
+
+  // === DOM refs ===
+  const displayText       = document.getElementById('displayText');
+  const drawBtn           = document.getElementById('drawBtn');
+  const remainLabel       = document.getElementById('remainLabel');
+  const remainCount       = document.getElementById('remainCount');
+  const winnerCount       = document.getElementById('winnerCount');
+  const totalBadge        = document.getElementById('totalBadge');
+  const historyBadge      = document.getElementById('historyBadge');
+
+  const nameInput         = document.getElementById('nameInput');
+  const addBtn            = document.getElementById('addBtn');
+  const nameTags          = document.getElementById('nameTags');
+  const batchBtn          = document.getElementById('batchBtn');
+  const clearAllBtn       = document.getElementById('clearAllBtn');
+
+  const batchModal        = document.getElementById('batchModal');
+  const batchTextarea     = document.getElementById('batchTextarea');
+  const batchPreview      = document.getElementById('batchPreview');
+  const batchConfirm      = document.getElementById('batchConfirm');
+  const batchCancel       = document.getElementById('batchCancel');
+
+  const winnerList        = document.getElementById('winnerList');
+  const resetWinnersBtn   = document.getElementById('resetWinnersBtn');
+  const resetAllBtn       = document.getElementById('resetAllBtn');
+
+  const celebrationOverlay = document.getElementById('celebrationOverlay');
+  const winnerNameDisplay  = document.getElementById('winnerNameDisplay');
+  const winnerSub          = document.getElementById('winnerSub');
+  const celebrationDismiss = document.getElementById('celebrationDismiss');
+  const celebrationContent = document.getElementById('celebrationContent');
+  const confettiContainer  = document.getElementById('confettiContainer');
+
+  const manageBody    = document.getElementById('manageBody');
+  const historyBody   = document.getElementById('historyBody');
+  const manageToggle  = document.getElementById('manageToggle');
+  const historyToggle = document.getElementById('historyToggle');
+
+  // === Quiz DOM refs ===
+  const modeBtns        = document.querySelectorAll('.mode-btn');
+  const quizBody        = document.getElementById('quizBody');
+  const quizToggle      = document.getElementById('quizToggle');
+  const quizBadge       = document.getElementById('quizBadge');
+  const qbCategoryFilter = document.getElementById('qbCategoryFilter');
+  const qbAddBtn        = document.getElementById('qbAddBtn');
+  const qbList          = document.getElementById('qbList');
+  const qbNewCatInput   = document.getElementById('qbNewCatInput');
+  const qbAddCatBtn     = document.getElementById('qbAddCatBtn');
+  const quizOverlay     = document.getElementById('quizOverlay');
+  const quizCard        = document.getElementById('quizCard');
+  const quizCategoryBadge = document.getElementById('quizCategoryBadge');
+  const quizPlayerName  = document.getElementById('quizPlayerName');
+  const quizChallengeLabel = document.getElementById('quizChallengeLabel');
+  const quizQuestionText = document.getElementById('quizQuestionText');
+  const quizOptionsContainer = document.getElementById('quizOptionsContainer');
+  const quizFeedback    = document.getElementById('quizFeedback');
+  const qeModal         = document.getElementById('qeModal');
+  const qeTitle         = document.getElementById('qeTitle');
+  const qeCategory      = document.getElementById('qeCategory');
+  const qeQuestion      = document.getElementById('qeQuestion');
+  const qeOpt0          = document.getElementById('qeOpt0');
+  const qeOpt1          = document.getElementById('qeOpt1');
+  const qeOpt2          = document.getElementById('qeOpt2');
+  const qeOpt3          = document.getElementById('qeOpt3');
+  const qeOpts          = [qeOpt0, qeOpt1, qeOpt2, qeOpt3];
+  const qeCorrectRadios = document.querySelectorAll('.qe-correct-radio');
+  const qeCancel        = document.getElementById('qeCancel');
+  const qeConfirm       = document.getElementById('qeConfirm');
+  const qeEditId        = document.getElementById('qeEditId');
+  const celebrationQuiz = document.getElementById('celebrationQuiz');
+  const quizResultOverlay = document.getElementById('quizResultOverlay');
+  const quizResultTitle = document.getElementById('quizResultTitle');
+  const quizResultMsg   = document.getElementById('quizResultMsg');
+  const quizResultOk    = document.getElementById('quizResultOk');
+  const headerCatSelect = document.getElementById('headerCatSelect');
+
+  // === Persistence ===
+  function initDefaultQuestions() {
+    // Transform default questions to add IDs
+    let nextId = 1;
+    const newQs = [];
+    for (const q of DEFAULT_QUESTIONS) {
+      newQs.push({ id: nextId++, ...q });
+    }
+    return newQs;
+  }
+
+  function loadState() {
+    try {
+      const saved = localStorage.getItem('lottery-state');
+      if (saved) {
+        const data = JSON.parse(saved);
+        names = data.names || [];
+        winners = data.winners || [];
+        questions = data.questions || [];
+        categories = data.categories || ['云计算', 'Linux运维', '自动化运维'];
+        quizMode = data.quizMode || 'casual';
+        selectedQuizCategory = data.selectedQuizCategory || 'all';
+      }
+      // If no questions saved, use defaults
+      if (questions.length === 0) {
+        questions = initDefaultQuestions();
+      }
+    } catch (e) { /* ignore */ }
+  }
+
+  function saveState() {
+    try {
+      localStorage.setItem('lottery-state', JSON.stringify({ names, winners, questions, categories, quizMode, selectedQuizCategory }));
+    } catch (e) { /* ignore */ }
+  }
+
+  // === Core helpers ===
+  function getRemaining() {
+    const winnerSet = new Set(winners);
+    return names.filter(n => !winnerSet.has(n));
+  }
+
+  function updateUI() {
+    const remaining = getRemaining();
+    remainCount.textContent = remaining.length;
+    winnerCount.textContent = winners.length;
+    totalBadge.textContent = names.length;
+    historyBadge.textContent = winners.length;
+
+    // Draw button
+    if (names.length === 0) {
+      drawBtn.disabled = true;
+      remainLabel.textContent = '请先添加参与者名单';
+    } else if (remaining.length === 0) {
+      drawBtn.disabled = true;
+      remainLabel.textContent = '🎉 所有人已中奖！';
+    } else {
+      drawBtn.disabled = false;
+      remainLabel.textContent = `抽奖池 ${remaining.length} 人`;
+    }
+
+    // Display text if idle
+    if (!isDrawing && !displayText.classList.contains('winner')) {
+      if (remaining.length === 0 && names.length > 0) {
+        displayText.textContent = '🎉 全员中奖！';
+        displayText.classList.add('has-name');
+      } else {
+        displayText.textContent = '🎯 准备就绪';
+        displayText.classList.remove('has-name', 'winner');
+      }
+    }
+
+    renderTags();
+    renderWinners();
+    quizBadge.textContent = questions.length;
+    saveState();
+  }
+
+  // === Name tags ===
+  function renderTags() {
+    if (names.length === 0) {
+      nameTags.innerHTML = '<span class="empty-msg">还没有参与者，输入姓名或批量导入</span>';
+      return;
+    }
+
+    const winnerSet = new Set(winners);
+    nameTags.innerHTML = names.map((n, i) => {
+      const isWinner = winnerSet.has(n);
+      return `<span class="name-tag" style="${isWinner ? 'opacity:0.35;text-decoration:line-through;' : ''}">
+        ${n}
+        <button class="tag-remove" data-index="${i}" ${isWinner ? 'disabled style="opacity:0.2"' : ''}>✕</button>
+      </span>`;
+    }).join('');
+
+    // Remove handlers
+    nameTags.querySelectorAll('.tag-remove:not([disabled])').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const idx = parseInt(this.dataset.index, 10);
+        names.splice(idx, 1);
+        updateUI();
+      });
+    });
+  }
+
+  // === Winner history ===
+  function renderWinners() {
+    if (winners.length === 0) {
+      winnerList.innerHTML = '<span class="empty-msg">暂无中奖记录</span>';
+      return;
+    }
+
+    winnerList.innerHTML = winners.map((n, i) => {
+      return `<span class="winner-item">
+        <span class="prize">🏅</span> ${n}
+      </span>`;
+    }).join('');
+  }
+
+  // === Adaptive sizing ===
+  // Measure actual DOM heights and calculate optimal display name font size
+  function resizeDisplay() {
+    const vh = window.innerHeight;
+    const vw = window.innerWidth;
+    const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+
+    // Measure actual occupied space
+    const headerEl = document.querySelector('.header');
+    const drawBtnEl = document.querySelector('.draw-btn-wrap');
+    const panelsEl = document.querySelector('.bottom-panels');
+    const appEl = document.querySelector('.app');
+
+    const headerH = headerEl ? headerEl.getBoundingClientRect().height : 0;
+    const panelsH = (panelsEl && panelsEl.style.display !== 'none') ? panelsEl.getBoundingClientRect().height : 0;
+    const appPad = appEl ? parseFloat(getComputedStyle(appEl).paddingTop) + parseFloat(getComputedStyle(appEl).paddingBottom) : 0;
+    const mainPad = parseFloat(getComputedStyle(document.querySelector('.main-area')).paddingTop) * 2;
+
+    // Space for draw button area (button + label + gap)
+    const drawBtnH = drawBtnEl ? drawBtnEl.getBoundingClientRect().height + 16 : 80;
+
+    // Check if panels are collapsed
+    let panelsActualH = panelsH;
+    if (panelsEl) {
+      const bodies = panelsEl.querySelectorAll('.panel-body.collapsed');
+      // If collapsed, we still need the header height
+      const headers = panelsEl.querySelectorAll('.panel-header');
+      let visibleH = 0;
+      headers.forEach(h => visibleH += h.getBoundingClientRect().height);
+      panelsActualH = Math.max(visibleH + 4, panelsActualH); // at least header heights
+    }
+
+    const occupied = headerH + panelsActualH + drawBtnH + appPad + mainPad + 8;
+    const availablePx = Math.max(100, vh - occupied);
+
+    // Width constraint: Chinese chars at large size need ~1.1em width each
+    // For an 8-char name: width = 8 * 1.1 * fontSize
+    const maxWidthRem = (vw * 0.88) / rem;
+    const fromWidth = maxWidthRem / 8.8; // 8 chars * 1.1em
+
+    // Height constraint
+    const fromHeight = availablePx / (rem * 1.2); // 1.2 line-height factor
+
+    const optimal = Math.min(fromHeight, fromWidth);
+    const finalSize = Math.max(1.5, Math.min(optimal, 14));
+
+    document.documentElement.style.setProperty('--name-size', finalSize + 'rem');
+  }
+
+  let resizeTicking = false;
+  function onResize() {
+    if (!resizeTicking) {
+      requestAnimationFrame(() => { resizeDisplay(); resizeTicking = false; });
+      resizeTicking = true;
+    }
+  }
+  window.addEventListener('resize', onResize);
+
+  // ResizeObserver for layout shifts
+  if (window.ResizeObserver) {
+    const ro = new ResizeObserver(() => onResize());
+    ro.observe(document.querySelector('.header'));
+    ro.observe(document.querySelector('.bottom-panels'));
+  }
+
+  window.addEventListener('orientationchange', () => setTimeout(resizeDisplay, 300));
+
+  // === Header category select ===
+  function renderHeaderCatSelect() {
+    // If selected category no longer exists, fall back to 'all'
+    if (selectedQuizCategory !== 'all' && !categories.includes(selectedQuizCategory)) {
+      selectedQuizCategory = 'all';
+    }
+    headerCatSelect.innerHTML = '<option value="all">📚 全部题型</option>';
+    categories.forEach(c => {
+      const count = questions.filter(q => q.category === c).length;
+      headerCatSelect.innerHTML += `<option value="${c}">${c} (${count}题)</option>`;
+    });
+    headerCatSelect.value = selectedQuizCategory;
+  }
+
+  function setSelectedQuizCategory(cat) {
+    selectedQuizCategory = cat;
+    saveState();
+  }
+
+  // === Question Bank Functions ===
+  function getQuestionsByCategory(cat) {
+    if (cat === 'all') return questions;
+    return questions.filter(q => q.category === cat);
+  }
+
+  function renderQuestionBank() {
+    // Populate filter dropdown
+    const currentFilter = qbCategoryFilter.value;
+    qbCategoryFilter.innerHTML = '<option value="all">全部类目</option>';
+    categories.forEach(c => {
+      qbCategoryFilter.innerHTML += `<option value="${c}">${c}</option>`;
+    });
+    qbCategoryFilter.value = currentFilter;
+
+    const filter = qbCategoryFilter.value;
+    const filtered = getQuestionsByCategory(filter);
+    const catOrder = filter === 'all' ? categories : [filter];
+
+    quizBadge.textContent = questions.length;
+    renderHeaderCatSelect();
+
+    if (questions.length === 0) {
+      qbList.innerHTML = '<span class="qb-empty">暂无题目，点击「+ 添加」新增</span>';
+      return;
+    }
+
+    let html = '';
+    for (const cat of catOrder) {
+      const catQs = filtered.filter(q => q.category === cat);
+      if (catQs.length === 0) continue;
+
+      const letters = 'ABCD';
+      html += `<div class="qb-category-group">`;
+      html += `<div class="qb-cat-label">
+        ${cat}
+        ${!['云计算','Linux运维','自动化运维'].includes(cat) ? `<button class="qb-cat-del" data-cat="${cat}">✕</button>` : ''}
+        <span style="font-weight:400;color:rgba(255,255,255,0.3);font-size:0.7rem">${catQs.length}题</span>
+      </div>`;
+
+      for (const q of catQs) {
+        const optPreview = q.options.map((o, i) => {
+          const mark = i === q.answer ? '✅ ' : '';
+          return mark + o;
+        }).join('  |  ');
+        html += `<div class="qb-item">
+          <div class="qb-q-text">
+            <span style="font-weight:600">[${letters[q.answer]}]</span> ${q.question}
+            <div style="font-size:0.65rem;color:rgba(255,255,255,0.3);margin-top:2px">${optPreview}</div>
+          </div>
+          <div class="qb-q-actions">
+            <button class="qb-edit-btn" data-id="${q.id}">✎</button>
+            <button class="qb-del-btn" data-id="${q.id}">✕</button>
+          </div>
+        </div>`;
+      }
+      html += `</div>`;
+    }
+
+    qbList.innerHTML = html;
+
+    // Bind events
+    qbList.querySelectorAll('.qb-edit-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const id = parseInt(this.dataset.id, 10);
+        openQEditor(id);
+      });
+    });
+    qbList.querySelectorAll('.qb-del-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const id = parseInt(this.dataset.id, 10);
+        if (confirm('确定删除这道题目吗？')) {
+          questions = questions.filter(q => q.id !== id);
+          renderQuestionBank();
+          saveState();
+        }
+      });
+    });
+    qbList.querySelectorAll('.qb-cat-del').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const cat = this.dataset.cat;
+        const count = questions.filter(q => q.category === cat).length;
+        if (count > 0 && !confirm(`类目「${cat}」下有 ${count} 道题目，确定删除该类目吗？`)) return;
+        if (count === 0 && !confirm(`确定删除类目「${cat}」吗？`)) return;
+        categories = categories.filter(c => c !== cat);
+        questions = questions.filter(q => q.category !== cat);
+        renderQuestionBank();
+        saveState();
+      });
+    });
+  }
+
+  // === Question Editor ===
+  let editingQuestionId = null;
+
+  function populateCategorySelect(selectEl) {
+    selectEl.innerHTML = '';
+    categories.forEach(c => {
+      selectEl.innerHTML += `<option value="${c}">${c}</option>`;
+    });
+  }
+
+  function openQEditor(id) {
+    editingQuestionId = id;
+    populateCategorySelect(qeCategory);
+
+    if (id === null) {
+      // Add new
+      qeTitle.textContent = '✏️ 添加题目';
+      qeQuestion.value = '';
+      qeOpts.forEach(input => input.value = '');
+      qeCorrectRadios.forEach(r => r.checked = false);
+      qeEditId.value = '';
+      if (categories.length > 0) qeCategory.value = categories[0];
+    } else {
+      // Edit existing
+      qeTitle.textContent = '✏️ 编辑题目';
+      const q = questions.find(x => x.id === id);
+      if (!q) return;
+      qeCategory.value = q.category;
+      qeQuestion.value = q.question;
+      qeOpts.forEach((input, i) => {
+        input.value = q.options[i] || '';
+      });
+      qeCorrectRadios.forEach(r => {
+        r.checked = parseInt(r.dataset.idx, 10) === q.answer;
+      });
+      qeEditId.value = id;
+    }
+
+    qeModal.classList.add('show');
+  }
+
+  function saveQuestion() {
+    const category = qeCategory.value;
+    const question = qeQuestion.value.trim();
+    if (!question) { alert('请输入题目内容'); return; }
+
+    const options = qeOpts.map(input => input.value.trim());
+    if (options.some(o => !o)) { alert('请填写所有选项'); return; }
+
+    let answer = -1;
+    qeCorrectRadios.forEach(r => {
+      if (r.checked) answer = parseInt(r.dataset.idx, 10);
+    });
+    if (answer === -1) { alert('请选择正确答案'); return; }
+
+    if (editingQuestionId === null) {
+      // Add new
+      const maxId = questions.length > 0 ? Math.max(...questions.map(q => q.id)) : 0;
+      questions.push({ id: maxId + 1, category, question, options, answer });
+    } else {
+      // Update
+      const q = questions.find(x => x.id === editingQuestionId);
+      if (q) {
+        q.category = category;
+        q.question = question;
+        q.options = options;
+        q.answer = answer;
+      }
+    }
+
+    qeModal.classList.remove('show');
+    renderQuestionBank();
+    saveState();
+  }
+
+  function closeQEditor() {
+    qeModal.classList.remove('show');
+  }
+
+  // === Quiz Overlay (challenge mode) ===
+  function getRandomQuestion() {
+    const pool = selectedQuizCategory === 'all'
+      ? questions
+      : questions.filter(q => q.category === selectedQuizCategory);
+    if (pool.length === 0) {
+      // Fallback to all questions if selected category has none
+      if (selectedQuizCategory !== 'all' && questions.length > 0) {
+        return questions[Math.floor(Math.random() * questions.length)];
+      }
+      return null;
+    }
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  function showChallengeQuiz(name) {
+    challengeWinner = name;
+    challengeAnswered = false;
+    const q = getRandomQuestion();
+    if (!q) {
+      // No questions in bank, fall through to direct win
+      finishChallengeWin(name);
+      return;
+    }
+    currentQuestion = q;
+
+    quizPlayerName.textContent = name;
+    quizCategoryBadge.textContent = q.category;
+    quizChallengeLabel.textContent = '🎯 答对以下题目才算中奖！';
+    quizQuestionText.textContent = q.question;
+
+    const letters = ['A', 'B', 'C', 'D'];
+    quizOptionsContainer.innerHTML = q.options.map((opt, i) => {
+      return `<button class="quiz-option" data-idx="${i}">${opt}</button>`;
+    }).join('');
+
+    quizFeedback.style.display = 'none';
+    quizFeedback.className = 'quiz-feedback';
+
+    // Bind option clicks
+    quizOptionsContainer.querySelectorAll('.quiz-option').forEach(btn => {
+      btn.addEventListener('click', function() {
+        if (this.disabled) return;
+        handleChallengeAnswer(parseInt(this.dataset.idx, 10));
+      });
+    });
+
+    quizOverlay.classList.add('show');
+  }
+
+  function handleChallengeAnswer(selectedIdx) {
+    const q = currentQuestion;
+    if (!q || challengeAnswered) return;
+    challengeAnswered = true;
+
+    const allOpts = quizOptionsContainer.querySelectorAll('.quiz-option');
+    allOpts.forEach(btn => btn.disabled = true);
+
+    const isCorrect = selectedIdx === q.answer;
+
+    // Highlight correct and wrong
+    allOpts.forEach((btn, i) => {
+      if (i === q.answer) btn.classList.add('correct');
+      if (i === selectedIdx && !isCorrect) btn.classList.add('wrong');
+    });
+
+    // Show feedback
+    quizFeedback.style.display = 'block';
+
+    if (isCorrect) {
+      quizFeedback.className = 'quiz-feedback correct';
+      quizFeedback.innerHTML = '✅ 回答正确！恭喜中奖！ 🎉';
+      setTimeout(() => {
+        quizOverlay.classList.remove('show');
+        finishChallengeWin(challengeWinner);
+      }, 1000);
+    } else {
+      const correctText = q.options[q.answer];
+      quizFeedback.className = 'quiz-feedback wrong';
+      quizFeedback.innerHTML = `❌ 答错了！正确答案是：<span class="fb-detail">${correctText}</span>`;
+      setTimeout(() => {
+        quizOverlay.classList.remove('show');
+        showQuizResult(false, challengeWinner);
+      }, 2000);
+    }
+  }
+
+  function finishChallengeWin(name) {
+    // Add to winners and celebrate
+    winners.push(name);
+    updateUI();
+    playWinnerSound();
+    setTimeout(() => {
+      showCelebration(name);
+    }, 300);
+  }
+
+  function showQuizResult(correct, name) {
+    if (correct) {
+      quizResultTitle.textContent = '🎉 回答正确！';
+      quizResultMsg.textContent = `${name} 中奖啦！`;
+    } else {
+      quizResultTitle.textContent = '😅 答错了';
+      quizResultMsg.textContent = `${name} 已被放回抽奖池，继续试试手气吧！`;
+    }
+    quizResultOverlay.classList.add('show');
+  }
+
+  // === Celebration Quiz (casual mode) ===
+  let casualQAnswered = false;
+
+  function showCasualQuiz() {
+    if (questions.length === 0) return;
+    const q = getRandomQuestion();
+    if (!q) return;
+
+    casualQAnswered = false;
+    const letters = ['A', 'B', 'C', 'D'];
+
+    celebrationQuiz.style.display = 'block';
+    celebrationQuiz.innerHTML = `
+      <div class="cq-header">
+        <span class="cq-label">📝 答题互动</span>
+        <span class="cq-category">${q.category}</span>
+      </div>
+      <div class="cq-question">${q.question}</div>
+      <div class="cq-options">
+        ${q.options.map((opt, i) =>
+          `<button class="cq-opt" data-idx="${i}">${opt}</button>`
+        ).join('')}
+      </div>
+      <div class="cq-feedback" style="display:none"></div>
+    `;
+
+    celebrationQuiz.querySelectorAll('.cq-opt').forEach(btn => {
+      btn.addEventListener('click', function() {
+        if (this.disabled || casualQAnswered) return;
+        casualQAnswered = true;
+        const idx = parseInt(this.dataset.idx, 10);
+        const correct = idx === q.answer;
+
+        const allOpts = celebrationQuiz.querySelectorAll('.cq-opt');
+        allOpts.forEach(b => b.disabled = true);
+        allOpts.forEach((b, i) => {
+          if (i === q.answer) b.classList.add('correct');
+          if (i === idx && !correct) b.classList.add('wrong');
+        });
+
+        const fb = celebrationQuiz.querySelector('.cq-feedback');
+        fb.style.display = 'block';
+        if (correct) {
+          fb.className = 'cq-feedback correct';
+          fb.textContent = '✅ 回答正确！';
+        } else {
+          fb.className = 'cq-feedback wrong';
+          fb.textContent = `❌ 正确答案是：${q.options[q.answer]}`;
+        }
+      });
+    });
+  }
+
+  // === Update the mode toggle ===
+  function setQuizMode(mode) {
+    quizMode = mode;
+    modeBtns.forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.mode === mode);
+    });
+    saveState();
+  }
+  function startDraw() {
+    if (isDrawing || drawBtn.disabled) return;
+
+    const remaining = getRemaining();
+    if (remaining.length === 0) return;
+
+    isDrawing = true;
+    drawBtn.disabled = true;
+    drawBtn.innerHTML = '<span class="btn-icon">🎰</span> 抽奖中...';
+    displayText.classList.remove('winner');
+
+    // Pre-select winner
+    const winner = remaining[Math.floor(Math.random() * remaining.length)];
+
+    // Build roll sequence: ~25-40 steps, ending with winner
+    const totalSteps = 25 + Math.floor(Math.random() * 15);
+    const sequence = [];
+    const pool = [...names]; // use all names (including winners) for variety in roll
+    for (let i = 0; i < totalSteps; i++) {
+      sequence.push(pool[Math.floor(Math.random() * pool.length)]);
+    }
+    sequence[sequence.length - 1] = winner;
+
+    // Animate
+    let step = 0;
+    let lastName = '';
+
+    function animateStep() {
+      const name = sequence[step];
+      // Don't show same name twice in a row (boring)
+      if (name === lastName && step < sequence.length - 1) {
+        // Pick a random different name from pool
+        const alt = pool.filter(n => n !== lastName);
+        if (alt.length > 0) {
+          displayText.textContent = alt[Math.floor(Math.random() * alt.length)];
+        } else {
+          displayText.textContent = name;
+        }
+      } else {
+        displayText.textContent = name;
+      }
+      lastName = name;
+      displayText.classList.add('has-name', 'rolling');
+
+      // Trigger reflow for animation
+      void displayText.offsetWidth;
+      displayText.classList.remove('rolling');
+
+      step++;
+
+      if (step >= sequence.length) {
+        // Done - show winner
+        onWinnerFound(winner);
+        return;
+      }
+
+      // Easing: start fast, end slow
+      const progress = step / sequence.length;
+      // Quadratic ease-in: slow down progressively
+      const delay = 40 + progress * progress * 500;
+      setTimeout(animateStep, delay);
+    }
+
+    setTimeout(animateStep, 200); // small pause before starting
+  }
+
+  function onWinnerFound(name) {
+    isDrawing = false;
+    drawBtn.disabled = false;
+    drawBtn.innerHTML = '<span class="btn-icon">🎲</span> 抽奖';
+
+    displayText.textContent = name;
+    displayText.className = 'display-text has-name winner';
+
+    playWinnerSound();
+
+    if (quizMode === 'challenge') {
+      // Challenge mode: show question first
+      setTimeout(() => {
+        showChallengeQuiz(name);
+      }, 600);
+    } else {
+      // Casual mode: add to winners and celebrate
+      winners.push(name);
+      updateUI();
+      setTimeout(() => {
+        showCelebration(name);
+      }, 800);
+    }
+  }
+
+  // === Celebration ===
+  function showCelebration(name) {
+    winnerNameDisplay.textContent = name;
+    winnerSub.textContent = `已从抽奖池中移除 · 剩余 ${getRemaining().length} 人`;
+    celebrationOverlay.classList.add('show');
+    spawnConfetti();
+
+    // In casual mode, show a quiz card in celebration
+    celebrationQuiz.style.display = 'none';
+    if (quizMode === 'casual') {
+      showCasualQuiz();
+    }
+  }
+
+  function hideCelebration() {
+    celebrationOverlay.classList.remove('show');
+    confettiContainer.innerHTML = '';
+    celebrationQuiz.style.display = 'none';
+  }
+
+  // === Confetti ===
+  function spawnConfetti() {
+    const colors = ['#ff6b6b', '#ffd93d', '#ff9f43', '#a29bfe', '#6bcb77', '#ff9ff3', '#4ecdc4'];
+    const shapes = ['circle', 'square'];
+
+    for (let i = 0; i < 80; i++) {
+      const el = document.createElement('div');
+      el.className = 'confetti';
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const size = 6 + Math.random() * 10;
+      const shape = shapes[Math.floor(Math.random() * shapes.length)];
+      const left = Math.random() * 100;
+      const delay = Math.random() * 1.5;
+      const duration = 2 + Math.random() * 2;
+
+      el.style.left = left + '%';
+      el.style.width = size + 'px';
+      el.style.height = shape === 'circle' ? size + 'px' : size * 0.6 + 'px';
+      el.style.background = color;
+      el.style.borderRadius = shape === 'circle' ? '50%' : '2px';
+      el.style.animationDuration = duration + 's';
+      el.style.animationDelay = delay + 's';
+
+      confettiContainer.appendChild(el);
+    }
+
+    // Cleanup
+    setTimeout(() => { confettiContainer.innerHTML = ''; }, 5000);
+  }
+
+  // === Sound ===
+  let audioCtx = null;
+
+  function primeAudio() {
+    if (audioCtx) return;
+    const Ctor = window.AudioContext || window.webkitAudioContext;
+    if (!Ctor) return;
+    audioCtx = new Ctor();
+    if (audioCtx.state === 'suspended') audioCtx.resume().catch(() => {});
+  }
+
+  function playWinnerSound() {
+    primeAudio();
+    if (!audioCtx) return;
+
+    const now = audioCtx.currentTime;
+    // Ascending celebratory arpeggio
+    const notes = [523.25, 587.33, 659.25, 783.99, 1046.50]; // C5 D5 E5 G5 C6
+
+    notes.forEach((freq, i) => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      gain.connect(audioCtx.destination);
+      osc.connect(gain);
+
+      const t = now + i * 0.1;
+      const dur = i === notes.length - 1 ? 0.6 : 0.12;
+      gain.gain.setValueAtTime(0.3, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + dur);
+      osc.start(t);
+      osc.stop(t + dur);
+    });
+
+    // Add a "ta-da" chord at the end
+    const chord = [523.25, 659.25, 783.99]; // C major
+    chord.forEach(freq => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.value = freq;
+      gain.connect(audioCtx.destination);
+      osc.connect(gain);
+
+      const t = now + notes.length * 0.1;
+      gain.gain.setValueAtTime(0.2, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.8);
+      osc.start(t);
+      osc.stop(t + 0.8);
+    });
+  }
+
+  // === Event handlers ===
+
+  // Name input (no duplicates)
+  function addName() {
+    const val = nameInput.value.trim();
+    if (!val) return;
+
+    if (names.includes(val)) {
+      nameInput.value = '';
+      nameInput.placeholder = `⚠ "${val}" 已存在`;
+      nameInput.classList.add('dup-error');
+      setTimeout(() => {
+        nameInput.placeholder = '输入姓名，回车添加';
+        nameInput.classList.remove('dup-error');
+      }, 1500);
+      return;
+    }
+
+    names.push(val);
+    nameInput.value = '';
+    nameInput.placeholder = '输入姓名，回车添加';
+    nameInput.focus();
+    updateUI();
+  }
+
+  nameInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') addName();
+  });
+  addBtn.addEventListener('click', addName);
+
+  // Batch import
+  function openBatchModal() {
+    primeAudio();
+    batchTextarea.value = '';
+    batchPreview.textContent = '';
+    batchModal.classList.add('show');
+    batchTextarea.focus();
+  }
+
+  batchBtn.addEventListener('click', openBatchModal);
+  fabBtn.addEventListener('click', openBatchModal);
+
+  batchTextarea.addEventListener('input', function() {
+    const lines = this.value.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+    if (lines.length > 0) {
+      const existing = lines.filter(l => names.includes(l));
+      let msg = `📝 共识别 ${lines.length} 个姓名`;
+      if (existing.length > 0) msg += `（其中 ${existing.length} 个已存在）`;
+      batchPreview.textContent = msg;
+      batchPreview.style.color = existing.length > 0 ? 'var(--amber)' : 'var(--gold)';
+    } else {
+      batchPreview.textContent = '';
+    }
+  });
+
+  function confirmBatch() {
+    const lines = batchTextarea.value.split('\n')
+      .map(l => l.trim())
+      .filter(l => l.length > 0);
+
+    if (lines.length === 0) return;
+
+    const added = [];
+    const skipped = [];
+    for (const name of lines) {
+      if (names.includes(name)) {
+        skipped.push(name);
+      } else {
+        added.push(name);
+      }
+    }
+
+    if (added.length > 0) names.push(...added);
+    batchModal.classList.remove('show');
+
+    if (skipped.length > 0) {
+      batchPreview.textContent = `✅ 导入 ${added.length} 人，⏭ 跳过 ${skipped.length} 个重复 (${skipped.join(', ')})`;
+      batchPreview.style.color = 'var(--amber)';
+      // Show preview briefly then close
+      setTimeout(() => { batchPreview.textContent = ''; }, 3000);
+    }
+
+    updateUI();
+  }
+
+  batchConfirm.addEventListener('click', confirmBatch);
+  batchCancel.addEventListener('click', () => { batchModal.classList.remove('show'); });
+  batchModal.addEventListener('click', function(e) {
+    if (e.target === this) batchModal.classList.remove('show');
+  });
+  batchTextarea.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) confirmBatch();
+  });
+
+  // Clear all
+  clearAllBtn.addEventListener('click', function() {
+    if (names.length === 0) return;
+    if (confirm('确定清空所有名单吗？中奖记录不受影响。')) {
+      names = [];
+      updateUI();
+    }
+  });
+
+  // Draw button
+  drawBtn.addEventListener('click', function() {
+    primeAudio();
+    if (isDrawing) return;
+    startDraw();
+  });
+
+  // Reset winners
+  resetWinnersBtn.addEventListener('click', function() {
+    if (winners.length === 0) return;
+    if (confirm(`将 ${winners.length} 位中奖者放回抽奖池，确定吗？`)) {
+      winners = [];
+      updateUI();
+      displayText.textContent = '🎯 准备就绪';
+      displayText.className = 'display-text';
+    }
+  });
+
+  // Reset all
+  resetAllBtn.addEventListener('click', function() {
+    if (names.length === 0 && winners.length === 0) return;
+    if (confirm('重置全部数据（清空名单和中奖记录）？')) {
+      names = [];
+      winners = [];
+      updateUI();
+      displayText.textContent = '🎯 准备就绪';
+      displayText.className = 'display-text';
+    }
+  });
+
+  // Celebration dismiss
+  celebrationDismiss.addEventListener('click', hideCelebration);
+  celebrationOverlay.addEventListener('click', function(e) {
+    if (e.target === this) hideCelebration();
+  });
+
+  function dismissQuizResult() {
+    quizResultOverlay.classList.remove('show');
+    // Reset display text if not in a draw
+    if (!isDrawing) {
+      displayText.textContent = '🎯 准备就绪';
+      displayText.className = 'display-text';
+    }
+  }
+
+  // Quiz Result overlay - answer wrong
+  quizResultOk.addEventListener('click', dismissQuizResult);
+  quizResultOverlay.addEventListener('click', function(e) {
+    if (e.target === this) dismissQuizResult();
+  });
+
+  // Quiz overlay dismiss (via ESC handled in keyboard section)
+  quizOverlay.addEventListener('click', function(e) {
+    // Only dismiss if feedback is showing (already answered)
+    if (e.target === this && quizFeedback.style.display === 'block') {
+      quizOverlay.classList.remove('show');
+    }
+  });
+
+  // Panel toggles
+  document.querySelectorAll('.panel-header').forEach(header => {
+    header.addEventListener('click', function() {
+      const panel = this.dataset.panel;
+      let body, toggle;
+      if (panel === 'manage') { body = manageBody; toggle = manageToggle; }
+      else if (panel === 'history') { body = historyBody; toggle = historyToggle; }
+      else if (panel === 'quiz') { body = quizBody; toggle = quizToggle; }
+      body.classList.toggle('collapsed');
+      toggle.classList.toggle('collapsed');
+    });
+  });
+
+  // === Quiz Event Handlers ===
+
+  // Header category select
+  headerCatSelect.addEventListener('change', function() {
+    setSelectedQuizCategory(this.value);
+  });
+
+  // Mode toggle
+  modeBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const mode = this.dataset.mode;
+      setQuizMode(mode);
+      // If there's a pending challenge mode draw pending, reset display
+      displayText.textContent = '🎯 准备就绪';
+      displayText.className = 'display-text';
+    });
+  });
+
+  // Category filter
+  qbCategoryFilter.addEventListener('change', renderQuestionBank);
+
+  // Add question button
+  qbAddBtn.addEventListener('click', function() {
+    openQEditor(null);
+  });
+
+  // New category
+  qbAddCatBtn.addEventListener('click', function() {
+    const val = qbNewCatInput.value.trim();
+    if (!val) return;
+    if (categories.includes(val)) {
+      qbNewCatInput.value = '';
+      qbNewCatInput.placeholder = '⚠ 已存在';
+      setTimeout(() => { qbNewCatInput.placeholder = '新类目名称'; }, 1500);
+      return;
+    }
+    categories.push(val);
+    qbNewCatInput.value = '';
+    renderQuestionBank();
+    saveState();
+  });
+  qbNewCatInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') qbAddCatBtn.click();
+  });
+
+  // Question editor
+  qeConfirm.addEventListener('click', saveQuestion);
+  qeCancel.addEventListener('click', closeQEditor);
+  qeModal.addEventListener('click', function(e) {
+    if (e.target === this) closeQEditor();
+  });
+  // Ctrl+Enter shortcut in question editor
+  qeQuestion.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) saveQuestion();
+  });
+
+  // === Keyboard shortcut ===
+  document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+    // ESC: close any open overlay/modal
+    if (e.key === 'Escape') {
+      // Quiz overlay: can only be dismissed after answering
+      if (quizOverlay.classList.contains('show')) {
+        if (challengeAnswered) {
+          quizOverlay.classList.remove('show');
+        }
+        return;
+      }
+      if (quizResultOverlay.classList.contains('show')) {
+        quizResultOverlay.classList.remove('show');
+      }
+      if (qeModal.classList.contains('show')) {
+        closeQEditor();
+      }
+      if (celebrationOverlay.classList.contains('show')) {
+        hideCelebration();
+      }
+      return;
+    }
+
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      if (celebrationOverlay.classList.contains('show')) {
+        hideCelebration();
+      } else if (quizResultOverlay.classList.contains('show')) {
+        dismissQuizResult();
+      } else if (!drawBtn.disabled) {
+        primeAudio();
+        startDraw();
+      }
+    }
+  });
+
+  // === Init ===
+  loadState();
+  setQuizMode(quizMode);
+  renderHeaderCatSelect();
+  renderQuestionBank();
+  resizeDisplay();
+  updateUI();
+
+  // Collapse manage panel initially only if there are already names loaded
+  // (don't hide input when user needs to add names)
+  if (names.length > 0 && window.innerWidth <= 480) {
+    manageBody.classList.add('collapsed');
+    manageToggle.classList.add('collapsed');
+  }
+
+})();
+</script>
+</body>
+</html>

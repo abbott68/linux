@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>休息倒计时</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --coral: #ff6b6b;
+  --gold: #ffd93d;
+  --green: #6bcb77;
+  --teal: #4ecdc4;
+  --purple: #6c5ce7;
+  --light-purple: #a29bfe;
+  --white: #ffffff;
+  --font-display: 'Oswald', sans-serif;
+  --font-body: 'Noto Sans SC', sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(-45deg, #0f0c29, #24243e, #302b63, #1a1a4e, #2d1b69);
+  background-size: 400% 400%;
+  animation: gradientShift 18s ease infinite;
+  overflow: hidden;
+  user-select: none;
+  position: relative;
+}
+
+/* Grain texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 100% 0%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating orbs */
+body::after {
+  content: '';
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,107,107,0.08) 0%, transparent 70%);
+  top: -200px;
+  right: -200px;
+  animation: orbFloat 25s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes orbFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-100px, 200px) scale(1.3); }
+  100% { transform: translate(50px, -100px) scale(0.9); }
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: clamp(1rem, 3vw, 3rem);
+  width: 100%;
+  max-width: min(92vw, 1400px);
+}
+
+/* ===== Header ===== */
+.header { margin-bottom: 1.5rem; }
+
+.header-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 4px 20px rgba(255,255,255,0.15));
+  animation: iconBounce 3s ease-in-out infinite;
+}
+
+@keyframes iconBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.header h1 {
+  font-family: var(--font-body);
+  font-size: clamp(1.2rem, 3.5vw, 2.8rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--gold), var(--coral), var(--light-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.15em;
+  text-shadow: none;
+}
+
+/* ===== Timer ===== */
+.timer-wrapper {
+  position: relative;
+  margin: 1.5rem 0 1rem;
+  padding: 1.5rem 0;
+}
+
+.timer-display {
+  font-family: var(--font-display);
+  font-size: var(--timer-size, 13rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--white);
+  text-shadow:
+    0 0 40px rgba(255,255,255,0.12),
+    0 0 80px rgba(255,255,255,0.06),
+    0 4px 30px rgba(0,0,0,0.3);
+  transition: color 0.4s ease, text-shadow 0.4s ease;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.02em;
+}
+
+.timer-display .minutes,
+.timer-display .seconds {
+  min-width: 1.5em;
+  text-align: center;
+  transition: inherit;
+}
+
+.timer-display .colon {
+  display: inline-block;
+  width: 0.4em;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.timer-display .colon.blink {
+  animation: colonBlink 1s step-end infinite;
+}
+
+@keyframes colonBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+/* Warning state (last 10s) */
+.timer-display.warning {
+  color: var(--coral);
+  text-shadow:
+    0 0 50px rgba(255,107,107,0.35),
+    0 0 100px rgba(255,107,107,0.15),
+    0 4px 30px rgba(0,0,0,0.3);
+  animation: timerPulse 1s ease-in-out infinite;
+}
+
+@keyframes timerPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+/* Finished flash */
+.timer-display.finished {
+  animation: timerFinished 0.4s ease-in-out 4;
+}
+
+@keyframes timerFinished {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.2; transform: scale(1.08); }
+}
+
+/* ===== Status label ===== */
+.status-label {
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 1.6vw, 1.3rem);
+  font-weight: 500;
+  color: rgba(255,255,255,0.55);
+  min-height: 2rem;
+  letter-spacing: 0.05em;
+  transition: color 0.3s;
+}
+
+.status-label.active { color: rgba(255,255,255,0.85); }
+.status-label.warning-label { color: var(--coral); }
+.status-label.paused-label { color: var(--gold); }
+
+/* ===== Progress bar ===== */
+.progress-track {
+  width: min(80%, 600px);
+  height: clamp(3px, 0.5vw, 6px);
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  margin: 1.2rem auto 0;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--coral), var(--gold));
+  transition: width 0.5s linear;
+}
+
+/* ===== Presets ===== */
+.presets {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin: 1.8rem 0;
+}
+
+.preset-btn {
+  padding: clamp(0.5rem, 1vw, 0.9rem) clamp(1rem, 1.8vw, 1.8rem);
+  border: none;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+  font-weight: 500;
+  color: var(--white);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s, opacity 0.2s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.preset-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.preset-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+}
+
+.preset-btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.preset-btn.active {
+  box-shadow: 0 0 0 3px var(--white), 0 6px 20px rgba(0,0,0,0.3);
+  transform: translateY(-2px);
+}
+
+.preset-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+  transform: none !important;
+}
+
+.preset-5  { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
+.preset-10 { background: linear-gradient(135deg, #ffd93d, #f9a825); color: #333; }
+.preset-15 { background: linear-gradient(135deg, #6bcb77, #2d7d46); }
+.preset-20 { background: linear-gradient(135deg, #4ecdc4, #1a8a7a); }
+.preset-25 { background: linear-gradient(135deg, #6c5ce7, #4834d4); }
+.preset-custom { background: linear-gradient(135deg, #a29bfe, #6c5ce7); }
+
+/* ===== Controls ===== */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.control-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: clamp(0.55rem, 0.9vw, 0.9rem) clamp(1rem, 2vw, 2rem);
+  border: 1.5px solid rgba(255,255,255,0.2);
+  border-radius: 50px;
+  background: rgba(255,255,255,0.08);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: clamp(0.8rem, 1.1vw, 1.05rem);
+  font-weight: 500;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.control-btn:hover {
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.control-btn:active {
+  transform: scale(0.95);
+}
+
+.control-btn .ico { font-size: 1.1rem; line-height: 1; }
+
+.control-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Start button special */
+.btn-start {
+  background: linear-gradient(135deg, var(--green), #2d7d46);
+  border-color: transparent;
+}
+
+.btn-start:hover {
+  background: linear-gradient(135deg, #7ddb89, #3a9e58);
+  border-color: transparent;
+}
+
+/* ===== Modal ===== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal-overlay.show { display: flex; }
+
+.modal {
+  background: linear-gradient(160deg, #1a1a4e, #2d1b69);
+  border-radius: 24px;
+  padding: 2.5rem;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.08);
+  animation: modalIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalIn {
+  from { transform: scale(0.85) translateY(30px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.modal h2 {
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.modal .input-wrap {
+  position: relative;
+}
+
+.modal input {
+  width: 100%;
+  padding: 1rem 1rem 1rem 1.5rem;
+  border: 2px solid rgba(255,255,255,0.15);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.06);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  -moz-appearance: textfield;
+}
+
+.modal input::-webkit-outer-spin-button,
+.modal input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.modal input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 30px rgba(255,217,61,0.1);
+}
+
+.modal input::placeholder {
+  color: rgba(255,255,255,0.2);
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.modal .unit-label {
+  color: rgba(255,255,255,0.4);
+  font-size: 0.95rem;
+  margin-top: 0.6rem;
+  text-align: center;
+}
+
+.modal .modal-actions {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.8rem;
+}
+
+.modal .modal-actions button {
+  flex: 1;
+  padding: 0.85rem;
+  border: none;
+  border-radius: 14px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.modal .modal-actions button:hover {
+  transform: translateY(-2px);
+}
+
+.modal .btn-confirm {
+  background: linear-gradient(135deg, var(--gold), #f9a825);
+  color: #333;
+  box-shadow: 0 4px 15px rgba(255,217,61,0.3);
+}
+
+.modal .btn-cancel {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.7);
+}
+
+/* ===== Completion Overlay ===== */
+.completion-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(255,107,107,0.92) 0%, rgba(108,92,231,0.92) 100%);
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+  animation: overlayIn 0.4s ease;
+}
+
+@keyframes overlayIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.completion-overlay.show { display: flex; }
+
+.completion-content {
+  text-align: center;
+  animation: celebrationPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both;
+  padding: 2rem;
+}
+
+@keyframes celebrationPop {
+  0% { transform: scale(0.3); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.completion-content .big-icon {
+  font-size: clamp(3rem, 10vw, 8rem);
+  display: block;
+  margin-bottom: 0.5rem;
+  animation: iconRing 0.8s ease 0.6s both;
+}
+
+@keyframes iconRing {
+  0% { transform: rotate(0); }
+  25% { transform: rotate(-15deg); }
+  50% { transform: rotate(10deg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0); }
+}
+
+.completion-content h2 {
+  font-family: var(--font-body);
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-weight: 900;
+  color: var(--white);
+  text-shadow: 0 4px 30px rgba(0,0,0,0.2);
+  letter-spacing: 0.08em;
+}
+
+.completion-content p {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.75);
+  margin-top: 0.6rem;
+}
+
+.completion-content .dismiss-btn {
+  margin-top: 2.5rem;
+  padding: 1rem 3rem;
+  border: none;
+  border-radius: 50px;
+  background: var(--white);
+  color: var(--coral);
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+.completion-content .dismiss-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+}
+
+/* ===== Particle burst on finish ===== */
+.particle-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 199;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: particleFly 2.5s ease-out forwards;
+}
+
+@keyframes particleFly {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* ===== Responsive: compact layout for smaller screens ===== */
+@media (max-width: 700px) {
+  .header-icon { font-size: clamp(1.5rem, 5vw, 2.5rem); }
+  .header { margin-bottom: clamp(0.5rem, 1.5vw, 1.2rem); }
+  .timer-wrapper { margin: clamp(0.5rem, 2vw, 1.5rem) 0; padding: clamp(0.5rem, 2vw, 1.5rem) 0; }
+  .presets { gap: 0.4rem; }
+  .controls { gap: 0.5rem; flex-wrap: wrap; }
+  .progress-track { width: min(90%, 400px); }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0.8rem; }
+  .presets { gap: 0.3rem; }
+  .controls { gap: 0.4rem; flex-wrap: wrap; }
+  .progress-track { width: 92%; }
+}
+
+/* Large screens / projectors: less cramped */
+@media (min-width: 1400px) {
+  .presets { gap: 1.2rem; }
+  .controls { gap: 1.5rem; }
+}
+
+/* Short viewport (landscape phones, small laptops): compact vertical */
+@media (max-height: 600px) {
+  .header { margin-bottom: 0.3rem; }
+  .header-icon { font-size: 1.5rem; margin-bottom: 0.1rem; }
+  .timer-wrapper { margin: 0.2rem 0; padding: 0.2rem 0; }
+  .presets { margin: 0.5rem 0; gap: 0.3rem; }
+  .controls { margin-top: 0.5rem; gap: 0.4rem; }
+  .progress-track { display: none; }
+}
+
+/* Medium-height viewport */
+@media (max-height: 800px) and (min-height: 601px) {
+  .header { margin-bottom: 0.8rem; }
+  .header-icon { font-size: 2rem; margin-bottom: 0.2rem; }
+  .timer-wrapper { margin: 0.8rem 0; padding: 0.5rem 0; }
+  .presets { margin: 1rem 0; }
+  .controls { margin-top: 0.8rem; }
+}
+
+/* Very tall viewport (some projectors): use more space */
+@media (min-height: 1000px) {
+  .header { margin-bottom: 2.5rem; }
+  .timer-wrapper { margin: 2.5rem 0; padding: 2rem 0; }
+  .presets { margin: 2.5rem 0; gap: 1rem; }
+  .controls { margin-top: 2.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <span class="header-icon">☕</span>
+    <h1>休 息 倒 计 时</h1>
+  </div>
+
+  <!-- Timer -->
+  <div class="timer-wrapper">
+    <div class="timer-display" id="timerDisplay">
+      <span class="minutes" id="minutes">10</span>
+      <span class="colon" id="colon">:</span>
+      <span class="seconds" id="seconds">00</span>
+    </div>
+    <div class="status-label" id="statusLabel">点击预设按钮开始倒计时</div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <!-- Preset Buttons -->
+  <div class="presets" id="presets">
+    <button class="preset-btn preset-5" data-minutes="5">5 分钟</button>
+    <button class="preset-btn preset-10" data-minutes="10">10 分钟</button>
+    <button class="preset-btn preset-15" data-minutes="15">15 分钟</button>
+    <button class="preset-btn preset-20" data-minutes="20">20 分钟</button>
+    <button class="preset-btn preset-25" data-minutes="25">25 分钟</button>
+    <button class="preset-btn preset-custom" id="customBtn">自定义</button>
+  </div>
+
+  <!-- Controls -->
+  <div class="controls" id="controls">
+    <button class="control-btn btn-start" id="startBtn" disabled>
+      <span class="ico">▶</span> 开始
+    </button>
+    <button class="control-btn" id="resetBtn" disabled>
+      <span class="ico">↺</span> 重置
+    </button>
+    <button class="control-btn" id="fullscreenBtn">
+      <span class="ico">⛶</span> 全屏
+    </button>
+  </div>
+</div>
+
+<!-- Custom Time Modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h2>设置倒计时</h2>
+    <div class="input-wrap">
+      <input type="number" id="customInput" placeholder="输入分钟数" min="1" max="180" autofocus>
+    </div>
+    <div class="unit-label">请输入 1 ~ 180 之间的整数</div>
+    <div class="modal-actions">
+      <button class="btn-cancel" id="modalCancel">取消</button>
+      <button class="btn-confirm" id="modalConfirm">确定</button>
+    </div>
+  </div>
+</div>
+
+<!-- Completion Overlay -->
+<div class="completion-overlay" id="completionOverlay">
+  <div class="completion-content">
+    <span class="big-icon">🔔</span>
+    <h2>休息结束！</h2>
+    <p>该回来继续了 ✨</p>
+    <button class="dismiss-btn" id="dismissBtn">知道了</button>
+  </div>
+</div>
+
+<!-- Particles Container -->
+<div class="particle-container" id="particleContainer"></div>
+
+<script>
+(function() {
+  'use strict';
+
+  // === DOM refs ===
+  const minutesEl     = document.getElementById('minutes');
+  const secondsEl     = document.getElementById('seconds');
+  const colonEl       = document.getElementById('colon');
+  const timerDisplay  = document.getElementById('timerDisplay');
+  const statusLabel   = document.getElementById('statusLabel');
+  const progressFill  = document.getElementById('progressFill');
+
+  const startBtn      = document.getElementById('startBtn');
+  const resetBtn      = document.getElementById('resetBtn');
+  const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+  const presetBtns    = document.querySelectorAll('.preset-btn[data-minutes]');
+  const customBtn     = document.getElementById('customBtn');
+
+  const modalOverlay  = document.getElementById('modalOverlay');
+  const customInput   = document.getElementById('customInput');
+  const modalConfirm  = document.getElementById('modalConfirm');
+  const modalCancel   = document.getElementById('modalCancel');
+
+  const completionOverlay = document.getElementById('completionOverlay');
+  const dismissBtn        = document.getElementById('dismissBtn');
+  const particleContainer = document.getElementById('particleContainer');
+
+  // === State ===
+  const STATE = {
+    IDLE: 'idle',
+    RUNNING: 'running',
+    PAUSED: 'paused',
+    FINISHED: 'finished'
+  };
+
+  let state = STATE.IDLE;
+  let totalSeconds = 600;   // default 10 min
+  let remainingSeconds = 600;
+  let timerInterval = null;
+  let activePreset = null;  // DOM element
+
+  // === Audio ===
+  // Prime AudioContext during user gesture (browser autoplay policy)
+  let audioCtx = null;
+  let audioPrimed = false;
+
+  function primeAudio() {
+    if (audioPrimed) return;
+    const Ctor = window.AudioContext || window.webkitAudioContext;
+    if (!Ctor) return;
+    audioCtx = new Ctor();
+    // Create a silent buffer to unlock audio
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume().catch(() => {});
+    }
+    audioPrimed = true;
+  }
+
+  function playAlert() {
+    if (!audioCtx) {
+      // Fallback: try creating now
+      const Ctor = window.AudioContext || window.webkitAudioContext;
+      if (!Ctor) return;
+      audioCtx = new Ctor();
+    }
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume().catch(() => {});
+    }
+
+    const now = audioCtx.currentTime;
+    const notes = [523.25, 659.25, 783.99, 1046.50]; // C5 E5 G5 C6
+
+    notes.forEach((freq, i) => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      gain.connect(audioCtx.destination);
+      osc.connect(gain);
+
+      const t = now + i * 0.15;
+      const dur = i === notes.length - 1 ? 0.5 : 0.18;
+      gain.gain.setValueAtTime(0.35, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + dur);
+      osc.start(t);
+      osc.stop(t + dur);
+    });
+  }
+
+  // === Particles ===
+  function spawnParticles() {
+    const colors = ['#ff6b6b', '#ffd93d', '#6bcb77', '#4ecdc4', '#a29bfe', '#ff9ff3'];
+    for (let i = 0; i < 40; i++) {
+      const el = document.createElement('div');
+      el.className = 'particle';
+      const size = 4 + Math.random() * 10;
+      el.style.width = size + 'px';
+      el.style.height = size + 'px';
+      el.style.background = colors[Math.floor(Math.random() * colors.length)];
+      el.style.left = (20 + Math.random() * 60) + '%';
+      el.style.top = (20 + Math.random() * 60) + '%';
+      const angle = Math.random() * 360;
+      const dist = 150 + Math.random() * 300;
+      el.style.setProperty('--tx', Math.cos(angle * Math.PI / 180) * dist + 'px');
+      el.style.setProperty('--ty', Math.sin(angle * Math.PI / 180) * dist + 'px');
+      el.style.animationDelay = (Math.random() * 0.5) + 's';
+      particleContainer.appendChild(el);
+    }
+    setTimeout(() => { particleContainer.innerHTML = ''; }, 3000);
+  }
+
+  // === Timer update ===
+  function formatTime(secs) {
+    const m = Math.floor(secs / 60);
+    const s = secs % 60;
+    return { m: String(m).padStart(2, '0'), s: String(s).padStart(2, '0') };
+  }
+
+  function updateDisplay() {
+    const { m, s } = formatTime(remainingSeconds);
+    minutesEl.textContent = m;
+    secondsEl.textContent = s;
+
+    // Progress
+    if (totalSeconds > 0) {
+      const pct = (remainingSeconds / totalSeconds) * 100;
+      progressFill.style.width = pct + '%';
+    }
+  }
+
+  // === Adaptive sizing ===
+  function resizeTimer() {
+    const vh = window.innerHeight;
+    const vw = window.innerWidth;
+    const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+
+    // Estimate vertical space used by header, presets, controls, padding
+    // Smaller screens have proportionally more overhead
+    const overheadRatio = vh < 600 ? 0.52 : vh < 800 ? 0.44 : vh < 1000 ? 0.38 : 0.32;
+    const maxHeightRem = (vh * (1 - overheadRatio)) / rem;
+
+    // Width constraint: 6 chars (MM:SS) at ~0.55em each = 3.3em
+    const maxWidthRem = (vw * 0.88) / rem;
+    const fromWidth = maxWidthRem / 3.3;
+
+    const optimalSize = Math.min(maxHeightRem, fromWidth);
+
+    // Clamp between usable min/max
+    const finalSize = Math.max(2.8, Math.min(optimalSize, 18));
+    document.documentElement.style.setProperty('--timer-size', finalSize + 'rem');
+  }
+
+  // Debounced resize handler
+  let resizeTicking = false;
+  function onResize() {
+    if (!resizeTicking) {
+      requestAnimationFrame(() => {
+        resizeTimer();
+        resizeTicking = false;
+      });
+      resizeTicking = true;
+    }
+  }
+
+  window.addEventListener('resize', onResize);
+  window.addEventListener('orientationchange', function() {
+    setTimeout(resizeTimer, 200);
+  });
+
+  function setWarning(active) {
+    timerDisplay.classList.toggle('warning', active);
+    statusLabel.classList.toggle('warning-label', active);
+    if (active) {
+      statusLabel.textContent = '⚠ 即将结束！';
+    }
+  }
+
+  // === State changes ===
+  function setStatusText(text, extraClass) {
+    statusLabel.textContent = text;
+    statusLabel.className = 'status-label';
+    if (extraClass) statusLabel.classList.add(extraClass);
+  }
+
+  function applyState(newState) {
+    state = newState;
+    const isRunning = state === STATE.RUNNING;
+    const isIdle    = state === STATE.IDLE;
+    const isPaused  = state === STATE.PAUSED;
+    const isFinished = state === STATE.FINISHED;
+
+    // Start button
+    if (isRunning) {
+      startBtn.innerHTML = '<span class="ico">⏸</span> 暂停';
+      startBtn.className = 'control-btn';
+    } else if (isPaused) {
+      startBtn.innerHTML = '<span class="ico">▶</span> 继续';
+      startBtn.className = 'control-btn btn-start';
+    } else if (isIdle) {
+      startBtn.innerHTML = '<span class="ico">▶</span> 开始';
+      startBtn.className = 'control-btn btn-start';
+    } else {
+      // finished
+      startBtn.innerHTML = '<span class="ico">▶</span> 开始';
+      startBtn.className = 'control-btn btn-start';
+    }
+
+    startBtn.disabled = isIdle || isFinished;
+    resetBtn.disabled = isIdle || isFinished;
+
+    // Colon blink
+    colonEl.classList.toggle('blink', isRunning);
+
+    // Presets
+    presetBtns.forEach(btn => { btn.disabled = isRunning; });
+
+    // Status text
+    if (isRunning) setStatusText('☕ 休息中 ...', 'active');
+    else if (isPaused) setStatusText('⏸ 已暂停', 'paused-label');
+    else if (isIdle) setStatusText('点击预设按钮开始倒计时', '');
+    else if (isFinished) setStatusText('🔔 休息结束！', 'warning-label');
+
+    // Last 10s check
+    if (isRunning && remainingSeconds <= 10 && remainingSeconds > 0) {
+      setWarning(true);
+    } else if (!isFinished) {
+      setWarning(false);
+    }
+  }
+
+  // === Core actions ===
+  function stopTimer() {
+    if (timerInterval) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+  }
+
+  function startTimer() {
+    if (state === STATE.FINISHED) return;
+    if (remainingSeconds <= 0) return;
+
+    stopTimer();
+    applyState(STATE.RUNNING);
+
+    timerInterval = setInterval(() => {
+      remainingSeconds--;
+
+      // Last 10s warning
+      if (remainingSeconds <= 10 && remainingSeconds > 0) {
+        setWarning(true);
+        setStatusText(`⚠ ${remainingSeconds} 秒后结束！`, 'warning-label');
+      }
+
+      updateDisplay();
+
+      if (remainingSeconds <= 0) {
+        stopTimer();
+        onComplete();
+      }
+    }, 1000);
+  }
+
+  function pauseTimer() {
+    stopTimer();
+    applyState(STATE.PAUSED);
+  }
+
+  function resetTimer() {
+    stopTimer();
+    remainingSeconds = totalSeconds;
+    updateDisplay();
+    setWarning(false);
+    applyState(STATE.IDLE);
+  }
+
+  function setTimer(minutes) {
+    stopTimer();
+    totalSeconds = Math.max(1, minutes) * 60;
+    remainingSeconds = totalSeconds;
+    updateDisplay();
+    setWarning(false);
+    applyState(STATE.IDLE);
+  }
+
+  function setAndStart(minutes) {
+    stopTimer();
+    totalSeconds = Math.max(1, minutes) * 60;
+    remainingSeconds = totalSeconds;
+    updateDisplay();
+    setWarning(false);
+    startTimer();
+  }
+
+  function onComplete() {
+    applyState(STATE.FINISHED);
+    timerDisplay.classList.add('finished');
+
+    playAlert();
+    spawnParticles();
+
+    setTimeout(() => {
+      timerDisplay.classList.remove('finished');
+      completionOverlay.classList.add('show');
+    }, 1200);
+  }
+
+  // === Preset handling ===
+  function activatePreset(el) {
+    if (activePreset) activePreset.classList.remove('active');
+    activePreset = el;
+    if (el) el.classList.add('active');
+  }
+
+  presetBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      primeAudio();
+      const mins = parseInt(this.dataset.minutes, 10);
+      activatePreset(this);
+      setAndStart(mins);
+    });
+  });
+
+  // === Custom time ===
+  customBtn.addEventListener('click', function() {
+    primeAudio();
+    modalOverlay.classList.add('show');
+    customInput.value = '';
+    customInput.focus();
+  });
+
+  function confirmCustom() {
+    primeAudio();
+    const val = parseInt(customInput.value, 10);
+    if (isNaN(val) || val < 1) {
+      customInput.value = '';
+      customInput.focus();
+      customInput.placeholder = '请输入 1-180';
+      return;
+    }
+    const mins = Math.min(val, 180);
+    modalOverlay.classList.remove('show');
+    activatePreset(null);
+    setAndStart(mins);
+  }
+
+  modalConfirm.addEventListener('click', confirmCustom);
+  modalCancel.addEventListener('click', () => { modalOverlay.classList.remove('show'); });
+  modalOverlay.addEventListener('click', function(e) {
+    if (e.target === this) modalOverlay.classList.remove('show');
+  });
+  customInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') confirmCustom();
+    if (e.key === 'Escape') modalOverlay.classList.remove('show');
+  });
+
+  // === Controls ===
+  startBtn.addEventListener('click', function() {
+    primeAudio();
+    if (state === STATE.RUNNING) {
+      pauseTimer();
+    } else if (state === STATE.PAUSED) {
+      startTimer();
+    } else if (state === STATE.FINISHED) {
+      // Reset then start
+      resetTimer();
+      // But user probably wants to start again, so let them pick a preset
+    }
+  });
+
+  resetBtn.addEventListener('click', resetTimer);
+
+  // === Fullscreen ===
+  fullscreenBtn.addEventListener('click', function() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(() => {});
+    } else {
+      document.exitFullscreen().catch(() => {});
+    }
+  });
+
+  document.addEventListener('fullscreenchange', function() {
+    if (document.fullscreenElement) {
+      fullscreenBtn.innerHTML = '<span class="ico">⛶</span> 退出全屏';
+    } else {
+      fullscreenBtn.innerHTML = '<span class="ico">⛶</span> 全屏';
+    }
+  });
+
+  // === Completion dismiss ===
+  function dismissCompletion() {
+    completionOverlay.classList.remove('show');
+    timerDisplay.classList.remove('finished');
+    resetTimer();
+  }
+
+  dismissBtn.addEventListener('click', dismissCompletion);
+  completionOverlay.addEventListener('click', function(e) {
+    if (e.target === this) dismissCompletion();
+  });
+
+  // === Keyboard shortcuts ===
+  document.addEventListener('keydown', function(e) {
+    // Ignore if typing in input
+    if (e.target.tagName === 'INPUT') return;
+
+    switch (e.key) {
+      case ' ':
+        e.preventDefault();
+        primeAudio();
+        if (state === STATE.RUNNING) pauseTimer();
+        else if (state === STATE.PAUSED) startTimer();
+        else if (state === STATE.FINISHED) dismissCompletion();
+        else if (state === STATE.IDLE && activePreset) startTimer();
+        break;
+      case 'r':
+      case 'R':
+        if (state !== STATE.IDLE) resetTimer();
+        break;
+      case 'f':
+      case 'F':
+        fullscreenBtn.click();
+        break;
+      case 'Escape':
+        if (modalOverlay.classList.contains('show')) modalOverlay.classList.remove('show');
+        if (completionOverlay.classList.contains('show')) dismissCompletion();
+        break;
+    }
+  });
+
+  // === Init ===
+  resizeTimer();
+  updateDisplay();
+  applyState(STATE.IDLE);
+
+  // Activate default preset (10 min)
+  document.querySelector('.preset-10').classList.add('active');
+  activePreset = document.querySelector('.preset-10');
+
+})();
+</script>
+</body>
+</html>
