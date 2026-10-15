@@ -26,15 +26,15 @@ body {
   font-family: var(--font-body);
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   background: linear-gradient(-45deg, #0f0c29, #24243e, #302b63, #1a1a4e, #2d1b69);
   background-size: 400% 400%;
   animation: gradientShift 18s ease infinite;
-  overflow-x: hidden;
+  overflow: hidden;
   user-select: none;
   position: relative;
+  padding-bottom: clamp(9rem, 16vh, 19rem);  /* push content up for time-node bar */
 }
 
 /* Grain texture overlay */
@@ -83,14 +83,10 @@ body::after {
   padding: clamp(1rem, 3vw, 3rem);
   width: 100%;
   max-width: min(92vw, 1400px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
 }
 
 /* ===== Header ===== */
-.header { margin-bottom: 0.5rem; }
+.header { margin-bottom: 1.5rem; }
 
 .header-icon {
   font-size: 3rem;
@@ -114,238 +110,14 @@ body::after {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   letter-spacing: 0.15em;
-}
-
-/* ===== Carousel Section ===== */
-.carousel-section {
-  width: 100%;
-  max-width: 1000px;
-  margin: 1rem 0;
-  position: relative;
-}
-
-.carousel-header {
-  margin-bottom: 1rem;
-}
-
-.carousel-header h2 {
-  font-family: var(--font-body);
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  font-weight: 700;
-  color: var(--gold);
-  letter-spacing: 0.1em;
-  text-shadow: 0 2px 10px rgba(255,217,61,0.3);
-}
-
-.carousel-container {
-  position: relative;
-  overflow: hidden;
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-  background: rgba(0,0,0,0.3);
-  border: 1px solid rgba(255,255,255,0.1);
-}
-
-.carousel-track {
-  display: flex;
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.carousel-slide {
-  min-width: 100%;
-  position: relative;
-  aspect-ratio: 16/9;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  overflow: hidden;
-}
-
-/* Slide background images */
-.carousel-slide::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.7) saturate(1.2);
-  transition: transform 0.6s ease;
-}
-
-.carousel-slide:hover::before {
-  transform: scale(1.05);
-}
-
-/* Different slides with unique gradients representing different eras */
-.slide-1::before {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-  background-image:
-    radial-gradient(ellipse at 20% 50%, rgba(139,69,19,0.4) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(255,215,0,0.2) 0%, transparent 40%),
-    linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-}
-
-.slide-2::before {
-  background-image:
-    radial-gradient(ellipse at 30% 60%, rgba(178,34,34,0.5) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 30%, rgba(255,140,0,0.3) 0%, transparent 40%),
-    linear-gradient(135deg, #2d1b00 0%, #1a0f00 50%, #0d0d0d 100%);
-}
-
-.slide-3::before {
-  background-image:
-    radial-gradient(ellipse at 50% 40%, rgba(70,130,180,0.4) 0%, transparent 60%),
-    radial-gradient(ellipse at 20% 80%, rgba(139,69,19,0.3) 0%, transparent 50%),
-    linear-gradient(135deg, #1a2a3a 0%, #0d1b2a 50%, #0a0a0a 100%);
-}
-
-.slide-4::before {
-  background-image:
-    radial-gradient(ellipse at 60% 50%, rgba(178,34,34,0.6) 0%, transparent 50%),
-    radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 40%),
-    linear-gradient(135deg, #2a0a0a 0%, #1a0505 50%, #0d0d0d 100%);
-}
-
-.slide-5::before {
-  background-image:
-    radial-gradient(ellipse at 40% 60%, rgba(139,69,19,0.5) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 30%, rgba(255,215,0,0.2) 0%, transparent 40%),
-    linear-gradient(135deg, #1a1510 0%, #0d0a08 50%, #050505 100%);
-}
-
-.slide-6::before {
-  background-image:
-    radial-gradient(ellipse at 50% 50%, rgba(205,127,50,0.5) 0%, transparent 60%),
-    radial-gradient(ellipse at 20% 20%, rgba(255,255,255,0.15) 0%, transparent 40%),
-    linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-}
-
-.slide-7::before {
-  background-image:
-    radial-gradient(ellipse at 60% 40%, rgba(255,215,0,0.4) 0%, transparent 50%),
-    radial-gradient(ellipse at 30% 70%, rgba(178,34,34,0.3) 0%, transparent 50%),
-    linear-gradient(135deg, #2d1b00 0%, #1a0f00 50%, #0d0d0d 100%);
-}
-
-.slide-8::before {
-  background-image:
-    radial-gradient(ellipse at 50% 50%, rgba(139,69,19,0.6) 0%, transparent 55%),
-    radial-gradient(ellipse at 80% 20%, rgba(255,215,0,0.3) 0%, transparent 40%),
-    linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-}
-
-/* Slide content overlay */
-.slide-content {
-  position: relative;
-  z-index: 2;
-  padding: clamp(1.5rem, 4vw, 3rem);
-  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
-  width: 100%;
-}
-
-.slide-year {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 4rem);
-  font-weight: 700;
-  color: var(--gold);
-  text-shadow: 0 4px 20px rgba(0,0,0,0.8);
-  margin-bottom: 0.3rem;
-  line-height: 1;
-}
-
-.slide-title {
-  font-family: var(--font-body);
-  font-size: clamp(1rem, 2.5vw, 1.8rem);
-  font-weight: 700;
-  color: var(--white);
-  margin-bottom: 0.5rem;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-}
-
-.slide-desc {
-  font-family: var(--font-body);
-  font-size: clamp(0.75rem, 1.2vw, 1rem);
-  color: rgba(255,255,255,0.7);
-  line-height: 1.6;
-  max-width: 600px;
-}
-
-/* Carousel Navigation */
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  width: clamp(40px, 6vw, 60px);
-  height: clamp(40px, 6vw, 60px);
-  border: none;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: var(--white);
-  font-size: clamp(1.2rem, 2vw, 1.8rem);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-}
-
-.carousel-btn:hover {
-  background: rgba(255,217,61,0.3);
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 6px 30px rgba(255,217,61,0.3);
-}
-
-.carousel-btn:active {
-  transform: translateY(-50%) scale(0.95);
-}
-
-.carousel-btn-prev {
-  left: clamp(10px, 2vw, 20px);
-}
-
-.carousel-btn-next {
-  right: clamp(10px, 2vw, 20px);
-}
-
-/* Carousel Dots */
-.carousel-dots {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-
-.carousel-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.3);
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 0;
-}
-
-.carousel-dot:hover {
-  background: rgba(255,217,61,0.6);
-  transform: scale(1.2);
-}
-
-.carousel-dot.active {
-  background: var(--gold);
-  transform: scale(1.3);
-  box-shadow: 0 0 10px rgba(255,217,61,0.5);
+  text-shadow: none;
 }
 
 /* ===== Timer ===== */
 .timer-wrapper {
   position: relative;
-  margin: 0.5rem 0;
-  padding: 1rem 0;
+  margin: 1.5rem 0 1rem;
+  padding: 1.5rem 0;
 }
 
 .timer-display {
@@ -435,7 +207,7 @@ body::after {
   height: clamp(3px, 0.5vw, 6px);
   background: rgba(255,255,255,0.1);
   border-radius: 4px;
-  margin: 0.8rem auto 0;
+  margin: 1.2rem auto 0;
   overflow: hidden;
 }
 
@@ -453,7 +225,7 @@ body::after {
   justify-content: center;
   gap: 0.7rem;
   flex-wrap: wrap;
-  margin: 1rem 0;
+  margin: 1.8rem 0;
 }
 
 .preset-btn {
@@ -511,7 +283,7 @@ body::after {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-top: 0.8rem;
+  margin-top: 1.5rem;
 }
 
 .control-btn {
@@ -791,11 +563,11 @@ body::after {
   }
 }
 
-/* ===== Responsive ===== */
+/* ===== Responsive: compact layout for smaller screens ===== */
 @media (max-width: 700px) {
   .header-icon { font-size: clamp(1.5rem, 5vw, 2.5rem); }
-  .header { margin-bottom: 0.5rem; }
-  .timer-wrapper { margin: 0.5rem 0; padding: 0.5rem 0; }
+  .header { margin-bottom: clamp(0.5rem, 1.5vw, 1.2rem); }
+  .timer-wrapper { margin: clamp(0.5rem, 2vw, 1.5rem) 0; padding: clamp(0.5rem, 2vw, 1.5rem) 0; }
   .presets { gap: 0.4rem; }
   .controls { gap: 0.5rem; flex-wrap: wrap; }
   .progress-track { width: min(90%, 400px); }
@@ -808,13 +580,13 @@ body::after {
   .progress-track { width: 92%; }
 }
 
-/* Large screens */
+/* Large screens / projectors: less cramped */
 @media (min-width: 1400px) {
   .presets { gap: 1.2rem; }
   .controls { gap: 1.5rem; }
 }
 
-/* Short viewport */
+/* Short viewport (landscape phones, small laptops): compact vertical */
 @media (max-height: 600px) {
   .header { margin-bottom: 0.3rem; }
   .header-icon { font-size: 1.5rem; margin-bottom: 0.1rem; }
@@ -822,7 +594,6 @@ body::after {
   .presets { margin: 0.5rem 0; gap: 0.3rem; }
   .controls { margin-top: 0.5rem; gap: 0.4rem; }
   .progress-track { display: none; }
-  .carousel-section { margin: 0.3rem 0; }
 }
 
 /* Medium-height viewport */
@@ -834,112 +605,159 @@ body::after {
   .controls { margin-top: 0.8rem; }
 }
 
-/* Very tall viewport */
+/* Very tall viewport (some projectors): use more space */
 @media (min-height: 1000px) {
   .header { margin-bottom: 2.5rem; }
   .timer-wrapper { margin: 2.5rem 0; padding: 2rem 0; }
   .presets { margin: 2.5rem 0; gap: 1rem; }
   .controls { margin-top: 2.5rem; }
 }
+
+/* ===== Background Slideshow: Anti-Japanese War History ===== */
+.bg-slideshow {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bg-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 3s ease-in-out;
+  transform: scale(1.12);
+}
+
+.bg-slide.active {
+  opacity: 1;
+  animation: kenBurns 18s ease-out forwards;
+}
+
+@keyframes kenBurns {
+  0%   { transform: scale(1.12) translate(0, 0); }
+  50%  { transform: scale(1.04) translate(-1%, -1%); }
+  100% { transform: scale(1.0) translate(0, 0); }
+}
+
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(to bottom,
+      rgba(15, 12, 41, 0.80) 0%,
+      rgba(36, 36, 62, 0.72) 40%,
+      rgba(15, 12, 41, 0.88) 100%
+    );
+  pointer-events: none;
+}
+
+/* Time node display bar */
+.time-node-bar {
+  position: fixed;
+  bottom: 3.5rem;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  padding: 1.8rem 2rem 1.2rem;
+  text-align: center;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.45) 65%, transparent 100%);
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+.time-node-bar .tn-date {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.7);
+}
+
+.time-node-bar .tn-event {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 1.8vw, 1.4rem);
+  font-weight: 700;
+  color: rgba(255,255,255,0.96);
+  margin-top: 0.4rem;
+  text-shadow: 0 2px 15px rgba(0,0,0,0.7);
+  letter-spacing: 0.05em;
+}
+
+.time-node-bar .tn-desc {
+  font-family: var(--font-body);
+  font-size: clamp(0.72rem, 1.2vw, 0.98rem);
+  font-weight: 400;
+  color: rgba(255,255,255,0.62);
+  margin-top: 0.5rem;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.65;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.6);
+}
+
+/* Slide indicators */
+.slide-indicators {
+  position: fixed;
+  bottom: 0.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.slide-indicator {
+  width: 22px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.22);
+  transition: background 0.4s, width 0.4s;
+}
+
+.slide-indicator.active {
+  background: var(--gold);
+  width: 34px;
+}
+
+/* Slideshow responsive */
+@media (max-height: 600px) {
+  .time-node-bar { bottom: 2.5rem; padding: 1rem 1.5rem 0.6rem; }
+  .time-node-bar .tn-desc { display: none; }
+}
+
+@media (max-width: 480px) {
+  .time-node-bar { bottom: 2.5rem; padding: 1.2rem 1rem 0.8rem; }
+  .time-node-bar .tn-desc { font-size: 0.75rem; max-width: 95%; }
+}
 </style>
 </head>
 <body>
+
+<!-- Background Slideshow: Chinese Anti-Japanese War History -->
+<div class="bg-slideshow" id="bgSlideshow"></div>
+<div class="bg-overlay"></div>
+
+<!-- Time Node Display -->
+<div class="time-node-bar" id="timeNodeBar" style="opacity:0;">
+  <div class="tn-date" id="tnDate"></div>
+  <div class="tn-event" id="tnEvent"></div>
+  <div class="tn-desc" id="tnDesc"></div>
+</div>
+<div class="slide-indicators" id="slideIndicators"></div>
 
 <div class="container">
   <!-- Header -->
   <div class="header">
     <span class="header-icon">☕</span>
     <h1>休 息 倒 计 时</h1>
-  </div>
-
-  <!-- Image Carousel -->
-  <div class="carousel-section">
-    <div class="carousel-header">
-      <h2>📜 中国近代史 · 抗战与八国联军</h2>
-    </div>
-
-    <div class="carousel-container">
-      <div class="carousel-track" id="carouselTrack">
-        <!-- Slide 1: 八国联军侵华 -->
-        <div class="carousel-slide slide-1">
-          <div class="slide-content">
-            <div class="slide-year">1900年</div>
-            <div class="slide-title">八国联军侵华战争</div>
-            <div class="slide-desc">英、美、法、德、俄、日、意、奥八国组成联军，以镇压义和团运动为借口，发动侵华战争，攻占北京，烧杀抢掠，给中国人民带来深重灾难。</div>
-          </div>
-        </div>
-
-        <!-- Slide 2: 《辛丑条约》 -->
-        <div class="carousel-slide slide-2">
-          <div class="slide-content">
-            <div class="slide-year">1901年</div>
-            <div class="slide-title">《辛丑条约》签订</div>
-            <div class="slide-desc">清政府被迫与十一国签订丧权辱国的《辛丑条约》，赔款白银4.5亿两，划定使馆界，允许外国驻军，中国完全沦为半殖民地半封建社会。</div>
-          </div>
-        </div>
-
-        <!-- Slide 3: 九一八事变 -->
-        <div class="carousel-slide slide-3">
-          <div class="slide-content">
-            <div class="slide-year">1931年</div>
-            <div class="slide-title">九一八事变</div>
-            <div class="slide-desc">日本关东军炸毁南满铁路柳条湖段，反诬中国军队所为，借此侵占沈阳，掀起侵华战争序幕。东北三省沦陷，三千万同胞沦为亡国奴。</div>
-          </div>
-        </div>
-
-        <!-- Slide 4: 七七事变 -->
-        <div class="carousel-slide slide-4">
-          <div class="slide-content">
-            <div class="slide-year">1937年</div>
-            <div class="slide-title">七七事变 · 全面抗战爆发</div>
-            <div class="slide-desc">日军在北平西南卢沟桥附近演习，借口一名士兵失踪，炮轰宛平城。中国守军奋起抵抗，全面抗日战争从此开始。</div>
-          </div>
-        </div>
-
-        <!-- Slide 5: 南京大屠杀 -->
-        <div class="carousel-slide slide-5">
-          <div class="slide-content">
-            <div class="slide-year">1937年12月</div>
-            <div class="slide-title">南京大屠杀</div>
-            <div class="slide-desc">日军攻占南京后，对无辜平民和战俘进行大规模屠杀、奸淫、抢劫，三十万同胞遇难，是人类文明史上极其黑暗的一页。</div>
-          </div>
-        </div>
-
-        <!-- Slide 6: 百团大战 -->
-        <div class="carousel-slide slide-6">
-          <div class="slide-content">
-            <div class="slide-year">1940年</div>
-            <div class="slide-title">百团大战</div>
-            <div class="slide-desc">八路军在华北发动大规模破袭战，参战兵力达105个团，沉重打击了日军的"囚笼政策"，振奋了全国军民抗战信心。</div>
-          </div>
-        </div>
-
-        <!-- Slide 7: 抗战胜利 -->
-        <div class="carousel-slide slide-7">
-          <div class="slide-content">
-            <div class="slide-year">1945年</div>
-            <div class="slide-title">抗日战争胜利</div>
-            <div class="slide-desc">经过十四年艰苦卓绝的斗争，中国人民终于打败日本侵略者，取得了近代以来中国反抗外敌入侵的第一次完全胜利。</div>
-          </div>
-        </div>
-
-        <!-- Slide 8: 铭记历史 -->
-        <div class="carousel-slide slide-8">
-          <div class="slide-content">
-            <div class="slide-year">铭记</div>
-            <div class="slide-title">以史为鉴 · 开创未来</div>
-            <div class="slide-desc">历史是最好的教科书，也是最好的清醒剂。铭记苦难，缅怀先烈，珍爱和平，吾辈当自强。</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Navigation Buttons -->
-      <button class="carousel-btn carousel-btn-prev" id="prevBtn" aria-label="上一张">❮</button>
-      <button class="carousel-btn carousel-btn-next" id="nextBtn" aria-label="下一张">❯</button>
-    </div>
-
-    <!-- Dots -->
-    <div class="carousel-dots" id="carouselDots"></div>
   </div>
 
   <!-- Timer -->
@@ -1035,83 +853,6 @@ body::after {
   const dismissBtn        = document.getElementById('dismissBtn');
   const particleContainer = document.getElementById('particleContainer');
 
-  // === Carousel ===
-  const carouselTrack = document.getElementById('carouselTrack');
-  const slides = document.querySelectorAll('.carousel-slide');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const dotsContainer = document.getElementById('carouselDots');
-  let currentSlide = 0;
-  let carouselInterval = null;
-  const totalSlides = slides.length;
-
-  // Create dots
-  for (let i = 0; i < totalSlides; i++) {
-    const dot = document.createElement('button');
-    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-    dot.setAttribute('aria-label', `第${i + 1}张`);
-    dot.addEventListener('click', () => goToSlide(i));
-    dotsContainer.appendChild(dot);
-  }
-
-  const dots = document.querySelectorAll('.carousel-dot');
-
-  function goToSlide(index) {
-    if (index < 0) index = totalSlides - 1;
-    if (index >= totalSlides) index = 0;
-    currentSlide = index;
-    carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
-    dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
-  }
-
-  function nextSlide() { goToSlide(currentSlide + 1); }
-  function prevSlide() { goToSlide(currentSlide - 1); }
-
-  nextBtn.addEventListener('click', () => { nextSlide(); resetCarouselTimer(); });
-  prevBtn.addEventListener('click', () => { prevSlide(); resetCarouselTimer(); });
-
-  // Auto-play carousel
-  function startCarousel() {
-    carouselInterval = setInterval(nextSlide, 5000);
-  }
-
-  function resetCarouselTimer() {
-    clearInterval(carouselInterval);
-    startCarousel();
-  }
-
-  // Pause on hover
-  const carouselContainer = document.querySelector('.carousel-container');
-  carouselContainer.addEventListener('mouseenter', () => clearInterval(carouselInterval));
-  carouselContainer.addEventListener('mouseleave', startCarousel);
-
-  // Touch/swipe support
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  carouselContainer.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  }, { passive: true });
-
-  carouselContainer.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    const diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) nextSlide();
-      else prevSlide();
-      resetCarouselTimer();
-    }
-  }, { passive: true });
-
-  // Keyboard navigation for carousel
-  document.addEventListener('keydown', function(e) {
-    if (e.target.tagName === 'INPUT') return;
-    if (e.key === 'ArrowLeft') { prevSlide(); resetCarouselTimer(); }
-    if (e.key === 'ArrowRight') { nextSlide(); resetCarouselTimer(); }
-  });
-
-  startCarousel();
-
   // === State ===
   const STATE = {
     IDLE: 'idle',
@@ -1127,6 +868,7 @@ body::after {
   let activePreset = null;  // DOM element
 
   // === Audio ===
+  // Prime AudioContext during user gesture (browser autoplay policy)
   let audioCtx = null;
   let audioPrimed = false;
 
@@ -1135,6 +877,7 @@ body::after {
     const Ctor = window.AudioContext || window.webkitAudioContext;
     if (!Ctor) return;
     audioCtx = new Ctor();
+    // Create a silent buffer to unlock audio
     if (audioCtx.state === 'suspended') {
       audioCtx.resume().catch(() => {});
     }
@@ -1143,6 +886,7 @@ body::after {
 
   function playAlert() {
     if (!audioCtx) {
+      // Fallback: try creating now
       const Ctor = window.AudioContext || window.webkitAudioContext;
       if (!Ctor) return;
       audioCtx = new Ctor();
@@ -1205,6 +949,7 @@ body::after {
     minutesEl.textContent = m;
     secondsEl.textContent = s;
 
+    // Progress
     if (totalSeconds > 0) {
       const pct = (remainingSeconds / totalSeconds) * 100;
       progressFill.style.width = pct + '%';
@@ -1217,17 +962,24 @@ body::after {
     const vw = window.innerWidth;
     const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
 
-    const overheadRatio = vh < 600 ? 0.52 : vh < 800 ? 0.44 : vh < 1000 ? 0.38 : 0.32;
+    // Estimate vertical space used by header, presets, controls, padding
+    // Smaller screens have proportionally more overhead
+    // Extra overhead for bottom time-node bar (content shifted up)
+    const overheadRatio = vh < 600 ? 0.56 : vh < 800 ? 0.47 : vh < 1000 ? 0.40 : 0.35;
     const maxHeightRem = (vh * (1 - overheadRatio)) / rem;
 
+    // Width constraint: 6 chars (MM:SS) at ~0.55em each = 3.3em
     const maxWidthRem = (vw * 0.88) / rem;
     const fromWidth = maxWidthRem / 3.3;
 
     const optimalSize = Math.min(maxHeightRem, fromWidth);
+
+    // Clamp between usable min/max
     const finalSize = Math.max(2.8, Math.min(optimalSize, 18));
     document.documentElement.style.setProperty('--timer-size', finalSize + 'rem');
   }
 
+  // Debounced resize handler
   let resizeTicking = false;
   function onResize() {
     if (!resizeTicking) {
@@ -1266,6 +1018,7 @@ body::after {
     const isPaused  = state === STATE.PAUSED;
     const isFinished = state === STATE.FINISHED;
 
+    // Start button
     if (isRunning) {
       startBtn.innerHTML = '<span class="ico">⏸</span> 暂停';
       startBtn.className = 'control-btn';
@@ -1276,6 +1029,7 @@ body::after {
       startBtn.innerHTML = '<span class="ico">▶</span> 开始';
       startBtn.className = 'control-btn btn-start';
     } else {
+      // finished
       startBtn.innerHTML = '<span class="ico">▶</span> 开始';
       startBtn.className = 'control-btn btn-start';
     }
@@ -1283,15 +1037,19 @@ body::after {
     startBtn.disabled = isIdle || isFinished;
     resetBtn.disabled = isIdle || isFinished;
 
+    // Colon blink
     colonEl.classList.toggle('blink', isRunning);
 
+    // Presets
     presetBtns.forEach(btn => { btn.disabled = isRunning; });
 
+    // Status text
     if (isRunning) setStatusText('☕ 休息中 ...', 'active');
     else if (isPaused) setStatusText('⏸ 已暂停', 'paused-label');
     else if (isIdle) setStatusText('点击预设按钮开始倒计时', '');
     else if (isFinished) setStatusText('🔔 休息结束！', 'warning-label');
 
+    // Last 10s check
     if (isRunning && remainingSeconds <= 10 && remainingSeconds > 0) {
       setWarning(true);
     } else if (!isFinished) {
@@ -1317,6 +1075,7 @@ body::after {
     timerInterval = setInterval(() => {
       remainingSeconds--;
 
+      // Last 10s warning
       if (remainingSeconds <= 10 && remainingSeconds > 0) {
         setWarning(true);
         setStatusText(`⚠ ${remainingSeconds} 秒后结束！`, 'warning-label');
@@ -1432,7 +1191,9 @@ body::after {
     } else if (state === STATE.PAUSED) {
       startTimer();
     } else if (state === STATE.FINISHED) {
+      // Reset then start
       resetTimer();
+      // But user probably wants to start again, so let them pick a preset
     }
   });
 
@@ -1469,6 +1230,7 @@ body::after {
 
   // === Keyboard shortcuts ===
   document.addEventListener('keydown', function(e) {
+    // Ignore if typing in input
     if (e.target.tagName === 'INPUT') return;
 
     switch (e.key) {
@@ -1503,6 +1265,292 @@ body::after {
   // Activate default preset (10 min)
   document.querySelector('.preset-10').classList.add('active');
   activePreset = document.querySelector('.preset-10');
+
+})();
+
+// ===== Anti-Japanese War Background Slideshow =====
+(function() {
+  'use strict';
+
+  // Helper: build stable Wikimedia Commons image URL
+  function wmFile(filename, width) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/'
+      + encodeURIComponent(filename)
+      + '?width=' + (width || 1920);
+  }
+
+  // === Historical Time Nodes: 中国历史全景 (公元前221年 — 2008年) ===
+  // Each node can optionally set `duration` (ms) to override the default.
+  var historyNodes = [
+    {
+      date: '公元前221年',
+      event: '秦始皇统一六国',
+      desc: '公元前221年，秦始皇嬴政横扫六国，完成统一大业，建立了中国历史上第一个中央集权的统一王朝——秦朝。废分封、立郡县，统一文字（小篆）、货币、度量衡，修筑万里长城抵御匈奴，奠定了此后两千年中国版图与制度的基础。虽二世而亡，却开创了大一统的千秋基业。',
+      image: wmFile('Qinshihuangdi3.jpg'),
+      duration: 14000
+    },
+    {
+      date: '1405年7月11日',
+      event: '郑和下西洋',
+      desc: '1405年7月11日，明朝太监郑和奉明成祖朱棣之命，率两百余艘宝船、两万七千余人组成庞大船队，从太仓刘家港启航，揭开了七下西洋的伟大序幕。郑和船队最远抵达东非和阿拉伯半岛，比哥伦布发现新大陆早87年，比麦哲伦环球航行早114年，是人类航海史上的空前壮举，彰显了中华文明的开放与强盛。',
+      image: wmFile('Voyages by Zheng He (9834828124).jpg'),
+      duration: 14000
+    },
+    {
+      date: '1840年6月',
+      event: '鸦片战争',
+      desc: '1840年6月，英国以虎门销烟为借口派出远征军入侵中国，第一次鸦片战争爆发。清军在英军坚船利炮面前溃不成军。1842年8月，清政府被迫签订中国近代史上第一个不平等条约——《南京条约》，割让香港岛、赔偿白银2100万银元、开放五口通商。中国从此沦为半殖民地半封建社会，屈辱的近代史由此拉开序幕。',
+      image: wmFile("Britain's first war with China, 1840-42. (1900).jpg"),
+      duration: 15000
+    },
+    {
+      date: '1851年1月11日',
+      event: '太平天国运动',
+      desc: '1851年1月11日，洪秀全在广西金田村发动起义，建号太平天国，掀起了中国近代史上规模最大的农民起义。太平军席卷半个中国，定都天京（南京），颁布《天朝田亩制度》，坚持了14年。虽最终被中外反动势力联合绞杀，但沉重打击了清王朝统治，推动了中国近代历史进程。',
+      image: wmFile('Anti-Qing Uprisings All Over China at Time of Taiping Uprising (10151911813).jpg'),
+      duration: 14000
+    },
+    {
+      date: '1894年7月25日',
+      event: '甲午中日战争',
+      desc: '1894年7月25日，日本海军在丰岛海域突袭北洋舰队运兵船，甲午中日战争爆发。黄海海战中，致远舰管带邓世昌率舰撞击日舰未果，与全舰官兵壮烈殉国。1895年2月，北洋舰队在威海卫全军覆没。清政府被迫签订《马关条约》，割让台湾及澎湖列岛、赔偿白银2亿两，中华民族危机空前加深。',
+      image: wmFile('16126.d.1(10)-Night attack at Jiuliancheng.jpg'),
+      duration: 15000
+    },
+    {
+      date: '1900年8月14日',
+      event: '八国联军攻陷北京',
+      desc: '1900年8月14日，英、美、法、德、俄、日、意、奥八国组成联军攻陷北京。联军在城中大肆劫掠，故宫、颐和园等皇家园林珍宝被洗劫一空，无数文化遗产遭破坏。1901年9月7日，清政府被迫签订《辛丑条约》，赔款白银4.5亿两（合当时中国人均一两），中国彻底沦为半殖民地半封建社会。',
+      image: wmFile('Boxer rebellion foreign powers 1900.jpg'),
+      duration: 15000
+    },
+    {
+      date: '1911年10月10日',
+      event: '辛亥革命',
+      desc: '1911年10月10日，武昌新军起义打响第一枪，各省纷纷响应，两个月内全国十五省宣布独立。1912年1月1日，孙中山在南京就任中华民国临时大总统。辛亥革命推翻了统治中国268年的清王朝和延续两千余年的君主专制制度，建立了亚洲第一个共和国，开启了中国近代民主革命的新纪元。',
+      image: wmFile('Chinese republic forever.jpg'),
+      duration: 15000
+    },
+    {
+      date: '1919年5月4日',
+      event: '五四运动',
+      desc: '1919年5月4日，巴黎和会上中国外交失败的消息传到北京，3000余名学生齐聚天安门前举行示威游行，高呼"外争国权、内惩国贼"。运动迅速扩展到全国，工人罢工、商人罢市。五四运动促进了马克思主义在中国的传播，标志着中国新民主主义革命的开端，也为中国共产党的诞生奠定了思想基础。',
+      image: wmFile('Beijing students protesting the Treaty of Versailles (May 4, 1919).jpg'),
+      duration: 15000
+    },
+    {
+      date: '1931年9月18日',
+      event: '九一八事变',
+      desc: '1931年9月18日夜，日本关东军炸毁南满铁路柳条湖段，反诬中国军队所为，随即炮击北大营，悍然进攻沈阳。次日长春、营口相继失守，不到半年东北全境沦陷。这是日本侵华战争的起点，也是世界反法西斯战争的序幕。十四年抗战由此开始。',
+      image: wmFile('Japanese soldiers near Mukden, October 1931.jpg'),
+      duration: 14000
+    },
+    {
+      date: '1934年10月',
+      event: '红军长征',
+      desc: '1934年10月，由于第五次反围剿失败，中央红军主力被迫从江西瑞金出发，开始了举世闻名的二万五千里长征。红军翻雪山、过草地、强渡大渡河、飞夺泸定桥，经历了四渡赤水等经典战役。1936年10月，三大主力红军在甘肃会宁胜利会师。长征保存了革命火种，铸就了伟大的长征精神。',
+      image: wmFile("Red Army's Long March Through Sichuan (9958454925).jpg"),
+      duration: 14000
+    },
+    {
+      date: '1937年7月7日',
+      event: '七七事变（卢沟桥事变）',
+      desc: '1937年7月7日夜，日军在卢沟桥附近进行实弹军事演习，借口一名士兵失踪，要求进入宛平城搜查，遭拒绝后向中国守军发动进攻。驻守卢沟桥的第29军将士奋起抵抗，副军长佟麟阁、师长赵登禹壮烈殉国。七七事变标志着中华民族全面抗战的开始。',
+      image: wmFile('Chinese Soldier Went Out of Wanping.jpg'),
+      duration: 14000
+    },
+    {
+      date: '1937年8月13日',
+      event: '淞沪会战',
+      desc: '1937年8月13日，中日双方在上海展开长达三个月的惨烈会战，投入总兵力超百万。中国军队以血肉之躯对抗日军的舰炮与航空兵火力，谢晋元率八百壮士死守四行仓库的壮举震撼世界。此战粉碎了日军三个月灭亡中国的狂妄企图。',
+      image: wmFile('Baoshan1937-Asahi-01.jpg'),
+      duration: 13000
+    },
+    {
+      date: '1937年12月13日',
+      event: '南京沦陷',
+      desc: '1937年12月13日，日军攻陷南京。此后六周内，日军进行了有组织、有计划的大屠杀，遇难同胞超过30万人，两万余妇女遭暴行，全城三分之一建筑被焚毁。这是人类近代史上最黑暗的一页，南京大屠杀是永远不可遗忘的民族伤痛。',
+      image: wmFile('A scene in Nanjing just after fall - 1 - 1937 - Okamoto Katusji.png'),
+      duration: 16000
+    },
+    {
+      date: '1938年3月24日',
+      event: '台儿庄战役',
+      desc: '1938年3月24日，中国军队在第五战区司令长官李宗仁指挥下，于山东台儿庄与日军激战近半个月。中国将士以血肉之躯逐屋争夺，最终歼灭日军万余人，取得抗战以来正面战场最大的一次胜利，极大地鼓舞了全国军民的抗战信心。',
+      image: wmFile('Battle of Taierzhuang.jpg'),
+      duration: 13000
+    },
+    {
+      date: '1940年8月20日',
+      event: '百团大战',
+      desc: '1940年8月20日，八路军总司令朱德、副总司令彭德怀指挥105个团约40万兵力，对华北日军发动大规模进攻战役。历时三个半月，破坏铁路470余公里、公路1500余公里，拔除据点2900余个，沉重打击了日军的囚笼政策，振奋了全国抗战信念。',
+      image: wmFile('Hundred Regiments Offensive 1940.jpg'),
+      duration: 14000
+    },
+    {
+      date: '1945年8月15日',
+      event: '日本无条件投降',
+      desc: '1945年8月15日正午，日本天皇裕仁通过广播发表《终战诏书》，宣布无条件投降。中国人民经过14年浴血奋战，付出了3500万军民伤亡的巨大代价，终于迎来了抗日战争的伟大胜利。全国上下沸腾庆祝，锣鼓喧天，鞭炮齐鸣。',
+      image: wmFile('1945年8月16日重慶掃蕩報.jpg'),
+      duration: 15000
+    },
+    {
+      date: '1945年9月2日',
+      event: '受降仪式',
+      desc: '1945年9月2日上午，日本外相重光葵和陆军参谋总长梅津美治郎在停泊于东京湾的美国战列舰密苏里号上签署投降书。中国代表徐永昌将军作为同盟国代表之一签字见证。至此，第二次世界大战正式结束，中国作为东方主战场赢得了最终胜利。',
+      image: wmFile('Japanese Surrender at Tokyo Bay, 2 September 1945 A30427A.jpg'),
+      duration: 14000
+    },
+    {
+      date: '1945年9月3日',
+      event: '抗日战争胜利纪念日',
+      desc: '1945年9月3日被定为中国人民抗日战争胜利纪念日。14年抗战，中国军民伤亡超3500万，直接经济损失超1000亿美元。铭记历史，缅怀先烈，珍爱和平，开创未来。伟大抗战精神永远激励中华民族奋勇前行。',
+      image: wmFile('台灣舉行抗戰紀念活動 01.jpg'),
+      duration: 15000
+    },
+    {
+      date: '1949年10月1日',
+      event: '开国大典',
+      desc: '1949年10月1日下午3时，毛泽东在天安门城楼上庄严宣告："中华人民共和国中央人民政府今天成立了！"随后亲手按动电钮，第一面五星红旗在国歌声中冉冉升起。54门礼炮齐鸣28响，象征着中国共产党领导中国人民奋斗的28年。中华人民共和国的成立，标志着中国人民从此站起来了，中华民族开启了历史新纪元。',
+      image: wmFile('Mao_Proclaiming_New_China.JPG'),
+      duration: 16000
+    },
+    {
+      date: '1964年10月16日',
+      event: '第一颗原子弹爆炸成功',
+      desc: '1964年10月16日15时，中国西部的罗布泊上空腾起一朵巨大的蘑菇云，中国第一颗原子弹爆炸成功。这一伟大成就打破了超级大国的核垄断和核讹诈，极大地提高了中国的国际地位和国防实力。从着手研制到试爆成功仅用了5年时间，凝聚了钱三强、邓稼先等无数科学家的心血。中国从此跻身核大国行列。',
+      image: wmFile('1965-01_1964年_首次原子弹爆炸3.jpg'),
+      duration: 15000
+    },
+    {
+      date: '1978年12月18日',
+      event: '改革开放',
+      desc: '1978年12月18日，党的十一届三中全会在北京召开，作出了把党和国家工作中心转移到经济建设上来、实行改革开放的历史性决策。邓小平成为中国改革开放的总设计师。农村实行家庭联产承包责任制，城市推进国企改革，设立经济特区，引进外资和技术。改革开放改变了中国的命运，开启了从贫穷落后走向繁荣富强的伟大征程。',
+      image: wmFile('DengXiaoPingNanXunJunJian.jpg'),
+      duration: 15000
+    },
+    {
+      date: '1997年7月1日',
+      event: '香港回归',
+      desc: '1997年7月1日零时，中英两国政府在香港会议展览中心举行香港政权交接仪式。米字旗降下，五星红旗和紫荆花区旗冉冉升起，英国对香港156年的殖民统治正式结束。香港回到祖国怀抱，中华人民共和国香港特别行政区正式成立。"一国两制"的伟大构想变为现实，洗雪了百年国耻。',
+      image: wmFile('1July2007 Fireworks.jpg'),
+      duration: 15000
+    },
+    {
+      date: '1999年12月20日',
+      event: '澳门回归',
+      desc: '1999年12月20日零时，中葡两国政府在澳门文化中心隆重举行澳门政权交接仪式。葡萄牙国旗降下，五星红旗和莲花区旗在澳门上空飘扬，葡萄牙对澳门442年的管治画上句号。澳门回归祖国怀抱，中华人民共和国澳门特别行政区正式成立。继香港之后，"一国两制"再次成功实践，祖国的统一大业又迈出重要一步。',
+      image: wmFile('澳門回歸交接儀式.jpg'),
+      duration: 15000
+    },
+    {
+      date: '2008年8月8日',
+      event: '北京奥运会',
+      desc: '2008年8月8日晚8时，第29届奥林匹克运动会在北京国家体育场（鸟巢）隆重开幕。2008名表演者击缶倒计时，李宁手持火炬在空中绕场一周点燃主火炬，璀璨的烟火照亮了北京的夜空。204个国家和地区的代表团参赛，中国以51金的成绩首次登顶金牌榜榜首。北京奥运会向世界展示了一个繁荣、开放、自信的新中国，圆了中华民族的百年奥运梦想。',
+      image: wmFile('2008_Summer_Olympics_Opening_Ceremony_2.jpg'),
+      duration: 16000
+    }
+  ];
+
+  var slideshow         = document.getElementById('bgSlideshow');
+  var timeNodeBar       = document.getElementById('timeNodeBar');
+  var tnDate            = document.getElementById('tnDate');
+  var tnEvent           = document.getElementById('tnEvent');
+  var tnDesc            = document.getElementById('tnDesc');
+  var indicatorsContainer = document.getElementById('slideIndicators');
+
+  var currentSlide   = 0;
+  var slideTimer     = null;
+  var SLIDE_DURATION = 12000; // default 12s per slide
+
+  // Preload all images
+  function preloadImages() {
+    historyNodes.forEach(function(node) {
+      var img = new Image();
+      img.src = node.image;
+    });
+  }
+
+  // Create slide + indicator DOM elements
+  function createSlides() {
+    historyNodes.forEach(function(node, i) {
+      // Slide
+      var slide = document.createElement('div');
+      slide.className = 'bg-slide' + (i === 0 ? ' active' : '');
+      slide.style.backgroundImage = "url('" + node.image + "')";
+      slideshow.appendChild(slide);
+
+      // Indicator
+      var ind = document.createElement('div');
+      ind.className = 'slide-indicator' + (i === 0 ? ' active' : '');
+      indicatorsContainer.appendChild(ind);
+    });
+  }
+
+  // Update time-node text (fade out → swap → fade in)
+  function updateTimeNode(index) {
+    var node = historyNodes[index];
+    timeNodeBar.style.opacity = '0';
+    setTimeout(function() {
+      tnDate.textContent    = node.date;
+      tnEvent.textContent   = node.event;
+      tnDesc.textContent    = node.desc;
+      timeNodeBar.style.opacity = '1';
+    }, 900);
+  }
+
+  // Schedule next slide with per-node duration support
+  function scheduleNextSlide() {
+    clearTimeout(slideTimer);
+    var node = historyNodes[currentSlide];
+    var duration = node.duration || SLIDE_DURATION;
+    slideTimer = setTimeout(function() {
+      nextSlide();
+    }, duration);
+  }
+
+  // Jump to a specific slide
+  function goToSlide(index) {
+    var slides = slideshow.querySelectorAll('.bg-slide');
+    var inds   = indicatorsContainer.querySelectorAll('.slide-indicator');
+
+    slides[currentSlide].classList.remove('active');
+    inds[currentSlide].classList.remove('active');
+
+    currentSlide = index;
+
+    slides[currentSlide].classList.add('active');
+    inds[currentSlide].classList.add('active');
+
+    updateTimeNode(currentSlide);
+  }
+
+  function nextSlide() {
+    goToSlide((currentSlide + 1) % historyNodes.length);
+    scheduleNextSlide();
+  }
+
+  // Init
+  preloadImages();
+  createSlides();
+
+  // Show first time node after a brief delay
+  setTimeout(function() {
+    updateTimeNode(0);
+  }, 600);
+
+  // Start rotation (per-node duration)
+  scheduleNextSlide();
+
+  // Pause when tab is hidden, resume when visible
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      clearTimeout(slideTimer);
+      slideTimer = null;
+    } else if (!slideTimer) {
+      scheduleNextSlide();
+    }
+  });
 
 })();
 </script>
